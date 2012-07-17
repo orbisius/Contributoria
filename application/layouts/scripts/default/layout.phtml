@@ -1,0 +1,67 @@
+<?= $this->doctype() ?>
+
+<html>
+
+    <head>
+
+        <?php
+        if (APPLICATION_ENV == 'production') {
+            echo $this->render('tracking/_chartbeat_header.phtml');
+        }
+        ?>
+
+        <?= $this->headTitle() ?>
+
+        <?= $this->headMeta() ?>
+
+        <?= $this->headLink() ?>
+
+        <?= $this->headStyle() ?>
+
+        <? if ($this->rssUrl) {
+            ?>
+            <link rel="alternate" type="application/rss+xml" title="n0tice" href="<?= $this->rssUrl ?>" >
+            <?php
+        }
+        ?>
+
+        <meta name="viewport" content="width=980">
+
+        <link rel="apple-touch-icon" href="<?= $this->staticUrl() ?>/apple-touch-icon.png" >
+
+        <link rel="shortcut icon" href="<?= $this->staticUrl() ?>/favicon.ico" >
+
+    </head>
+
+    <body>
+
+        <div class="container">
+
+            <?= $this->render('_header.phtml') ?>
+
+            <?= $this->flashMessenger(); ?>
+
+            <?= $this->layout()->content ?>
+
+            <?= $this->render('_footer.phtml') ?>
+
+        </div>
+
+        <?= $this->headScript() ?>
+
+        <?php
+        if (APPLICATION_ENV == 'production') {
+            echo $this->render('tracking/_googleanalytics.phtml');
+            echo $this->render('tracking/_chartbeat.phtml');
+            echo $this->render('tracking/_quantcast.phtml');
+        }
+        ?>
+        <?php
+        if ($this->facebook_sdk) {
+            echo $this->render('tracking/_facebooksdk.phtml');
+        }
+        ?>
+
+    </body>
+
+</html>

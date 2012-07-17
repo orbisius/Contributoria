@@ -1,0 +1,43 @@
+<?php 
+$this->headTitle()->prepend( '404' );
+
+$admin = false;
+if(Zend_Auth::getInstance()->getIdentity()) {
+    if(Zend_Auth::getInstance()->getIdentity()->role == 'admin') {
+        $admin = true;
+    }
+}
+?>
+
+<? if ('development' == APPLICATION_ENV || $admin): ?>
+    
+    <h1>Error: Admin Eyes Only</h1>
+    <hr>
+    <h3>Exception information:</h3>
+    <p>
+        <b>Message:</b> <?= $this->exception->getMessage() ?>
+    </p>
+    <h3>Request Parameters:</h3>
+    <pre><? var_dump($this->request->getParams()) ?></pre>
+ 
+    <h3>Stack Trace 2:</h3>
+    <?php
+    foreach($this->exception->getTrace() as $t){
+        echo '<pre>';
+        var_dump($t);
+        echo '</pre>';
+    }
+    ?>
+<? endif ?>
+
+<div class="hero-unit error_page">
+		
+    <h1 class="heading_title">How embarrassing</h1>
+
+    <h3>This isn't the page you were expecting.  So sorry.</h3>
+
+    <h3>Please try again, or let us know what's wrong in the <a style="color: #ffffff" href="https://groups.google.com/group/n0tice">n0tice feedback forum</a>.</h3>
+</div>
+
+<p>Photo by <a href="http://www.flickr.com/photos/magnoid/3087011760/">magnoid</a></p>
+	
