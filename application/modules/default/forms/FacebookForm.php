@@ -1,6 +1,6 @@
 <?php
 
-class Form_FacebookForm extends Zend_Form {
+class Form_FacebookForm extends Twitter_Form {
 
     public function __construct($option = null) {
         parent::__construct($option);
@@ -18,7 +18,7 @@ class Form_FacebookForm extends Zend_Form {
         $terms->addErrorMessage("You must agree to the Terms and Conditions to continue.");
         
         $signup = new Zend_Form_Element_Submit('signup');
-        $signup->setLabel('Create My Account')->setDecorators(array('ViewHelper'))->addDecorator('htmlTag', array('tag' => 'div', 'class' => 'form-actions'))->setAttrib('class', 'btn btn-success btn-large')->setAttrib('data-theme', 'e');
+        $signup->setLabel('Create My Account')->setAttrib('class', 'btn btn-success btn-large');
 
         $this->addElements(array($user_name, $user_mail, $terms, $signup));
         $this->setMethod('post');

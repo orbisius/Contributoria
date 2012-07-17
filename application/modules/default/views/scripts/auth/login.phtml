@@ -1,10 +1,5 @@
 <?php $this->headTitle()->prepend('Log In'); ?>
 
-
-<style>
-    .signup_bar { display: none; }
-</style>
-
 <h2 class="page-header" style="text-align: center;">Login</h2>
 
 <div class="row">
@@ -18,27 +13,9 @@
 
             <br>
 
-            <p style="text-align: center;"><a href="<?= $this->url(array(), 'auth_lost'); ?>">Forgotten your username or password?</a></p>
+            <p><a href="<?= $this->url(array(), 'auth_lost'); ?>">Forgotten your username or password?</a></p>
         </div>
 
-        <style>
-            input[type="text"], input[type="password"], textarea, select, .uneditable-input {
-                font-size: 20px;
-                margin-bottom: 10px;
-                padding: 9px;
-            }    
-            .form-stacked label {
-                margin-bottom:3px;
-            }
-            .control-group {
-                margin-bottom: 10px;
-            }
-            .s_auth {
-                display: block;
-                float: none;
-                margin: 0 auto 25px;
-            }
-        </style>
     </div>
 
 
