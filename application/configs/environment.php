@@ -40,3 +40,8 @@ define('APP_STATE_STAGING', 'staging');
 define('APP_STATE_DEVELOPMENT', 'development');
 
 define('APPLICATION_ENV', APP_STATE_DEVELOPMENT);
+
+date_default_timezone_set('Europe/London');
+ini_set('date.timezone', 'Europe/London');
+ini_set('date.default_latitude', 51.500181);
+ini_set('date.default_longitude', -0.12619);
