@@ -11,11 +11,11 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap {
     private $_sitename = null;
     private $_db = null;
     private $_cachingType = null;
-    
+
     protected function _initSessionNamespaces() {
-        $this->bootstrap("session");        
+        $this->bootstrap("session");
     }
-    
+
     protected function _initAppconfig() {
 
         $config = new Zend_Config_Ini(APPLICATION_PATH . '/configs/application.ini', APPLICATION_ENV);
@@ -24,19 +24,19 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap {
         $this->_sitename = $general_options->name;
 
         Zend_Registry::set('general', $config->general);
-                
+
         date_default_timezone_set('Europe/London');
         ini_set('date.timezone', 'Europe/London');
         ini_set('date.default_latitude', 51.500181);
         ini_set('date.default_longitude', -0.12619);
-        
+
         Zend_Registry::set('s3bucket', $config->s3);
         Zend_Registry::set('static_path', $config->static->base->url);
-        
+
         $this->_cachingType = $config->caching->type;
         $this->_db = $config->database;
     }
-    
+
     protected function _initCaching() {
 
         $backendOpts = array(
@@ -63,7 +63,6 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap {
         $cache = Zend_Cache::factory('Core', $this->_cachingType, $frontendOpts, $backendOpts);
         Zend_Registry::set('1dayCache', $cache);
     }
-    
 
     protected function _initDB() {
 
@@ -93,6 +92,35 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap {
         Zend_Controller_Action_HelperBroker::addPath(APPLICATION_PATH . '/helpers/action/', 'Helper_Action_');
 
         return $autoloader;
+    }
+
+    protected function _initZFDebug() {
+        $autoloader = Zend_Loader_Autoloader::getInstance();
+        $autoloader->registerNamespace('ZFDebug');
+
+        $options = array(
+            'plugins' => array('Variables',
+                'File' => array('base_path' => '/path/to/project'),
+                'Memory',
+                'Time',
+                'Registry',
+                'Exception')
+        );
+        
+        $options['plugins']['Database']['adapter'] = Zend_Registry::get('db');
+        
+        # Setup the cache plugin
+        if ($this->hasPluginResource('cache')) {
+            $this->bootstrap('cache');
+            $cache = $this - getPluginResource('cache')->getDbAdapter();
+            $options['plugins']['Cache']['backend'] = $cache->getBackend();
+        }
+
+        $debug = new ZFDebug_Controller_Plugin_Debug($options);
+
+        $this->bootstrap('frontController');
+        $frontController = $this->getResource('frontController');
+        $frontController->registerPlugin($debug);
     }
 
     protected function _initPlugin() {
@@ -145,7 +173,7 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap {
 
         $view->addHelperPath(APPLICATION_PATH . '/helpers/view/common', 'Helper_View_Common_');
         $view->addHelperPath(APPLICATION_PATH . '/helpers/view/', 'Helper_View_');
-        
+
         // CSS
         $view->headLink()->appendStylesheet('/media/css/bootstrap.min.css');
 
@@ -159,10 +187,11 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap {
     /*
      * ReWrite Rules and Routes
      */
+
     protected function _initRoutes() {
 
         $router = Zend_Controller_Front::getInstance()->getRouter();
-        
+
         $router->addRoute('admin_home', new Zend_Controller_Router_Route('admin/', array('module' => 'admin', 'controller' => 'index', 'action' => 'index')));
 
         $router->addRoute('home', new Zend_Controller_Router_Route('/', array('module' => 'default', 'controller' => 'index', 'action' => 'index')));
