@@ -1,6 +1,6 @@
+logs/*
 demos/
 extras/documentation
 .project
 .DS_Store
 .sharedentries
-.log
