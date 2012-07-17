@@ -11,11 +11,21 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap {
     private $_sitename = null;
     private $_db = null;
     private $_cachingType = null;
-
+    
+    /**
+     * Initialise session namespaces
+     *
+     * @return void
+     */
     protected function _initSessionNamespaces() {
         $this->bootstrap("session");
     }
-
+    
+    /**
+     * Initialise application configuration settings
+     *
+     * @return void
+     */
     protected function _initAppconfig() {
 
         $config = new Zend_Config_Ini(APPLICATION_PATH . '/configs/application.ini', APPLICATION_ENV);
@@ -36,7 +46,12 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap {
         $this->_cachingType = $config->caching->type;
         $this->_db = $config->database;
     }
-
+    
+    /**
+     * Initialise caching
+     *
+     * @return void
+     */
     protected function _initCaching() {
 
         $backendOpts = array(
@@ -63,7 +78,12 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap {
         $cache = Zend_Cache::factory('Core', $this->_cachingType, $frontendOpts, $backendOpts);
         Zend_Registry::set('1dayCache', $cache);
     }
-
+    
+    /**
+     * Initialise database conenctions
+     *
+     * @return void
+     */
     protected function _initDB() {
 
         $db = Zend_Db::factory($this->_db);
@@ -81,7 +101,12 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap {
         $logger->addWriter($writer);
         Zend_Registry::set('logger', $logger);
     }
-
+    
+    /**
+     * Initialise Autoloader functions
+     *
+     * @return void
+     */
     protected function _initAutoload() {
 
         $autoloader = new Zend_Application_Module_Autoloader(array(
@@ -93,7 +118,13 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap {
 
         return $autoloader;
     }
-
+    
+    
+    /**
+     * Initialise ZFDebug
+     *
+     * @return void
+     */
     protected function _initZFDebug() {
         $autoloader = Zend_Loader_Autoloader::getInstance();
         $autoloader->registerNamespace('ZFDebug');
@@ -122,7 +153,12 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap {
         $frontController = $this->getResource('frontController');
         $frontController->registerPlugin($debug);
     }
-
+    
+    /**
+     * Initialise plugin architecture and ACL permissions
+     *
+     * @return void
+     */
     protected function _initPlugin() {
 
         if (Zend_Auth::getInstance()->hasIdentity()) {
@@ -141,11 +177,38 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap {
 
         Zend_Registry::set('acl', $this->_acl);
     }
-
-    /*
-     * View function
+    
+    
+    /**
+     * Setup the locale based on the browser
+     *
+     * @return void
      */
+    protected function _initLocale() {
+        
+        $locale = new Zend_Locale();
+        
+        if (!Zend_Locale::isLocale($locale, TRUE, FALSE)) {
+            if (!Zend_Locale::isLocale($locale, FALSE, FALSE)) {
+                throw new Zend_Exception("The locale '$locale' is no known locale");
+            }
+            
+            $locale = new Zend_Locale($locale);
+        }
+        
+        $locale = new Zend_Locale('en_US');
+        
+        if ($locale instanceof Zend_Locale) {
+            Zend_Registry::set('Zend_Locale', $locale);
+        }
+    }
 
+    
+    /**
+     * Initialise view render
+     *
+     * @return void
+     */
     protected function _initView() {
 
         $options = $this->getOptions();
@@ -180,14 +243,13 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap {
         // JS
         $view->headScript()->appendFile('https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js');
         $view->headScript()->appendFile('/media/js/bootstrap.min.js');
-
-        return $view;
     }
 
-    /*
-     * ReWrite Rules and Routes
+    /**
+     * Initialise application routes
+     *
+     * @return void
      */
-
     protected function _initRoutes() {
 
         $router = Zend_Controller_Front::getInstance()->getRouter();
