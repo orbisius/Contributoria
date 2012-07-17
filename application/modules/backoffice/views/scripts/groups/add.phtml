@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Add a new user group in the application
  *
@@ -7,14 +8,12 @@
  * @subpackage backoffice_views_groups
  * @copyright company
  */
-
 $config = array();
 $config['pageTitle'] = 'Add new user group';
 
 echo $this->partial(
-    'partials/default-add-edit.phtml',
-    array(
-        'form' => $this->form,
-        'config' => $config
-    )
+        'partials/default-add-edit.phtml', array(
+    'form' => $this->form,
+    'config' => $config
+        )
 );

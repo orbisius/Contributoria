@@ -1,3 +1,4 @@
+
 <routes>
     <!-- Static pages routes -->
     <about type="Zend_Controller_Router_Route">

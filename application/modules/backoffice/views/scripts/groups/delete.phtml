@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Delete an user group
  *
@@ -7,7 +8,6 @@
  * @subpackage backoffice_views_groups
  * @copyright company
  */
-
 $config = array();
 $config['pageTitle'] = sprintf('Delete "%s" user group', $this->item['name']);
 $config['areYouSureMessage'] = sprintf('Are you sure you want to delete "%s" user group?', $this->item['name']);
@@ -23,10 +23,9 @@ $config['columnIndexes'] = array(
 );
 
 echo $this->partial(
-    'partials/default-delete.phtml',
-    array(
-        'form' => $this->form,
-        'config' => $config,
-        'item' => $this->item
-    )
+        'partials/default-delete.phtml', array(
+    'form' => $this->form,
+    'config' => $config,
+    'item' => $this->item
+        )
 );

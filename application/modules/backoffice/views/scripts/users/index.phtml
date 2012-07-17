@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Displays all the registered users
  *
@@ -7,12 +8,11 @@
  * @subpackage backoffice_views_users
  * @copyright company
  */
-
 $config = array();
 
 // messages
 $config['pageTitle'] = 'Manage users';
-$config['addMessage'] = 'Add new user'; 
+$config['addMessage'] = 'Add new user';
 $config['emptyMessage'] = 'We don\'t have users registered at this time.';
 
 // column names & indexes
@@ -34,9 +34,8 @@ $config['viewLinkColumn'] = 'username';
 
 // render the default listing
 echo $this->partial(
-    'partials/default-listing.phtml',
-    array(
-        'config' => $config,
-        'paginator' => $this->paginator,
-    )
+        'partials/default-listing.phtml', array(
+    'config' => $config,
+    'paginator' => $this->paginator,
+        )
 );

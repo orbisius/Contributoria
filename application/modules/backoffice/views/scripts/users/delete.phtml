@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Delete an user 
  *
@@ -7,7 +8,6 @@
  * @subpackage backoffice_views_users
  * @copyright company
  */
-
 $config = array();
 $config['pageTitle'] = sprintf('Delete "%s"?', $this->item['username']);
 $config['areYouSureMessage'] = sprintf('Are you sure you want to delete user "%s"?', $this->item['username']);
@@ -35,10 +35,9 @@ $config['columnIndexes'] = array(
 );
 
 echo $this->partial(
-    'partials/default-delete.phtml',
-    array(
-        'form' => $this->form,
-        'config' => $config,
-        'item' => $this->item
-    )
+        'partials/default-delete.phtml', array(
+    'form' => $this->form,
+    'config' => $config,
+    'item' => $this->item
+        )
 );

@@ -7,22 +7,21 @@
  * @subpackage partials
  * @copyright company
  */
-
 $helper = $this->listingUtilities($this->config);
 ?>
 
 <div class="header"> 
-    <h1><?php $helper->pageTitle();?></h1>
+    <h1><?php $helper->pageTitle(); ?></h1>
 </div>
 <div class="finalaction">
-    <h2><?php $helper->areYouSureMessage();?></h2>
+    <h2><?php $helper->areYouSureMessage(); ?></h2>
     <table>
-        <?php foreach($helper->getColumnNamesAndValues($this->item) as $columnName => $columnValue) : ?>  
+        <?php foreach ($helper->getColumnNamesAndValues($this->item) as $columnName => $columnValue) : ?>  
             <tr>
-                <th><?php $helper->displayItem($columnName);?>:</th>
-                <td><?php $helper->displayItem($columnValue);?></td>
+                <th><?php $helper->displayItem($columnName); ?>:</th>
+                <td><?php $helper->displayItem($columnValue); ?></td>
             </tr>
-        <?php endforeach;?>
+        <?php endforeach; ?>
     </table>
-    <?php echo $this->form;?>
+    <?php echo $this->form; ?>
 </div>

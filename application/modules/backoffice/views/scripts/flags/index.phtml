@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Displays all the flippers
  *
@@ -6,7 +7,6 @@
  * @subpackage backoffice_views_groups
  * @copyright company
  */
-
 $config = array();
 
 // messages
@@ -34,17 +34,17 @@ $config['columnDataTypes'] = array(
 
 // additional actions
 $config['actions'] = array(
-    'toggle_dev'    =>  array(
-        'action'        => 'toggledev',
-        'title'         => 'Toggle dev',
-        'parameter'     => TRUE,
-        'icon'          => FALSE,
+    'toggle_dev' => array(
+        'action' => 'toggledev',
+        'title' => 'Toggle dev',
+        'parameter' => TRUE,
+        'icon' => FALSE,
     ),
-    'toggle_prod'    =>  array(
-        'action'        => 'toggleprod',
-        'title'         => 'Toggle prod',
-        'parameter'     => TRUE,
-        'icon'          => FALSE,
+    'toggle_prod' => array(
+        'action' => 'toggleprod',
+        'title' => 'Toggle prod',
+        'parameter' => TRUE,
+        'icon' => FALSE,
     ),
 );
 
@@ -53,9 +53,8 @@ $config['linkOrder'] = array('toggle_prod', 'toggle_dev');
 
 // render the default listing
 echo $this->partial(
-    'partials/default-listing.phtml',
-    array(
-        'config' => $config,
-        'paginator' => $this->paginator,
-    )
+        'partials/default-listing.phtml', array(
+    'config' => $config,
+    'paginator' => $this->paginator,
+        )
 );

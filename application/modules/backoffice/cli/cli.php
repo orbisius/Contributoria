@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Default CLI configuration
  *
@@ -6,13 +7,12 @@
  * @package backoffice_cli
  * @copyright casting.net
  */
-
 // define the application path constant
-if(!defined('APPLICATION_PATH')){
+if (!defined('APPLICATION_PATH')) {
     define('APPLICATION_PATH', realpath(dirname(__FILE__) . '/../../../'));
 }
 
-if(!defined('ROOT_PATH')){
+if (!defined('ROOT_PATH')) {
     define('ROOT_PATH', realpath(APPLICATION_PATH . '/../'));
 }
 

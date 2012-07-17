@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Form for deleting multiple items at once
  *
@@ -7,9 +8,8 @@
  * @package backoffice_forms
  * @copyright company
  */
+class DeleteMultipleForm extends App_Backoffice_Form {
 
-class DeleteMultipleForm extends App_Backoffice_Form
-{
     /**
      * Overrides init() in Zend_Form
      * 
@@ -19,10 +19,11 @@ class DeleteMultipleForm extends App_Backoffice_Form
     public function init() {
         // init the parent
         parent::init();
-        
+
         // set the form's method
         $this->setMethod('post');
-        
+
         // form fields
     }
+
 }

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Gets all the methods in a controller and 
  * grabs all the flag and flippers information
@@ -8,7 +9,6 @@
  * @subpackage backoffice_cli_tools
  * @copyright casting.net
  */
-
 require_once dirname(__FILE__) . '/../cli.php';
 
 if (!Zend_Registry::get('IS_DEVELOPMENT')) {
@@ -19,9 +19,9 @@ if (!Zend_Registry::get('IS_DEVELOPMENT')) {
 try {
     $opts = new Zend_Console_Getopt(array('module|m=s' => 'Name of the desired module. For example: backoffice',));
     $opts->parse();
-} catch(Zend_Console_Getopt_Exception $e) {
+} catch (Zend_Console_Getopt_Exception $e) {
     echo $e->getUsageMessage();
-    exit(); 
+    exit();
 }
 
 $module = $opts->getOption('m');
@@ -39,13 +39,13 @@ if (!is_readable($path)) {
 
 $files = array();
 if (is_file($path)) {
-    $files  []= basename($path);
+    $files [] = basename($path);
     $path = dirname($path);
 } else {
     if (($dir = opendir($path)) !== false) {
         while (($file = readdir($dir)) !== false) {
             if (fnmatch('*.php', $file) && $file !== 'ErrorController.php') {
-                $files[]= $file;
+                $files[] = $file;
             }
         }
         closedir($dir);
@@ -57,15 +57,15 @@ $resources = array();
 foreach ($files as $file) {
     $filepath = $path . DIRECTORY_SEPARATOR . $file;
     require_once $filepath;
-    
+
     $reflectionFile = new Zend_Reflection_File($filepath);
-    foreach($reflectionFile->getClasses() as $class) {
+    foreach ($reflectionFile->getClasses() as $class) {
         $classInfo = array(
             'description' => $class->getDocblock()->getShortDescription(),
             'name' => strtolower($module) . '-' . App_Inflector::convertControllerName($class->getName()),
             'methods' => array(),
         );
-        
+
         foreach ($class->getMethods() as $method) {
             if (substr($method->getName(), -6) == 'Action') {
                 $classInfo['methods'][] = array(
@@ -74,7 +74,7 @@ foreach ($files as $file) {
                 );
             }
         }
-        
+
         $resources[] = $classInfo;
     }
 }

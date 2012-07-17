@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Environment configuration
  * Copy this file to APPLICATION_PATH/config/environment.php to define 
@@ -34,7 +35,6 @@
  * @package application_config
  * @copyright company
  */
-
 define('APP_STATE_PRODUCTION', 'production');
 define('APP_STATE_STAGING', 'staging');
 define('APP_STATE_DEVELOPMENT', 'development');
