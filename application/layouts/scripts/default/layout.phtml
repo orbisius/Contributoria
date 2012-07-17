@@ -34,20 +34,22 @@
     </head>
 
     <body>
-
+        
+        <?= $this->render('_header.phtml') ?>
+        
         <div class="container">
-            
-            <?= $this->render('_navigation.phtml') ?>
-            
-            <?= $this->render('_header.phtml') ?>
-
-            <?= $this->flashMessenger(); ?>
-
-            <?= $this->layout()->content ?>
-
-            <?= $this->render('_footer.phtml') ?>
+                        
+            <div class="content">
+                
+                <?= $this->flashMessenger(); ?>
+                
+                <?= $this->layout()->content ?>
+                
+            </div>
 
         </div>
+        
+        <?= $this->render('_footer.phtml') ?>
 
         <?= $this->headScript() ?>
 

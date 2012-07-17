@@ -1,0 +1,17 @@
+
+<?php
+$class = "";
+$errors = "";
+if ($this->element->hasErrors()) {
+    $errors = "<p class=\"help-block\">{$this->formErrors($this->element->getMessages())}</p>";
+    $class = " error";
+}
+?>
+
+<div class="control-group <?= $class ?>">
+    <label for="<?= $this->element->getName(); ?>"><?= $this->element->getLabel(); ?></label>
+    <div class="input">
+        <?= $this->content; ?>
+        <?= $errors ?>
+    </div>
+</div>

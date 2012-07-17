@@ -1,0 +1,79 @@
+<?php
+$this->headTitle()->prepend(ucwords($this->user->user_login));
+$this->headTitle()->prepend('Edit');
+?>
+
+<hr class="space">
+
+<div class="row">
+
+    <?= $this->usersettingsmenu($this->user->user_login, 'social') ?>
+
+    <div class="span10">
+        <div class="u_e_i">
+            <a href="<?= $this->url(array('id' => $this->user->user_login), 'user_view') ?>" class="btn" style="float:right">Back to profile</a>
+            <h1><?= $this->title ?></h1>
+            <br>
+            <?php
+            $output = array();
+            if($this->facebook) {
+                ?>
+                <h3>Facebook Connected</h3>
+                
+                <p>If you wish to amplify your activity on n0tice through your social networks you will enjoy using the Facebook sharing feature. <a href="http://about.n0tice.com/2012/05/01/sharing-n0tice-activity-on-facebook/" target="_new">Read more...</a></p>
+                
+                <ul class="sc_act">
+                    <?php 
+                    if($this->facebook_app_status) {
+                        ?>
+                        <li><a href="<?= $this->url(array('id' => $this->user->user_login, 'service' => 'facebook'), 'user_edit_add_social_app') ?>" class="btn btn-success">Facebook sharing enabled</a></li>
+                        <?php
+                    } else {
+                        ?>
+                        <li><a href="<?= $this->url(array('id' => $this->user->user_login, 'service' => 'facebook'), 'user_edit_add_social_app') ?>" class="btn">Turn on Facebook sharing</a></li>
+                        <?php
+                    }
+                    ?>
+                    <li><a href="<?= $this->url(array('id' => $this->user->user_login, 'service' => 'facebook'), 'user_edit_add_social_picture') ?>" class="btn">Use my profile picture from Facebook</a></li>
+                    <li><a href="<?= $this->url(array('id' => $this->user->user_login, 'service' => 'facebook'), 'user_edit_invite') ?>" class="btn">Invite friends from Facebook</a></li>
+                    <li><a href="<?= $this->url(array('id' => $this->user->user_login, 'service' => 'facebook'), 'user_edit_remove_social') ?>" class="btn btn-small btn-danger">Remove your Facebook account from n0tice</a></li>
+                </ul>
+                <?
+            } else {
+                $output[] = "<a href=\"{$this->url(array('id' => $this->user->user_login, 'service' => 'facebook'), 'user_edit_add_social')}\" class=\"fb s_auth\">";
+                $output[] = "    <div class=\"ic\"></div>";
+                $output[] = "    <span>Link with Facebook</span>";
+                $output[] = "</a>";
+                
+                $output[] = "<br>";
+                $output[] = "<br>";
+            }
+            echo implode("\n", $output);
+            ?>
+            
+            <hr>
+            
+            <?php
+            $output = array();
+            if($this->twitter) {
+                ?>
+                <h3>Twitter Connected</h3>
+                <ul class="sc_act">
+                    <li><a href="<?= $this->url(array('id' => $this->user->user_login, 'service' => 'twitter'), 'user_edit_add_social_picture') ?>" class="btn">Use my profile picture from Twitter</a></li>
+                    <li><a href="<?= $this->url(array('id' => $this->user->user_login, 'service' => 'twitter'), 'user_edit_invite') ?>" class="btn">Invite friends from Twitter</a></li>
+                    <li><a href="<?= $this->url(array('id' => $this->user->user_login, 'service' => 'twitter'), 'user_edit_remove_social') ?>" class="btn btn-small btn-danger">Remove your Twitter account from n0tice</a></li>
+                </ul>
+                <?
+            } else {
+                $output[] = "<a href=\"{$this->url(array('id' => $this->user->user_login, 'service' => 'twitter'), 'user_edit_add_social')}\" class=\"tw s_auth\">";
+                $output[] = "    <div class=\"ic\"></div>";
+                $output[] = "    <span>Link with Twitter</span>";
+                $output[] = "</a>";
+            }
+            echo implode("\n", $output);
+            ?>
+            
+        </div>
+    </div>
+</div>
+

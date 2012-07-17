@@ -11,7 +11,7 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap {
     private $_sitename = null;
     private $_db = null;
     private $_cachingType = null;
-    
+
     /**
      * Initialise session namespaces
      *
@@ -20,7 +20,7 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap {
     protected function _initSessionNamespaces() {
         $this->bootstrap("session");
     }
-    
+
     /**
      * Initialise application configuration settings
      *
@@ -46,7 +46,7 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap {
         $this->_cachingType = $config->caching->type;
         $this->_db = $config->database;
     }
-    
+
     /**
      * Initialise caching
      *
@@ -78,7 +78,7 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap {
         $cache = Zend_Cache::factory('Core', $this->_cachingType, $frontendOpts, $backendOpts);
         Zend_Registry::set('1dayCache', $cache);
     }
-    
+
     /**
      * Initialise database conenctions
      *
@@ -101,7 +101,7 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap {
         $logger->addWriter($writer);
         Zend_Registry::set('logger', $logger);
     }
-    
+
     /**
      * Initialise Autoloader functions
      *
@@ -118,8 +118,7 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap {
 
         return $autoloader;
     }
-    
-    
+
     /**
      * Initialise ZFDebug
      *
@@ -137,9 +136,9 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap {
                 'Registry',
                 'Exception')
         );
-        
+
         $options['plugins']['Database']['adapter'] = Zend_Registry::get('db');
-        
+
         # Setup the cache plugin
         if ($this->hasPluginResource('cache')) {
             $this->bootstrap('cache');
@@ -153,7 +152,7 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap {
         $frontController = $this->getResource('frontController');
         $frontController->registerPlugin($debug);
     }
-    
+
     /**
      * Initialise plugin architecture and ACL permissions
      *
@@ -177,33 +176,31 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap {
 
         Zend_Registry::set('acl', $this->_acl);
     }
-    
-    
+
     /**
      * Setup the locale based on the browser
      *
      * @return void
      */
     protected function _initLocale() {
-        
+
         $locale = new Zend_Locale();
-        
+
         if (!Zend_Locale::isLocale($locale, TRUE, FALSE)) {
             if (!Zend_Locale::isLocale($locale, FALSE, FALSE)) {
                 throw new Zend_Exception("The locale '$locale' is no known locale");
             }
-            
+
             $locale = new Zend_Locale($locale);
         }
-        
+
         $locale = new Zend_Locale('en_US');
-        
+
         if ($locale instanceof Zend_Locale) {
             Zend_Registry::set('Zend_Locale', $locale);
         }
     }
 
-    
     /**
      * Initialise view render
      *
@@ -230,7 +227,9 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap {
 
         $view->headTitle()->setSeparator(' - ');
         $view->headTitle($this->_sitename);
-
+        
+        $view->sitename = $this->_sitename;
+        
         // Generic JS files needed for mobile or non-mobile
         $view->headScript()->appendFile('https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js');
 
@@ -239,6 +238,8 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap {
 
         // CSS
         $view->headLink()->appendStylesheet('/media/css/bootstrap.min.css');
+        $view->headLink()->appendStylesheet('http://fonts.googleapis.com/css?family=Pacifico');
+        $view->headLink()->appendStylesheet('/media/css/master.css');
 
         // JS
         $view->headScript()->appendFile('https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js');
@@ -254,9 +255,42 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap {
 
         $router = Zend_Controller_Front::getInstance()->getRouter();
 
+        // Authorisation
+        $router->addRoute('auth_noaccess', $this->urlRouter('no-access', 'default', 'auth', 'noaccess'));
+        $router->addRoute('auth_facebook', $this->urlRouter('auth/facebook', 'default', 'auth', 'facebook'));
+        $router->addRoute('auth_twitter', $this->urlRouter('auth/twitter', 'default', 'auth', 'twitter'));
+        $router->addRoute('auth_login', $this->urlRouter('login', 'default', 'auth', 'login'));
+        $router->addRoute('auth_logout', $this->urlRouter('logout', 'default', 'auth', 'logout'));
+        $router->addRoute('auth_signup', $this->urlRouter('signup', 'default', 'auth', 'signup'));
+        $router->addRoute('auth_lost', $this->urlRouter('lost-password', 'default', 'auth', 'lost'));
+        $router->addRoute('auth_reset', $this->urlRouter('reset-password/:email/:code', 'default', 'auth', 'reset', array('code' => '', 'email' => '')));
+        $router->addRoute('auth_confirmemail', $this->urlRouter('confirm-email/:email/:code', 'default', 'auth', 'confirmemail', array('code' => '', 'email' => '')));
+        $router->addRoute('auth_resendemail', $this->urlRouter('resend-email/:email', 'default', 'auth', 'noaccess', array('email' => '')));
+        $router->addRoute('auth_forgetdata', $this->urlRouter('forget-data', 'default', 'auth', 'forgetdata'));
+
         $router->addRoute('admin_home', new Zend_Controller_Router_Route('admin/', array('module' => 'admin', 'controller' => 'index', 'action' => 'index')));
 
         $router->addRoute('home', new Zend_Controller_Router_Route('/', array('module' => 'default', 'controller' => 'index', 'action' => 'index')));
+    }
+
+    private function urlRouter($path, $module, $controller, $action, $params = array()) {
+
+        $route_data = array(
+            'module' => $module,
+            'controller' => $controller,
+            'action' => $action
+        );
+        if ($params) {
+            foreach ($params as $key => $value) {
+                $route_data[$key] = $value;
+            }
+        }
+
+        $path = $path . '/';
+        
+        $route = new Zend_Controller_Router_Route($path, $route_data);
+        
+        return $route;
     }
 
 }

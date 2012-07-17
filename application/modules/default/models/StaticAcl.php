@@ -17,7 +17,8 @@ class Model_StaticAcl extends Zend_Acl {
 
         $this->add(new Zend_Acl_Resource('default'))
                 ->add(new Zend_Acl_Resource('default:index'), 'default')
-                ->add(new Zend_Acl_Resource('default:error'), 'default');
+                ->add(new Zend_Acl_Resource('default:error'), 'default')
+                ->add(new Zend_Acl_Resource('default:auth'), 'default');
 
         $this->add(new Zend_Acl_Resource('admin'))
                 ->add(new Zend_Acl_Resource('admin:index'), 'admin');
@@ -25,6 +26,8 @@ class Model_StaticAcl extends Zend_Acl {
         // Permissions
         $this->allow(array('guestgroup'), 'default:index', array('index'));
         $this->allow(array('guestgroup'), 'default:error', array('error'));
+        
+        $this->allow(array('guestgroup'), 'default:auth', array('login', 'signup', 'lost', 'reset', 'confirmemail', 'resendemail', 'ajaxformvalidation'));
 
         $this->allow(array('admin'), 'admin:index', array('index'));
     }

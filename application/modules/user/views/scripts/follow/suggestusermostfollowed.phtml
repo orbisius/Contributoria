@@ -1,0 +1,83 @@
+<?php
+$title = "Follow Users";
+$this->headTitle()->prepend(strip_tags($title));
+?>
+<h1 class="hd-tl" style="text-align: center;"><?= $title ?></h1>
+
+<div class="row">
+    <div class="span7 offset1">
+        <ul class="nav nav-tabs">
+            <li class="active"><a href="#">Most Followed</a></li>
+            <li><a href="<?= $this->url(array('section' => 'topic'), 'user_suggest_users') ?>">Topic or Location</a></li>
+            <li><a href="<?= $this->url(array('section' => 'people'), 'user_suggest_users') ?>">People</a></li>
+        </ul>
+
+        <br>
+        
+        <?= $this->users_table ?>
+
+        <div id="loading_more" style="height: 70px;margin: 0 auto;width: 70px;"></div>
+        
+    </div>
+
+    <div class="span4">
+
+        <div class="fllw_y">
+            <div class="fllw_inner">
+                <h3>Quick tips</h3>
+                <ul>
+                    <li>Click the follow button to add a person to your Stream</li>
+                    <li>Discover users that post about topics and places that interest you. Click the 'topics' tab.</li>
+                    <li>Find n0tice users you already know. Click the 'username' tab.</li>
+                </ul>
+
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<style>
+    .table tr:first-child td { border-top: none; }
+</style>
+
+<?php
+$script = "
+    
+    var activateGlossyimages = function () {
+        $('.glossy_thumbs img').each(function() {
+            var imgClass = $(this).attr('class');
+            $(this).wrap('<span class=\"image-wrap ' + imgClass + '\"/>');
+            $(this).removeAttr('class');
+        });
+    }
+    
+    var loading_more = $('#loading_more');
+    var act_page = 2;
+    var loading_btn = $('.ld_act');
+
+    loading_btn.hide();
+    var footer = $('footer'), opts = { offset: '100%' };
+    footer.waypoint(function(event, direction) {
+        loading_more.spin();
+        footer.waypoint('remove');
+        $.get(loading_btn.attr('href')+'&jquery=1&page='+act_page, function(data) {
+            data = $(data);
+            data = data.find('table.user_data > tbody > tr');
+            if(data.length === 0) {
+                $('table.user_data').after('<p style=\"text-align:center\"><strong>No more users to display.</strong></p>');
+                //$('.ld_act').removeClass('ld_act').hide();
+                loading_more.spin(false);
+                return false;
+            }
+            loading_more.spin(false);
+            $('table.user_data > tbody:last').append(data);
+            $('abbr.timeago').timeago();
+            activateGlossyimages();
+            act_page++;
+            footer.waypoint(opts);
+        });
+    }, opts);
+";
+$this->headScript()->appendScript($script);
+?>

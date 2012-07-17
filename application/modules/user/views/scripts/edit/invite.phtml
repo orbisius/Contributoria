@@ -1,0 +1,30 @@
+<?php
+$this->headTitle()->prepend(ucwords($this->user->user_login));
+$this->headTitle()->prepend('Edit');
+?>
+
+<hr class="space">
+
+<div class="row">
+
+    <?= $this->usersettingsmenu($this->user->user_login, 'invite') ?>
+
+    <div class="span10">
+        <div class="u_e_i">
+            <a href="<?= $this->url(array('id' => $this->user->user_login), 'user_view') ?>" class="btn" style="float:right">Back to profile</a>
+            <h1><?= $this->title ?></h1>
+            
+            <ul class="nav nav-tabs" style="font-size: 14px;">
+                <li class="active"><a href="<?= $this->url(array('id' => $this->user->user_login, 'service' => ''), 'user_edit_invite') ?>">via Email</a></li>
+                <li><a href="<?= $this->url(array('id' => $this->user->user_login, 'service' => 'facebook'), 'user_edit_invite') ?>">via Facebook</a></li>
+                <li><a href="<?= $this->url(array('id' => $this->user->user_login, 'service' => 'twitter'), 'user_edit_invite') ?>">via Twitter</a></li>
+            </ul>
+            
+            <br>
+            
+            <?= $this->form ?>
+
+        </div>
+    </div>
+</div>
+

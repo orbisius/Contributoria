@@ -1,0 +1,13 @@
+<?php $this->headTitle()->prepend( 'Sign Up' ); ?>
+
+<h1>Sign Up</h1>
+
+<hr>
+
+<?php
+if ($this->errors) {
+	echo "<div class=\"error\"><p>The following errors need to be corrected before signing up:</p>{$this->errors}</div>";
+}
+?>
+	
+<?= $this->signup_form ?>

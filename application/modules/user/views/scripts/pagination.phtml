@@ -1,0 +1,33 @@
+<?php
+if ($this->pageCount) {
+    ?>
+    <div class="pagination">
+        <ul>
+            <?php
+            if (isset($this->previous)) {
+                echo "<li class=\"prev\"><a title=\"go to page {$this->previous}\" href=\"{$this->url()}?page={$this->previous}\">&larr; Previous</a></li>";
+                if ($this->previous > $this->first && !in_array($this->first, $this->pagesInRange)) {
+                    echo "<li><a title=\"go to page {$this->first}\" href=\"{$this->url()}?page={$this->first}\">{$this->first}</a></li>";
+                    echo "<li class=\"disabled\"><a href=\"#\">...</a></li>";
+                }
+            }
+            foreach ($this->pagesInRange as $page) {
+                if ($page != $this->current) {
+                    echo "<li><a title=\"go to page {$page}\" href=\"{$this->url()}?page={$page}\">{$page}</a></li>";
+                } else {
+                    echo "<li class=\"active\"><a title=\"go to page {$page}\" href=\"{$this->url()}?page={$page}\">{$page}</a></li>";
+                }
+            }
+            if (isset($this->next)) {
+                if ($this->next < $this->last && !in_array($this->last, $this->pagesInRange)) {
+                    echo "<li class=\"disabled\"><a href=\"#\">...</a></li>";
+                    echo "<li><a title=\"go to page {$this->last}\" href=\"{$this->url()}?page={$this->last}\">{$this->last}</a></li>";
+                }
+                echo "<li class=\"next\"><a title=\"go to page {$this->next}\" href=\"{$this->url()}?page={$this->next}\">Next &rarr;</a></li>";
+            }
+            ?>
+        </ul>
+    </div>
+    <?php
+}
+?>

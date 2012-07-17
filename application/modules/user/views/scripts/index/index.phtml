@@ -1,0 +1,34 @@
+<?php 
+$this->headTitle()->prepend( 'Users' );
+?>
+
+<h1>Community Members</h1>
+
+
+<ul class="nav nav-tabs">
+    <li class="active"><a href="<?= $this->url(array(), 'user_home') ?>">All community members</a></li>
+    <li><a href="<?= $this->url(array(), 'user_activity') ?>">Activity</a></li>
+</ul>
+
+<hr class="space">
+
+<?php
+$output = array();
+$this->users = array_chunk($this->users, 2);
+foreach ($this->users as $users) {
+    $output[] = "<div class=\"row\">";
+    foreach ($users as $user) {
+        $output[] = "<div class=\"span6 usr-prof-bx\">";
+        $output[] = $this->profilepicture($user->getUser_login(), 'small', 1);
+        $output[] = "       <span class=\"username\">";
+        $output[] = "           <a title=\"{$user->getDisplay_name()}\" href=\"{$this->url(array('id' => $user->getUser_login()), 'user_view')}\" class=\"user-profile-link\">{$user->getUser_login()}</a> {$user->getDisplay_name()}";
+        $output[] = "       </span>";
+        $output[] = "       <span class=\"description\">{$this->htmlpurify($user->getSmall_bio(), 140, 0, 1)}</span>";
+        $output[] = "</div>";
+    }
+    $output[] = "</div>";
+}
+echo implode("\n", $output);
+?>
+
+<?= $this->paginationControl($this->pagination, 'Sliding', 'pagination.phtml'); ?>

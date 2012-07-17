@@ -1,0 +1,43 @@
+<?php
+$this->headTitle()->prepend(ucwords($this->user->user_login));
+$this->headTitle()->prepend('Notifications');
+?>
+
+<div class="row"> <!-- Top heading -->
+    <div class="span3">
+
+        <?= $this->render('_viewsidebar.phtml') ?>
+
+    </div>
+
+    <div class="span9">
+
+        <h1 style="font-size: 45px; margin-bottom: 0.5em;">Notifications</h1>
+
+        <table class="table">
+            <tbody>
+                <?php
+                $output = array();
+                if ($this->notifications) {
+                    foreach ($this->notifications as $note) {
+                        $message = "<a href=\"{$note['webUrl']}\">{$note['message']}</a>";
+                        $output[] = "<tr>";
+                        if($note['status'] == 'u') {
+                            $message = "<strong>{$message}</strong>";
+                        }
+                        $output[] = "   <td>{$message} <span class=\"muted\" style=\"font-size:80%\">{$this->timesince(strtotime($note['date_created']))}</span></td>";
+                        $output[] = "</tr>";
+                    }
+                } else {
+                    $output[] = "<tr>";
+                    $output[] = "   <td>No notifications to display.</td>";
+                    $output[] = "</tr>";
+                }
+                echo implode("\n", $output);
+                ?>
+            </tbody>
+        </table>
+
+    </div>
+
+</div> <!-- End: Top heading -->

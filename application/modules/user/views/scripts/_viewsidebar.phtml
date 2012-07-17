@@ -1,0 +1,98 @@
+
+<?php
+$tweet_anywhere = false;
+?>
+
+<?= $this->profilepicture($this->user->user_login, 0, 0, 'profile_pic'); ?>
+
+<?php
+if ($this->edit_page) {
+    echo "<a href=\"{$this->url(array('id' => $this->user->user_login, 'edit' => 'profile'), 'user_edit')}\" style=\"display:block;\" class=\"btn\">Edit my profile</a><hr>";
+} else {
+    if (Zend_Auth::getInstance()->getIdentity()) {
+        echo "<a href=\"#new_message\" data-toggle=\"modal\" style=\"display:block;\" class=\"btn\">Send a message</a><hr>";
+    }
+}
+?>
+
+<?php
+if ($this->small_bio) {
+    $tweet_anywhere = true;
+    ?>
+    <blockquote class="small_bio">
+        <?= $this->htmlpurify($this->small_bio) ?>
+    </blockquote>
+    <?php
+}
+?>
+
+<table class="table">
+    <tbody>
+        <tr><td>signed up</td><td><span title="<?= $this->user->user_registered ?>" class="quiet"><?= $this->timesince($this->user->user_registered) ?></span></td></tr>
+        <tr><td>last seen</td><td><span style="color:#FE7A15;font-weight:bold;"><span class="relativetime" title="<?= $this->user->user_lastonline ?>"><?= $this->timesince($this->user->user_lastonline) ?></span></span></td></tr>
+        <?php
+        if ($this->user->user_url) {
+            ?>
+            <tr><td>website</td><td><div class="no-overflow"><a class="url" rel="me" style="text-decoration:none;" href="http://<?= preg_replace("/^https?:\/\/(.+)$/i", "\\1", $this->user->user_url); ?>"><?= preg_replace("/^https?:\/\/(.+)$/i", "\\1", $this->user->user_url); ?></a></div></td></tr>
+            <?php
+        }
+        if ($this->user->user_location && $this->display_location) {
+            ?>
+            <tr><td>location</td><td><?= $this->escape($this->user->user_location) ?></td></tr>
+            <?php
+        }
+        if ($this->twitter_username) {
+            $tweet_anywhere = true;
+            ?>
+            <tr id="twitter_hovercard"><td>twitter</td><td>@<?= $this->twitter_username ?></td></tr>
+            <?php
+        }
+        ?>
+    </tbody>
+</table>
+
+<?php
+if($tweet_anywhere) {
+    $tw_config = Zend_Registry::get('twitter_config');
+    $this->headScript()->appendFile("http://platform.twitter.com/anywhere.js?id={$tw_config->consumerKey}&v=1");
+    $script = "
+        twttr.anywhere(function (T) {
+            T('.small_bio, #twitter_hovercard').hovercards({expanded: true});
+        });
+    ";
+    $this->headScript()->appendScript($script);            
+}
+
+if (Zend_Auth::getInstance()->getIdentity()) {
+    
+    $populate = "prePopulate: [{id: {$this->user->user_id}, name: '{$this->user->user_login}'}]";
+    if(Zend_Auth::getInstance()->getIdentity()->user_id == $this->user->user_id) {
+        $populate = "";
+    }
+    
+    $script = "
+    $(document).ready(function() {
+        $('#uids').tokenInput('{$this->url(array(), 'user_personautocomplete')}', {
+            hintText: 'Begin typing the name of the person you wish to include.',
+            noResultsText: 'No results',
+            theme: 'facebook',
+            preventDuplicates: true,
+            searchingText: 'Searching...',
+            {$populate}
+        });
+    });
+    ";
+    $this->headScript()->appendScript($script);
+    ?>
+    <div class="modal hide fade in" id="new_message" style="width:720px;margin:-250px 0 0 -330px">
+        <div class="modal-header">
+            <a href="#" class="close" data-dismiss="modal">&times;</a>
+            <h3>Send <?= $this->user->user_login ?> a new message</h3>
+        </div>
+        <div class="modal-body">
+            <?= $this->form ?>
+        </div>
+    </div>
+    <?php
+}
+?>

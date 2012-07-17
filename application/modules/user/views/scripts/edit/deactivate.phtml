@@ -1,0 +1,37 @@
+<?php
+$this->headTitle()->prepend(ucwords($this->user->user_login));
+$this->headTitle()->prepend('Deactivate');
+?>
+
+<hr class="space">
+
+<div class="row">
+
+    <?= $this->usersettingsmenu($this->user->user_login, 'deactivate') ?>
+
+    <div class="span10">
+        
+        <div class="u_e_i">
+            <a href="<?= $this->url(array('id' => $this->user->user_login), 'user_view') ?>" class="btn" style="float:right">Back to profile</a>
+            
+            <h1>Deactivate Your Account</h1>
+            
+            <div class="well">
+                <p>Are you sure you don't want to reconsider? Was it something we said? Tell us.</p>
+                
+                <p>Before you deactivate your account, know this:</p>
+                
+                <ul class="deactivate_info_list">
+                    <li>We will only retain your user data for 30 days and then it will be permanently deleted. You can reactivate your account at any point within 30 days of deactivation by logging back in.</li>
+                    <li>You don't need to deactivate your account to change your username. (You can change it on the settings page. All followers will remain unchanged.)</li>
+                    <li>Your account should be removed from n0tice very soon, but some content may be viewable on the network for a few days after deactivation.</li>
+                    <li>We have no control over content indexed by search engines like Google.</li>
+                </ul>
+                
+                <a href="<?= $this->url(array('id' => $this->user->user_login), 'user_view') ?>" class="btn btn-large" style="margin-right: 15px;">Cancel</a> <a href="<?= $this->url(array('id' => $this->user->user_login), 'user_edit_deactivate') ?>?deactivate_confirmation=<?= $this->deactivate_code ?>" class="btn btn-large btn-danger">Yes, I want to deactivate my account.</a>
+
+            </div>
+        </div>
+    </div>
+</div>
+

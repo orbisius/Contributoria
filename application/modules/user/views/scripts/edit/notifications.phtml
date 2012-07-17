@@ -1,0 +1,35 @@
+<?php
+$this->headTitle()->prepend(ucwords($this->user->user_login));
+$this->headTitle()->prepend('Notifications');
+?>
+
+
+<hr class="space">
+
+<div class="row">
+
+    <?= $this->usersettingsmenu($this->user->user_login, 'notifications') ?>
+
+    <div class="span10">
+
+        <div class="u_e_i">
+            <a href="<?= $this->url(array('id' => $this->user->user_login), 'user_view') ?>" class="btn" style="float:right">Back to profile</a>
+
+            <h1>Notifications</h1>
+            
+            <p>Notify me by email when someone...</p>
+            
+            <br>
+            
+            <?= $this->form ?>
+            
+            <hr>
+            
+            <p>As well as notifications, you can subscribe or unsubscribe from our weekly newsletter.</p>
+            
+            <p><a href="http://n0tice.us2.list-manage.com/unsubscribe?u=cbecc551005deb7d42911069d&id=f877c3e7b6">Unsubscribe</a> / <a href="http://eepurl.com/lcuev" target="_blank">Sign up for our free newsletter!</a></p>
+
+        </div>
+    </div>
+</div>
+

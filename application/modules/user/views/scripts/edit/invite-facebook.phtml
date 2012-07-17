@@ -1,0 +1,88 @@
+<?php
+$this->headTitle()->prepend(ucwords($this->user->user_login));
+$this->headTitle()->prepend('Edit');
+?>
+
+<hr class="space">
+
+<div class="row">
+
+    <?= $this->usersettingsmenu($this->user->user_login, 'invite') ?>
+
+    <div class="span10">
+        <div class="u_e_i">
+            <a href="<?= $this->url(array('id' => $this->user->user_login), 'user_view') ?>" class="btn" style="float:right">Back to profile</a>
+            <h1><?= $this->title ?></h1>
+
+            <ul class="nav nav-tabs" style="font-size: 14px;">
+                <li><a href="<?= $this->url(array('id' => $this->user->user_login, 'service' => ''), 'user_edit_invite') ?>">via Email</a></li>
+                <li class="active"><a href="<?= $this->url(array('id' => $this->user->user_login, 'service' => 'facebook'), 'user_edit_invite') ?>">via Facebook</a></li>
+                <li><a href="<?= $this->url(array('id' => $this->user->user_login, 'service' => 'twitter'), 'user_edit_invite') ?>">via Twitter</a></li>
+            </ul>
+
+            <?php
+            $output = array();
+            if (!$this->facebook) {
+                $output[] = "<p class=\"alert\">Connect your Facebook account to activate this feature. Click on the button below.</p>";
+                $output[] = "<a href=\"{$this->url(array('id' => $this->user->user_login, 'service' => 'facebook'), 'user_edit_add_social')}\" class=\"fb s_auth\">";
+                $output[] = "    <div class=\"ic\"></div>";
+                $output[] = "    <span>Link with Facebook</span>";
+                $output[] = "</a>";
+            } else {
+                $output[] = "<h3>Facebook Friends</h3>";
+                $output[] = "<p class=\"alert\">Click on the names below to invite them to n0tice.</p>";
+                $output[] = $this->userinvitefb($this->friends, $this->registered_users);
+                $output[] = "<a class=\"btn btn-load-more-invites\" style=\"clear:both;margin-top:10px;text-align:center;display:block;width:94%\" href=\"{$this->url(array('id' => $this->user->user_login, 'service' => 'facebook'), 'user_edit_invite')}\" data-page=\"".($this->page + 1)."\">More</a>";
+                
+                $script = "
+                    var loading = $('#loading_more');
+                    var act_page = 2;
+                    var btn = $('.btn-load-more-invites');
+                    var footer = $('footer'), opts = { offset: '100%' };
+
+                    btn.hide();
+                    footer.waypoint(function(event, direction) {
+                        loading.spin();
+                        footer.waypoint('remove');
+                        $.get($('.btn-load-more-invites').attr('href')+'?page='+act_page, function(data) {
+                            if(data.length === 0) {
+                                btn.before('<hr class=\"space\"><p><strong>No more people to display.</strong></p>');
+                                btn.removeClass('btn-load-more-invites');
+                                loading.spin(false);
+                                return false;
+                            }
+                            loading.spin(false);
+                            btn.before(data);
+                            act_page++;
+                            footer.waypoint(opts);
+                        });
+                    }, opts);
+                    
+                    $('.fb_invite').live('click', function() {
+                        var btn = $(this);
+                        btn.spin(); 
+                        $.ajax({
+                            url: btn.attr('href'),
+                            success: function(data) {
+                                if(data.length === 0) {
+                                    btn.spin(false);
+                                    return false;
+                                }
+                                btn.attr('href', '#').removeClass('fb_invite').spin(false).addClass('btn-success disabled').html('Invite sent to their FB wall!');
+                            }
+                        });
+                        return false;
+                    });
+                ";
+                $this->headScript()->appendScript($script);
+            }
+            echo implode("\n", $output);
+            ?>
+            
+            <hr class="space">
+            <div id="loading_more" style="height: 70px;margin: 0 auto;width: 70px;"></div>
+
+        </div>
+    </div>
+</div>
+

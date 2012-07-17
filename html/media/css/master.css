@@ -1,0 +1,34 @@
+/* 
+    Document   : master.css
+    Created on : Jul 17, 2012, 9:32:51 PM
+    Author     : Daniel Levitt
+*/
+
+header {
+    background:#efefef;
+    margin-bottom: 40px;
+    border-bottom: 1px solid #ccc;
+    padding: 40px 0 30px;
+}
+header .logo {
+    font-family: 'Pacifico', cursive;
+    font-size: 39px;
+}
+header a.logo:hover, header a.logo:active, header a.logo:visited {
+    color: #08C;
+    text-decoration: none;
+}
+
+.content {
+    min-height: 500px;
+}
+
+footer {
+    padding: 40px 0;
+    background:#000;
+    margin-top: 40px;
+    border-top: 1px solid #ccc;
+}
+footer a {
+    color:#efefef;
+}

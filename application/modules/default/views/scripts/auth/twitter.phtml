@@ -1,0 +1,77 @@
+<?php $this->headTitle()->prepend( 'Sign Up' ); ?>
+
+<style>
+    .signup_bar { display: none; }
+</style>
+
+<br>
+
+<div class="row">
+
+    <div class="span5">
+
+        <h1 class="heading_title" style="font-size:45px;margin-bottom:30px;">Twitter account connected</h1>
+        
+        <hr class="space">
+        
+        <div style="width:150px;display: block;margin: 0 auto;">
+            <a href="https://twitter.com/n0tice" class="twitter-follow-button" data-size="large" data-show-count="true" data-lang="en">Follow @n0tice</a>
+        </div>        
+        
+    </div>
+
+    <div class="span5 offset1">
+        
+        <p class="alert alert-info">After you choose a username and email, you will be given a new account with us.</p>
+        
+        <?= $this->twitter_form ?>
+
+    </div>
+
+    <?php 
+    $script = "
+    $('form#signup:not(.filter) :input:visible:first').focus();
+    
+    $(document).ready(function () {
+
+        $('#user_login, #user_email').keyup(function () {
+            var t = this;
+            var element = $(this);
+            var controlgroup = element.parent().parent();
+            if(controlgroup.find('.help-inline').length == 0) {
+                element.after('<span class=\'help-inline\'></span>');
+            }
+            
+            controlgroup.removeClass('error').removeClass('success');
+            controlgroup.find('.help-inline').hide();
+            
+            if (element.val() != lastValue) {
+                if (this.timer) clearTimeout(this.timer);
+                this.timer = setTimeout(function () {
+                    $.ajax({
+                        url: '/auth/ajaxformvalidation',
+                        data: 'form_name=' + element.attr('id') + '&form_value=' + element.val(),
+                        dataType: 'json',
+                        type: 'get',
+                        success: function (j) {
+                            if(j.code == '1') {
+                                controlgroup.addClass('error');
+                                controlgroup.find('.help-inline').html(j.msg).show();
+                            }
+                            if(j.code == '2') {
+                                controlgroup.addClass('success');
+                            }
+                        }
+                    });
+                }, 400);
+                var lastValue = element.val();
+            }
+        });
+    });
+    ";
+    $this->headScript()->appendScript($script);
+    ?>
+	 
+</div>
+
+<?php $this->headScript()->appendScript("$('.signup_bar').hide();"); ?>

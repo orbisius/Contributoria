@@ -1,0 +1,131 @@
+<?php $this->headTitle()->prepend('Sign Up'); ?>
+
+<br>
+
+<style>
+    .signup_bar { display: none; }
+    .s_auth {
+        display: block;
+        float: none;
+        margin: 0 auto 25px;
+    }
+</style>
+<div class="row">
+
+    <div class="span5">
+
+        <h1 class="heading_title" style="font-size:45px;margin-bottom:30px;">What is n0tice?</h1>
+        <p style="font-size:15px;margin-bottom:17px;">Think of it as a community noticeboard, a platform that answers the question, "what's happening near you?"</p>
+        <p style="font-size:15px;line-height:22px;">It's a place where everyone can share news, post details about forthcoming events or let people know you have something to sell or share.</p>
+        <p style="font-size:15px;line-height:22px;">Just like a traditional noticeboard, everyone else in your locality will be able to see what you've posted and also take part.</p>
+
+        <hr class="space">
+
+        <a href="<?= $this->url(array(), 'auth_facebook') ?>" class="fb s_auth span3">
+            <div class="ic"></div>
+            <span>Signup with Facebook</span>
+        </a>
+
+        <a href="<?= $this->url(array(), 'auth_twitter') ?>" class="tw s_auth span3">
+            <div class="ic"></div>
+            <span>Signup with Twitter</span>
+        </a>
+
+    </div>
+
+    <div class="span5 offset1">
+
+        <?php
+        if ($this->errors) {
+            echo "<div class=\"error\"><p>The following errors need to be corrected before signing up:</p>{$this->errors}</div>";
+        }
+        ?>
+        <?= $this->signup_form ?>
+
+    </div>
+
+    <?php
+    $script = "
+    $('form#signup:not(.filter) :input:visible:first').focus();
+    
+    $(document).ready(function () {
+
+        $('#user_login, #user_email').keyup(function () {
+            var t = this;
+            var element = $(this);
+            var controlgroup = element.parent().parent();
+            if(controlgroup.find('.help-inline').length == 0) {
+                element.after('<span class=\'help-inline\'></span>');
+            }
+            
+            controlgroup.removeClass('error').removeClass('success');
+            controlgroup.find('.help-inline').hide();
+            
+            if (element.val() != lastValue) {
+                if (this.timer) clearTimeout(this.timer);
+                this.timer = setTimeout(function () {
+                    $.ajax({
+                        url: '/auth/ajaxformvalidation',
+                        data: 'form_name=' + element.attr('id') + '&form_value=' + element.val(),
+                        dataType: 'json',
+                        type: 'get',
+                        success: function (j) {
+                            if(j.code == '1') {
+                                controlgroup.addClass('error');
+                                controlgroup.find('.help-inline').html(j.msg).show();
+                            }
+                            if(j.code == '2') {
+                                controlgroup.addClass('success');
+                            }
+                        }
+                    });
+                }, 400);
+                var lastValue = element.val();
+            }
+        });
+        
+        $('#user_pass').keyup(function() {
+            var element = $(this);
+            var controlgroup = element.parent().parent();
+            if(controlgroup.find('.help-inline').length == 0) {
+                element.after('<span class=\'help-inline\'></span>');
+            }
+            controlgroup.removeClass('warning').removeClass('error').removeClass('success');
+            controlgroup.find('.help-inline').hide();
+                        
+            if(this.value.length != 0) {
+                var strength = 1;
+                if(this.value.length >= 5) {
+                    if(this.value.match(/[a-z]+/)) {
+                        strength++;
+                    }
+                    if(this.value.match(/[0-9]+/)) {
+                        strength++;
+                    }
+                    if(this.value.match(/[A-Z]+/)) {
+                        strength++;
+                    }
+                    if(this.value.match(/[\W]+/)) {
+                        strength++;
+                    }
+                    if(strength <= 3) {
+                        controlgroup.addClass('success');
+                        controlgroup.find('.help-inline').html('Your password could be more secure.').show();
+                    }
+                    if(strength >= 4) {
+                        controlgroup.addClass('success');
+                        controlgroup.find('.help-inline').html('Password is perfect.').show();
+                    }
+                } else {
+                    controlgroup.addClass('error');
+                    controlgroup.find('.help-inline').html('Please choose a password that is a minimum of 6 characters.').show();
+                }
+            }
+        });
+
+    });
+    ";
+    $this->headScript()->appendScript($script);
+    ?>
+
+</div>

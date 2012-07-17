@@ -1,0 +1,47 @@
+<?php
+$this->headTitle()->prepend(ucwords($this->user->user_login));
+$this->headTitle()->prepend('Edit Avatar');
+?>
+
+<hr class="space">
+
+<div class="row">
+    <?= $this->usersettingsmenu($this->user->user_login, 'picture') ?>
+    <div class="span10">
+        <div class="u_e_i">
+            <h1><?= $this->title ?></h1>
+            
+            <?php
+            if($this->twitter || $this->facebook) {
+                $output = array();
+                if($this->facebook) {
+                    $output[] = "<a href=\"{$this->url(array('id' => $this->user->user_login, 'service' => 'facebook'), 'user_edit_add_social_picture')}\" class=\"fb s_auth\" style=\"margin-right:15px;\">";
+                    $output[] = "    <div class=\"ic\"></div>";
+                    $output[] = "    <span style=\"font-size:13px\">Download image from Facebook</span>";
+                    $output[] = "</a>";
+                }
+                if($this->twitter) {
+                    $output[] = "<a href=\"{$this->url(array('id' => $this->user->user_login, 'service' => 'twitter'), 'user_edit_add_social_picture')}\" class=\"tw s_auth\">";
+                    $output[] = "    <div class=\"ic\"></div>";
+                    $output[] = "    <span style=\"font-size:13px\">Download image from Twitter</span>";
+                    $output[] = "</a>";
+                }
+                $output[] = "<hr class=\"space\">";
+                $output[] = "<hr>";
+                echo implode("\n", $output);
+            }
+            ?>
+            
+            <div class="row">
+                <div class="span5">
+                    <?= $this->message ?>
+                    <?= ($this->form) ?>
+                </div>
+                <div class="span4">
+                    <p style="text-align:center;font-weight:bold;margin-bottom: 5px;">Current picture:</p>
+                    <?= $this->profilepicture($this->user->user_login, 'large', 1, 'change_profile_pic', 1); ?>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,75 @@
+<?php
+$this->headTitle()->prepend(ucwords($this->user->user_login));
+?>
+
+<h1><?= ucwords($this->user->display_name) ?></h1>
+
+<br>
+
+<?= $this->profilepicture($this->user->user_login, 'medium', 0, 'profile_pic'); ?>
+
+<p style="font-weight:bold;margin-bottom:0">signed up:</p>
+<p><?= $this->timesince($this->user->user_registered) ?></p>
+
+<p style="font-weight:bold;margin-bottom:0">last seen:</p>
+<p><?= $this->timesince($this->user->user_lastonline) ?></p>
+
+<?php
+if ($this->user->user_url) {
+    ?>
+    <p style="font-weight:bold;margin-bottom:0">website:</p>
+
+    <p><a class="url" rel="me" style="text-decoration:none;" href="<?= preg_replace("/^https?:\/\/(.+)$/i", "\\1", $this->user->user_url); ?>"><?= preg_replace("/^https?:\/\/(.+)$/i", "\\1", $this->user->user_url); ?></a></p>
+    <?php
+}
+if ($this->user->user_location) {
+    ?>
+    <p style="font-weight:bold;margin-bottom:0">location:</p>
+
+    <p><?= $this->user->user_location ?></p>
+    <?php
+}
+?>
+
+<?php
+if ($this->small_bio) {
+    ?>
+    <hr>
+
+    <div class="alert alert-block alert-info">
+        <?= $this->htmlpurify($this->small_bio) ?>
+    </div>
+    <?php
+}
+?>
+
+<hr style="clear:both;">
+    
+<?php
+if (Zend_Auth::getInstance()->getIdentity()) {
+    
+    if(Zend_Auth::getInstance()->getIdentity()->user_id !== $this->user->user_id) {
+        $populate = "prePopulate: [{id: {$this->user->user_id}, name: '{$this->user->user_login}'}]";
+        if(Zend_Auth::getInstance()->getIdentity()->user_id == $this->user->user_id) {
+            $populate = "";
+        }
+
+        $script = "
+        $(document).ready(function() {
+                $('#uids').tokenInput('{$this->url(array(), 'user_personautocomplete')}', {
+                hintText: 'Begin typing the name of the person you wish to include.',
+                noResultsText: 'No results',
+                theme: 'facebook',
+                preventDuplicates: true,
+                searchingText: 'Searching...',
+                {$populate}
+            });
+        });
+        ";
+        $this->headScript()->appendScript($script);
+        
+        echo "<h3>Send {$this->user->user_login} a new message</h3>";
+        echo $this->form;
+    }
+}
+?>

@@ -1,0 +1,53 @@
+<?php
+$this->headTitle()->prepend(ucwords($this->user->user_login));
+$this->headTitle()->prepend('Messages');
+?>
+
+<div class="row"> <!-- Top heading -->
+    <div class="span3">
+        
+        <?= $this->render('_viewsidebar.phtml') ?>
+        
+    </div>
+
+    <div class="span9">
+        
+        <a href="<?= $this->url(array('id' => $this->user->user_login), 'user_view') ?>" class="btn" style="float:right">Back to profile</a>
+        
+        <h1>Messages</h1>
+        
+        <a href="#new_message" class="btn btn-primary" data-toggle="modal">Create a new message</a>
+
+        <hr class="space">
+
+        <div class="tabbable">
+
+            <ul class="nav nav-tabs" data-tabs="tabs">
+                <li class="active"><a href="#us-inbox" data-toggle="tab">Inbox</a></li>
+                <li><a href="#us-sent" data-toggle="tab">Sent Items</a></li>
+            </ul>
+
+            <div class="tab-content">
+                <div class="tab-pane active" id="us-inbox">
+                    <?= $this->usermessages($this->messages); ?>
+                </div>
+                <div class="tab-pane" id="us-sent">
+                    <?= $this->usermessages($this->sent_messages, 'outbox'); ?>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal hide fade in" id="new_message" style="width:720px;margin:-250px 0 0 -330px">
+            <div class="modal-header">
+                <a href="#" class="close" data-dismiss="modal">&times;</a>
+                <h3>Create a new message</h3>
+            </div>
+            <div class="modal-body">
+                <?= $this->form ?>
+            </div>
+        </div>
+        
+    </div>
+    
+</div> <!-- End: Top heading -->
+

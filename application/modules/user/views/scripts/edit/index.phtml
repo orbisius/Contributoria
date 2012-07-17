@@ -1,0 +1,20 @@
+<?php
+$this->headTitle()->prepend(ucwords($this->user->user_login));
+$this->headTitle()->prepend('Edit');
+?>
+
+<hr class="space">
+
+<div class="row">
+
+    <?= $this->usersettingsmenu($this->user->user_login, $this->tab) ?>
+
+    <div class="span10">
+        <div class="u_e_i">
+            <a href="<?= $this->url(array('id' => $this->user->user_login), 'user_view') ?>" class="btn" style="float:right">Back to profile</a>
+            <h1><?= $this->title ?></h1>
+            <br>
+            <?= ($this->form) ?>
+        </div>
+    </div>
+</div>

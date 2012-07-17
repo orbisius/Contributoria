@@ -1,0 +1,52 @@
+<?php
+$this->headTitle()->prepend(ucwords($this->user->user_login));
+$this->headTitle()->prepend('Messages');
+?>
+
+<div class="row"> <!-- Top heading -->
+    <div class="span3">
+        
+        <?= $this->render('_viewsidebar.phtml') ?>
+        
+    </div>
+
+    <div class="span9">
+        
+        <a href="<?= $this->url(array('id' => $this->user->user_login), 'user_view') ?>" class="btn" style="float:right">Back to profile</a>
+        
+        <h1>Messages</h1>
+
+        <a href="<?= $this->url(array('id' => $this->user->user_login), 'user_inbox') ?>" class="btn">&laquo; Go back to messages</a>
+
+        <a href="#thread_comment" class="btn btn-primary">Reply</a>
+
+        <hr>
+
+        <h4>In this conversation: <?= $this->information ?></h4>
+
+        <hr>
+
+        <?php
+        $script = "
+        $(document).ready(function() {
+                $.scrollTo('.status_N', 1500);
+                $('.status_N').effect('highlight', {}, 5000);
+        });
+        ";
+        $js_config = Zend_Registry::get('js_config');
+        $this->headScript()->appendFile($this->staticUrl() . '/' . $this->mediaUrl() . $js_config->path . 'jquery.scrollTo-1.4.2-min.js');
+        $this->headScript()->appendScript($script);
+        ?>
+
+        <?= $this->usermessagethread($this->messages); ?>
+
+        <hr class="space">
+
+        <div id="thread_comment">
+            <h3>Reply to this thread</h3>
+            <?= $this->form ?>
+        </div>
+        
+    </div>
+    
+</div> <!-- End: Top heading -->
