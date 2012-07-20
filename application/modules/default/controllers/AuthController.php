@@ -3,8 +3,10 @@
 class AuthController extends Zend_Controller_Action {
 
     private $_userModel = null;
+    private $_requireEmailActivation = null;
 
     public function init() {
+        $this->_requireEmailActivation = Zend_Registry::get('email_activation');
         $this->_userModel = new User_Model_UserMapper();
     }
 
@@ -19,7 +21,7 @@ class AuthController extends Zend_Controller_Action {
         }
         if (Zend_Auth::getInstance()->hasIdentity()) {
             $this->_helper->FlashMessenger(array('error' => "Sorry but you don't have access to that page."));
-            $this->_redirect('/');
+            $this->_redirect($this->_helper->url->url(array(), 'home'));
         } else {
             $this->_helper->FlashMessenger(array('error' => "Please log in or sign up to access that page."));
             $this->_redirect($this->_helper->url->url(array(), 'auth_login') . $redirect);
@@ -74,7 +76,7 @@ class AuthController extends Zend_Controller_Action {
     public function loggedinredirect() {
         if (Zend_Auth::getInstance()->hasIdentity()) {
             $this->_helper->FlashMessenger(array('error' => "You are already logged in."));
-            $this->_redirect('/');
+            $this->_redirect($this->_helper->url->url(array(), 'home'));
         }
     }
 
@@ -126,7 +128,7 @@ class AuthController extends Zend_Controller_Action {
                             if ($form_data['login_redirect']) {
                                 $this->_redirect($form_data['login_redirect']); // Page they tried to access
                             }
-                            $this->_redirect($this->view->url(array(), 'dashboard_home'));
+                            $this->_redirect($this->_helper->url->url(array(), 'home'));
                         } else {
                             $this->view->notice = "<p>We sent a confirmation email to <strong>{$user->user_email}</strong>. Please click on the link in that message to activate your account.</p><a href=\"{$this->_helper->url->url(array('email' => $user->user_email), 'auth_resendemail')}\" class=\"button\">Resend confirmation email</a>";
                             Zend_Auth::getInstance()->clearIdentity();
@@ -182,8 +184,7 @@ class AuthController extends Zend_Controller_Action {
 
                     $time = date("Y-m-d H:i:s", time());
 
-                    $opt_model = new Model_Options();
-                    $require_activation = $opt_model->find('require_email_activation');
+                    $require_activation = Zend_Registry::get('email_activation');
                     $random_email_code = 0;
                     if ($require_activation) {
                         $random_email_code = md5(rand(5, 15) . strtotime(time()));
@@ -214,26 +215,21 @@ class AuthController extends Zend_Controller_Action {
                     $user_id = $this->_userModel->save($new_user);
                     
                     $this->_userModel->saveMeta($user_id, 'notification_message', 1);
-                    $this->_userModel->saveMeta($user_id, 'notification_update', 1);
-                    $this->_userModel->saveMeta($user_id, 'notification_interesting', 1);
-                    $this->_userModel->saveMeta($user_id, 'notification_repost', 1);
-                    $this->_userModel->saveMeta($user_id, 'notification_follow', 1);
-                    $this->_userModel->saveMeta($user_id, 'notification_noticeboard', 1);
                     
                     // See if the site wants to confirm the users email
-                    $opt_model = new Model_Options();
-                    $require_activation = $opt_model->find('require_email_activation');
 
-                    if ($require_activation) {
-
+                    if ($this->_requireEmailActivation) {
+                        
+                        $opt_model = Zend_Registry::get('general_information');
+                        
                         // Send the user activation email
-                        $email_code_url = $opt_model->find('url') . $this->_helper->url->url(array('email' => $form_data['user_email'], 'code' => $random_email_code), 'auth_confirmemail');
+                        $email_code_url = $opt_model->url . $this->_helper->url->url(array('email' => $form_data['user_email'], 'code' => $random_email_code), 'auth_confirmemail');
 
-                        $subject = 'Just one more step to get started on ' . $opt_model->find('website_name');
-                        $message = '<p>Hi ' . $form_data['user_realname'] . ',</p><p>To complete the sign-up process, please follow this link:</p><p><a href="' . $email_code_url . '">' . $email_code_url . '</a></p>';
+                        $subject = 'Just one more step to get started on ' . $opt_model->name;
+                        $message = '<p>Hi ' . $form_data['user_login'] . ',</p><p>To complete the sign-up process, please follow this link:</p><p><a href="' . $email_code_url . '">' . $email_code_url . '</a></p>';
                         
                         $email_model = new Model_Email();
-                        $email_model->email($form_data['user_email'], $form_data['user_realname'], $subject, $message);
+                        $email_model->email($form_data['user_email'], $form_data['user_login'], $subject, $message);
 
                         // Tell the userto check their email
                         $this->_helper->viewRenderer->setNoRender(true);
@@ -263,7 +259,7 @@ class AuthController extends Zend_Controller_Action {
 
                         setcookie("newuser", 1, time() + 86400);
 
-                        $this->_redirect(Zend_Registry::get('domain_name') . $this->_helper->url->url(array(), 'dashboard_home'));
+                        $this->_redirect($this->_helper->url->url(array(), 'home'));
                     }
                 } else {
                     $this->_helper->FlashMessenger(array('error' => "Please check the form for errors."));
@@ -410,7 +406,7 @@ class AuthController extends Zend_Controller_Action {
 
         if (isset($_GET['denied'])) {
             $this->_helper->FlashMessenger(array('error' => "There was an error connecting your Twitter account, please try again later."));
-            $this->_redirect('/');
+            $this->_redirect($this->_helper->url->url(array(), 'home'));
         }
         if (!isset($_SESSION ['TWITTER_ACCESS_TOKEN'])) {
             if (!empty($_GET) && isset($_SESSION ['REQUEST_TOKEN'])) {
@@ -524,7 +520,7 @@ class AuthController extends Zend_Controller_Action {
         } else {
             $this->_helper->FlashMessenger(array('info' => "You were not signed in."));
         }
-        $this->_redirect('/');
+        $this->_redirect($this->_helper->url->url(array(), 'home'));
     }
 
     /**
@@ -533,7 +529,7 @@ class AuthController extends Zend_Controller_Action {
     public function forgetdataAction() {
         $this->destroySessions();
         $this->_helper->FlashMessenger(array('info' => "Location focus cleared."));
-        $this->_redirect($this->_getParam('redirect', '/'));
+        $this->_redirect($this->_getParam('redirect', $this->_helper->url->url(array(), 'home')));
     }
 
     /**
@@ -556,7 +552,7 @@ class AuthController extends Zend_Controller_Action {
 
                 echo "<h2>Email Confirmed!</h2>";
                 echo "<h4>Your account has now been activated, please log in using the button below.</h4>";
-                echo "<a href=\"{$this->_helper->url->url(array(), 'auth_login')}\" class=\"button green\">Log In</a>";
+                echo "<a href=\"{$this->_helper->url->url(array(), 'auth_login')}\" class=\"btn btn-large\">Log In &raquo;</a>";
                 return;
             }
         }
@@ -678,18 +674,18 @@ class AuthController extends Zend_Controller_Action {
                     $this->_userModel->saveMeta($user->user_id, 'reset_password_code', $reset_code);
 
                     $opt_model = new Model_Options();
-                    $email_code_url = $opt_model->find('url') . $this->_helper->url->url(array('email' => $email, 'code' => $reset_code), 'auth_reset');
+                    $email_code_url = $opt_model->url . $this->_helper->url->url(array('email' => $email, 'code' => $reset_code), 'auth_reset');
 
                     // Send the code to email
-                    $subject = 'You requested a new ' . $opt_model->find('website_name') . ' password';
-                    $message = '<p>Hi ' . $user->user_realname . ',</p><p>You recently asked to reset your ' . $opt_model->find('website_name') . ' password. To complete your request, please follow this link:</p><p><a href="' . $email_code_url . '">' . $email_code_url . '</a></p><p>If you did not request a new password, please ignore this email.</p>';
+                    $subject = 'You requested a new ' . $opt_model->name . ' password';
+                    $message = '<p>Hi ' . $user->user_realname . ',</p><p>You recently asked to reset your ' . $opt_model->name . ' password. To complete your request, please follow this link:</p><p><a href="' . $email_code_url . '">' . $email_code_url . '</a></p><p>If you did not request a new password, please ignore this email.</p>';
                     
                     $email_model = new Model_Email();
                     $email_model->email($user->user_email, $user->user_realname, $subject, $message);
 
                     $message = array();
                     $message[] = "<h4>Check your email for a message from us, it will contain a link that you should follow that will reset your password for you.</h4>";
-                    $message[] = "<h4>If you have a different problem accessing your account, please email our support at <a href=\"mailto:{$opt_model->find('email_support')}\">{$opt_model->find('email_support')}</a>.</h4>";
+                    $message[] = "<h4>If you have a different problem accessing your account, please email our support at <a href=\"mailto:{$opt_model->email_support}\">{$opt_model->email_support}</a>.</h4>";
 
                     $this->view->title = "Please respond to an email we have sent!";
                     $this->view->text = implode("\n", $message);
@@ -717,13 +713,13 @@ class AuthController extends Zend_Controller_Action {
 
         if ($user->user_status) {
 
-            $opt_model = new Model_Options();
+            $opt_model = Zend_Registry::get('general_information');
 
             // Send the user activation email
-            $email_code_url = $opt_model->find('url') . $this->_helper->url->url(array('email' => $user->user_email, 'code' => $user->user_status), 'auth_confirmemail');
+            $email_code_url = $opt_model->url . $this->_helper->url->url(array('email' => $user->user_email, 'code' => $user->user_status), 'auth_confirmemail');
 
-            $subject = 'Just one more step to get started on ' . $opt_model->find('website_name');
-            $message = '<p>Hi ' . $user->user_realname . ',</p><p>To complete the sign-up process, please follow this link:</p><p><a href="' . $email_code_url . '">' . $email_code_url . '</a></p><p>Welcome to ' . $opt_model->find('website_name') . '!</p>';
+            $subject = 'Just one more step to get started on ' . $opt_model->name;
+            $message = '<p>Hi ' . $user->user_realname . ',</p><p>To complete the sign-up process, please follow this link:</p><p><a href="' . $email_code_url . '">' . $email_code_url . '</a></p><p>Welcome to ' . $opt_model->name . '!</p>';
             
             $email_model = new Model_Email();
             $email_model->email($user->user_email, $user->user_realname, $subject, $message);
@@ -786,7 +782,7 @@ class AuthController extends Zend_Controller_Action {
         if ($user->user_status) {
             $this->view->notice = "<p>We sent a confirmation email to <strong>{$user->user_email}</strong>. Please click on the link in that message to activate your account.</p><a href=\"{$this->_helper->url->url(array('email' => $user->user_email), 'auth_resendemail')}\" class=\"button\">Resend confirmation email</a>";
             Zend_Auth::getInstance()->clearIdentity();
-            $this->_redirect('/');
+            $this->_redirect($this->_helper->url->url(array(), 'home'));
         }
 
         $authAdapter = $this->getAuthAdapter();
@@ -805,7 +801,7 @@ class AuthController extends Zend_Controller_Action {
         if ($redirect) {
             $this->_redirect($redirect);
         }
-        $this->_redirect($this->view->url(array(), 'dashboard_home'));
+        $this->_redirect($this->_helper->url->url(array(), 'home'));
     }
 
     /**

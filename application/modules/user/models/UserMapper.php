@@ -7,11 +7,20 @@ class User_Model_UserMapper {
     public $_count = 10;
     public $_pagerange = 7;
     protected $_dbTable;
-
+    
+    /**
+     * Generic pagination object
+     * @return type 
+     */
     public function returnPagination() {
         return $this->_pagination;
     }
-
+    
+    /**
+     * Returns database table object
+     * @param type $table
+     * @return \Zend_Db_Table 
+     */
     public function getDbTable($table = 'users') {
         $user_table = new Zend_Db_Table($table);
         return $user_table;
@@ -32,131 +41,7 @@ class User_Model_UserMapper {
         if ($content_owner_id && $content_owner_id == Zend_Auth::getInstance()->getIdentity()->user_id) {
             return true; // Content author can edit
         }
-        $reg_board = Zend_Registry::get('reg_board');
-        if ($reg_board['domain_url']) {
-            $model = new Noticeboard_Model_NoticeboardMapper();
-            $canedit = $model->editNoticeboard($reg_board['domain_url'], Zend_Auth::getInstance()->getIdentity()->user_id);
-            if ($canedit) {
-                return true; // Domain admins can edit
-            }
-        }
         return false;
-    }
-
-    public function findUserlike($page = 1, $q = "", $not = '') {
-
-        $db = Zend_Registry::get('db');
-
-        $select = $db->select();
-        $select->from(array('u' => 'users'), array('user_id', 'user_login'));
-        $where = $db->quoteInto("MATCH(u.display_name) AGAINST(?)", $q);
-        $select->where($where);
-        if ($not) {
-            $where = $db->quoteInto("user_login != ?", $not);
-            $select->where($where);
-        }
-        $select->limit(10, ($page - 1) * 10);
-        
-        $results = $select->query()->fetchAll();
-
-        return $results;
-    }
-    
-    public function findUserFuzzy($page = 1, $q = "", $not = '') {
-
-        $db = Zend_Registry::get('db');
-
-        $select = $db->select();
-        $select->from(array('u' => 'users'), array('user_id', 'user_login'));
-        $where = $db->quoteInto("user_login LIKE ?", '%'.$q.'%');
-        $select->where($where);
-        if ($not) {
-            $where = $db->quoteInto("user_login != ?", $not);
-            $select->where($where);
-        }
-        $select->limit(10, ($page - 1) * 10);
-        
-        $results = $select->query()->fetchAll();
-
-        return $results;
-    }
-    
-    public function findUserSuggestions($page = 1, $count = 16, $filter_users = array()) {
-
-        $db = Zend_Registry::get('db');
-
-        $select = $db->select();
-        $select->from(array('u' => 'users'), array('user_id', 'user_login'));
-        $select->join(array('fu' => 'follow_users'), 'fu.object_id = u.user_id', array('followers' => 'COUNT(*)'));
-        $select->group('u.user_id');
-        
-        if ($filter_users) {
-            foreach ($filter_users as $user_id) {
-                $where = $db->quoteInto("u.user_id != ?", $user_id);
-                $select->where($where);
-            }
-        }
-        $select->limit($count, ($page - 1) * $count);
-        $results = $select->query()->fetchAll();
-        
-        $output = array();
-        $i = 0;
-        if($results) {
-            foreach ($results as $result) {
-                $output[$i] = $result;
-                $output[$i]['small_bio'] = $this->findMeta($result['user_id'], 'small_bio');
-                $i++;
-            }
-        }
-        
-        return $output;
-    }
-    
-    
-    /**
-     * Create a new user or find existing user
-     * 
-     * @param unknown_type $user
-     */
-    public function fake_user_assign($username) {
-        
-        $user = $this->findUserOn(array('user_login = ?' => $username));
-        
-        if($user) {
-            return $user->getUser_id();
-        }
-        
-        $data = array(
-            'user_login' => $username,
-            'user_pass' => $this->hashPassword(md5(rand(5, 15) . strtotime(time()))),
-            'user_realname' => $username,
-            'user_email' => 'no-user@n0tice.com',
-            'user_url' => '',
-            'user_dob' => '',
-            'user_location' => '',
-            'user_registered' => date("Y-m-d H:i:s", time()),
-            'user_lastonline' => date("Y-m-d H:i:s", time()),
-            'user_ip' => long2ip(ip2long($_SERVER['REMOTE_ADDR'])),
-            'user_iplast' => long2ip(ip2long($_SERVER['REMOTE_ADDR'])),
-            'display_name' => $username,
-            'role' => 'member',
-            'user_status' => '',
-            'twitter_oauth' => '',
-            'facebook_oauth' => ''
-        );
-        
-        return $this->getDbTable()->insert($data);
-    }
-    
-    /**
-     * Hash the plain text pass
-     * @param str $pass
-     */
-    public function hashPassword($user_pass) {
-        // New hashed password
-        $pass = new Model_Passwordhash ();
-        $pass->PasswordHash(8, true);
-        return $pass->HashPassword($user_pass);
     }
     
 
@@ -197,7 +82,7 @@ class User_Model_UserMapper {
     }
 
     /**
-     * Find user by ID
+     * Find user by User_id
      * @param unknown_type $id
      */
     public function find($id) {
@@ -454,7 +339,13 @@ class User_Model_UserMapper {
         );
         $this->getDbTable()->update($data, array('user_id = ?' => $user_id));
     }
-
+    
+    /**
+     * Find out if a user on a social network is registered on our site
+     * @param type $service
+     * @param type $ids
+     * @return type 
+     */
     public function findSocialRegistered($service, $ids = array()) {
 
         $output = array();
@@ -478,211 +369,27 @@ class User_Model_UserMapper {
         }
         return $output;
     }
-
-    public function getDashboardcontent($username, $op = array()) {
-
-        $apiModel = new Model_Noticeapi();
-        $data = $apiModel->dashboard($username, $op);
-
-        $output = array();
-        foreach ($data['results'] as $report) {
-            $output[] = new Api_Model_ReportMapper($report);
-        }
-
-        $readModel = new Api_Model_Read();
-        $this->_pagination = $readModel->executeApiPagination($data['numberFound'], $op['page']);
-
-        return $output;
-    }
-
+    
     /**
-     * Find generic stream
+     * Deactivate a user
+     * @param type $user_id 
      */
-    public function getStream($page = 1, $count = 0, $order = 'aplha', $since = null, $format = null) {
-
-        $db = Zend_Registry::get('db');
-
-        if ($order == 'time') {
-            $order = 'user_registered ASC';
-        }
-        if ($order == 'aplha') {
-            $order = 'user_login ASC';
-        }
-
-        $select = $db->select()->from(array('u' => 'users'), array('user_id', 'user_email', 'user_registered', 'user_lastonline', 'user_login', 'display_name'))->order($order);
-
-        if ($since) {
-            $select->where('u.user_lastonline < ?', $since);
-        }
-
-        if ($format == 'csv') {
-            return $select->query()->fetchAll();
-        }
-
-        $pagination = Zend_Paginator::factory($select);
-        $pagination->setCurrentPageNumber($page);
-
-        if ($count) {
-            $pagination->setItemCountPerPage($count);
-        } else {
-            $pagination->setItemCountPerPage($this->_count);
-        }
-        $pagination->setPageRange($this->_pagerange);
-        $this->_pagination = $pagination;
-        $results = array();
-        foreach ($pagination as $pa) {
-            $results [] = $pa;
-        }
-
-        $i = 0;
-        foreach ($results as $user) {
-            $results[$i]['small_bio'] = $this->findMeta($user['user_id'], 'small_bio');
-            $i++;
-        }
-
-        return $results;
-    }
-
-    /**
-     * Returns the users who are either following a user or their followers
-     * @param str $user_id
-     * @return type 
-     */
-    public function getUserFollow($user_id, $count = false, $type = 'following', $page = 1) {
-
-        $db = Zend_Registry::get('db');
-
-        $select = $db->select();
-
-        if ($count) {
-            $select->from(array('fu' => 'follow_users'), array('COUNT(*) as num'));
-        } else {
-            $select->from(array('fu' => 'follow_users'), array());
-            $select->limit(16, ($page - 1) * 16);
-        }
-
-        if ($type == 'following') {
-            $select->joinLeft(array('u' => 'users'), 'fu.object_id = u.user_id', array('user_id', 'user_login'));
-            $select->where('fu.user_id = ?', $user_id);
-        }
-
-        if ($type == 'followers') {
-            $select->joinLeft(array('u' => 'users'), 'fu.user_id = u.user_id', array('user_id', 'user_login'));
-            $select->where('fu.object_id = ?', $user_id);
-        }
-        
-        $select->order('fu.date_created DESC');
-        
-        $results = $select->query()->fetchAll();
-        
-        if ($count) {
-            return $results[0]['num'];
-        } else {
-            $output = array();
-            $i = 0;
-            foreach ($results as $result) {
-                $output[$i] = $result;
-                $output[$i]['small_bio'] = $this->findMeta($result['user_id'], 'small_bio');
-                $i++;
-            }
-            return $output;
-        }
-    }
-
-    /**
-     * Check if a user is following a specific user
-     * @param int $current_user_id
-     * @param str $user_login
-     * @return boolean 
-     */
-    public function isUserFollowingUser($current_user_id, $user_id) {
-
-        $db = Zend_Registry::get('db');
-
-        $select = $db->select();
-        $select->from(array('fu' => 'follow_users'));
-        $select->where('fu.user_id = ?', $current_user_id);
-        $select->where('fu.object_id = ?', $user_id);
-
-        $result = $select->query()->fetchAll();
-
-        return $result;
-    }
-
     public function deactivateUser($user_id) {
 
         if ($user_id) {
-            /*
-              $table = new Zend_Db_Table($table);
-              $this->getDbTable('reports')->update(array('status' => 'deactive'), array('status = ?' => 'live', 'user_id = ?' => $user_id));
-              $this->getDbTable('events')->update(array('status' => 'deactive'), array('status = ?' => 'live', 'user_id = ?' => $user_id));
-              $this->getDbTable('offers')->update(array('status' => 'deactive'), array('status = ?' => 'live', 'user_id = ?' => $user_id));
               $this->getDbTable('users')->update(array('user_status' => 'deactivated'), array('user_id = ?' => $user_id));
-             * 
-             */
         }
     }
-
+    
+    /**
+     * Activate a user
+     * @param type $user_id 
+     */
     public function activateUser($user_id) {
 
         if ($user_id) {
-            /*
-              $table = new Zend_Db_Table($table);
-              $this->getDbTable('reports')->update(array('status' => 'live'), array('status = ?' => 'deactive', 'user_id = ?' => $user_id));
-              $this->getDbTable('events')->update(array('status' => 'live'), array('status = ?' => 'deactive', 'user_id = ?' => $user_id));
-              $this->getDbTable('offers')->update(array('status' => 'live'), array('status = ?' => 'deactive', 'user_id = ?' => $user_id));
               $this->getDbTable('users')->update(array('user_status' => '0'), array('user_id = ?' => $user_id));
-             * 
-             */
         }
-    }
-
-    /**
-     * Follow a user
-     * @param int $user_id
-     * @param int $follower_id
-     * @return boolean 
-     */
-    public function userFollowUser($user_id, $follower_id) {
-        $data = array(
-            'user_id' => $user_id,
-            'object_id' => $follower_id,
-            'date_created' => date("Y-m-d H:i:s", time())
-        );
-        $this->getDbTable('follow_users')->insert($data);
-    }
-
-    /**
-     * Unfollow a user
-     * @param int $user_id
-     * @param int $follower_id
-     * @return boolean 
-     */
-    public function userUnfollowUser($user_id, $follower_id) {
-        $data = array(
-            'user_id = ?' => $user_id,
-            'object_id = ?' => $follower_id
-        );
-        $this->getDbTable('follow_users')->delete($data);
-    }
-
-    /**
-     * Generic fetchAll query
-     * @param unknown_type $where
-     * @param unknown_type $order
-     * @param unknown_type $count
-     * @param unknown_type $offset
-     */
-    public function fetchAll($where = null, $order = null, $count = null, $offset = null) {
-
-        $resultSet = $this->getDbTable()->fetchAll($where, $order, $count, $offset);
-        $entries = array();
-        foreach ($resultSet as $row) {
-            $row = $this->object_to_array($row); // Set object to an array
-            $entry = new User_Model_User($row);
-            $entries[] = $entry;
-        }
-        return $entries;
     }
 
     /**

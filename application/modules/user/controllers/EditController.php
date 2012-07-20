@@ -150,7 +150,7 @@ class User_EditController extends Zend_Controller_Action {
         $this->view->twitter = $user_model->findMeta($user->user_id, 'twitter_id');
         $this->view->facebook = $user_model->findMeta($user->user_id, 'facebook_id');
         
-        $form = new Zend_Form(array('id' => "user_edit"));
+        $form = new Twitter_Form(array('id' => "user_edit"));
         $form->setEnctype(Zend_Form::ENCTYPE_MULTIPART);
 
         $temp_uploads = Zend_Registry::get('temp_uploads');
@@ -160,7 +160,6 @@ class User_EditController extends Zend_Controller_Action {
                 ->setDestination($temp_uploads)
                 ->setRequired(true)
                 ->setMaxFileSize(2097152)
-                ->setDecorators(array('File', array('ViewScript', array('viewScript' => 'fileinput.phtml', 'placement' => false))))
                 ->setAttrib('class', 'input-file')
                 ->addValidator('Count', false, 1)
                 ->addValidator('Size', false, 2097152)
@@ -168,7 +167,7 @@ class User_EditController extends Zend_Controller_Action {
                 ->setDescription('Maximum size of 2MB. JPG, GIF, PNG.');
 
         $submit = new Zend_Form_Element_Submit('save');
-        $submit->setLabel('Save new picture')->setDecorators(array('ViewHelper'))->addDecorator('htmlTag', array('tag' => 'div', 'class' => 'form-actions'))->setAttrib('class', 'btn btn-primary btn-large');
+        $submit->setLabel('Save new picture')->setAttrib('class', 'btn btn-primary btn-large');
 
         $form->addElements(array($image, $submit));
 
@@ -251,10 +250,14 @@ class User_EditController extends Zend_Controller_Action {
         
         $this->view->facebook_app_status = $user_model->findMeta($user->user_id, 'facebook_sharing');
     }
-
+    
+    /**
+     * Social invite page
+     * @return type 
+     */
     public function inviteAction() {
 
-        $this->view->title = "Invite friends to n0tice";
+        $this->view->title = "Invite friends";
 
         $id = $this->_getParam('id');
         $page = $this->_getParam('page', 1);
@@ -424,6 +427,9 @@ class User_EditController extends Zend_Controller_Action {
         
     }
     
+    /**
+     * Notification checklist 
+     */
     public function notificationsAction() {
                 
         $this->view->title = "Notifications";
@@ -457,31 +463,6 @@ class User_EditController extends Zend_Controller_Action {
                 } else {
                     $user_model->saveMeta($user->user_id, 'notification_message', 0);
                 }
-                if(isset($form_data['notification_update'])) {
-                    $user_model->saveMeta($user->user_id, 'notification_update', 1);
-                } else {
-                    $user_model->saveMeta($user->user_id, 'notification_update', 0);
-                }
-                if(isset($form_data['notification_interesting'])) {
-                    $user_model->saveMeta($user->user_id, 'notification_interesting', 1);
-                } else {
-                    $user_model->saveMeta($user->user_id, 'notification_interesting', 0);
-                }
-                if(isset($form_data['notification_repost'])) {
-                    $user_model->saveMeta($user->user_id, 'notification_repost', 1);
-                } else {
-                    $user_model->saveMeta($user->user_id, 'notification_repost', 0);
-                }
-                if(isset($form_data['notification_follow'])) {
-                    $user_model->saveMeta($user->user_id, 'notification_follow', 1);
-                } else {
-                    $user_model->saveMeta($user->user_id, 'notification_follow', 0);
-                }
-                if(isset($form_data['notification_noticeboard'])) {
-                    $user_model->saveMeta($user->user_id, 'notification_noticeboard', 1);
-                } else {
-                    $user_model->saveMeta($user->user_id, 'notification_noticeboard', 0);
-                }
                 
                 $this->_helper->FlashMessenger(array('success' => "New profile information saved."));
                 
@@ -492,12 +473,7 @@ class User_EditController extends Zend_Controller_Action {
         }
                 
         $form_data = array(
-            'notification_message' => $user_model->findMeta($user->user_id, 'notification_message'),
-            'notification_update' => $user_model->findMeta($user->user_id, 'notification_update'),
-            'notification_interesting' => $user_model->findMeta($user->user_id, 'notification_interesting'),
-            'notification_repost' => $user_model->findMeta($user->user_id, 'notification_repost'),
-            'notification_follow' => $user_model->findMeta($user->user_id, 'notification_follow'),
-            'notification_noticeboard' => $user_model->findMeta($user->user_id, 'notification_noticeboard')
+            'notification_message' => $user_model->findMeta($user->user_id, 'notification_message')
         );
 
         $form->populate($form_data);
@@ -505,6 +481,9 @@ class User_EditController extends Zend_Controller_Action {
         
     }
     
+    /**
+     * User deactivating their account 
+     */
     public function deactivateAction() {
         
         $session = new Zend_Session_Namespace('deactivate_code');

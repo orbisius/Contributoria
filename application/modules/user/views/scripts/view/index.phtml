@@ -27,48 +27,14 @@ $this->headTitle()->prepend(ucwords($this->user->user_login));
 
         <div class="subnav">
             <ul class="nav nav-pills">
-                <li class="active"><a href="<?= $this->url(array('id' => $this->user->user_login), 'user_view') ?>">Recent Activity</a></li>
-                <li><a href="<?= $this->url(array('id' => $this->user->user_login), 'user_followers') ?>"><b><?= $this->user_followers_count ?></b> followers</a></li>
-                <li><a href="<?= $this->url(array('id' => $this->user->user_login), 'user_following') ?>">following <b><?= $this->total_following_count ?></b></a></li>
-                <li><a href="<?= $this->url(array('id' => $this->user->user_login), 'user_noticeboards') ?>"><b><?= $this->user_noticeboard_count ?></b> noticeboards</a></li>
                 <li style="float:right"><a href="<?= $this->rssUrl ?>"><i class="icon-fire"></i> RSS</a></li>
             </ul>
         </div>
 
         <div style="padding:15px;">
-            <?= $this->useractivity($this->contentitems, $this->url(array('id' => $this->user->user_login), 'user_getactivity') . '?user=' . $this->user->user_login) ?>
-            <div id="loading_more" style="height: 70px;margin:0 auto;width:70px;clear:both;"></div>
+            
         </div>
 
     </div>
 
 </div> <!-- End: Top heading -->
-
-<?php
-if($this->contentitems) {
-    $script = "
-        var loading = $('#loading_more');
-        var act_page = 2;
-        $('.ld_act').hide();
-        var footer = $('footer'), opts = { offset: '100%' };
-        footer.waypoint(function(event, direction) {
-            loading.spin();
-            footer.waypoint('remove');
-            $.get($('.ld_act').attr('href')+'&jquery=1&page='+act_page, function(data) {
-                if(data.length === 0) {
-                    $('.ld_act').parent().html('<strong>No more posts to display.</strong>');
-                    $('.ld_act').removeClass('ld_act');
-                    loading.spin(false);
-                    return false;
-                }
-                loading.spin(false);
-                $('.activity_items').append(data);
-                $('abbr.timeago').timeago();
-                act_page++;
-                footer.waypoint(opts);
-            });
-        }, opts);
-    ";
-    $this->headScript()->appendScript($script);   
-}
-?>

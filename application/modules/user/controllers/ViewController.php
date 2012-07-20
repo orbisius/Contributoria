@@ -7,16 +7,7 @@ class User_ViewController extends Zend_Controller_Action {
     public $_userModel = null;
 
     public function init() {
-
-        $js_config = Zend_Registry::get('js_config');
-        $this->view->headScript()->appendFile($this->view->staticUrl() . '/' . $this->view->mediaUrl() . $js_config->path . 'tokeninput/jquery.tokeninput.js');
-        $this->view->headLink()->appendStylesheet($this->view->staticUrl() . '/' . $this->view->mediaUrl() . $js_config->path . 'tokeninput/token-input-facebook.css');
-
-        $reg_board = Zend_Registry::get('reg_board');
-        if ($reg_board['domain_url']) {
-            $this->_redirect(Zend_Registry::get('domain_name') . $this->view->url());
-        }
-
+        
         $this->_userModel = new User_Model_UserMapper();
         $this->_user = $this->_userModel->findUserOn(array('user_login = ?' => $this->_getParam('id')));
 
@@ -29,36 +20,6 @@ class User_ViewController extends Zend_Controller_Action {
         }
         if (isset($this->_userMetaData['twitter_username'])) { // TODO Profile mapper does this as well?
             $this->view->twitter_username = $this->_userMetaData['twitter_username'];
-        }
-
-        $this->view->edit_page = 0;
-
-        $userRole = new Model_UserRole ();
-        $commentResource = new Model_Resource ();
-        $commentResource->owner_id = $this->_user->user_id;
-        if (Zend_Registry::get('acl')->isAllowed($userRole, $commentResource, 'edit')) {
-            $this->view->edit_page = 1;
-        } else {
-            $this->view->header_following_bar = true;
-        }
-
-        $this->view->user_followers_count = $this->_userModel->getUserFollow($this->_user->user_id, true, 'followers');
-        $this->view->user_following_count = $this->_userModel->getUserFollow($this->_user->user_id, true);
-
-        $cache_id = 'getNoticeboardsUserIsAdmin' . $this->_user->user_id;
-        $cache = Zend_Registry::get('5minCache');
-        if (!$noticeboards = $cache->load($cache_id)) {
-            $model = new Noticeboard_Model_NoticeboardMapper();
-            $noticeboards = $model->getNoticeboardsUserIsAdmin($this->_user->user_id);
-            $cache->save($noticeboards, $cache_id);
-        }
-        $this->view->user_admin_noticeboard = $noticeboards;
-        $this->view->user_noticeboard_count = count($noticeboards);
-
-        $this->view->total_following_count = $this->view->user_following_count + $this->view->user_noticeboard_count;
-
-        if (Zend_Auth::getInstance()->getIdentity()) {
-            $this->view->is_current_user_following = $this->_userModel->isUserFollowingUser(Zend_Auth::getInstance()->getIdentity()->user_id, $this->_user->user_id);
         }
 
         $cache = Zend_Registry::get('5minCache');
@@ -77,7 +38,8 @@ class User_ViewController extends Zend_Controller_Action {
         if (!isset($this->_userMetaData['small_bio'])) {
             $this->_userMetaData['small_bio'] = '';
         }
-
+        
+        /*
         $this->view->doctype(Zend_View_Helper_Doctype::XHTML1_RDFA);
         $fb_config = Zend_Registry::get('facebook_config');
         $this->view->headMeta()->setProperty('fb:app_id', $fb_config->clientid);
@@ -89,14 +51,14 @@ class User_ViewController extends Zend_Controller_Action {
 
         $this->view->headMeta()->setProperty('noticeapp:following', $this->view->user_following_count);
         $this->view->headMeta()->setProperty('noticeapp:followers', $this->view->user_followers_count);
+         * 
+         */
     }
 
     public function indexAction() {
 
-        $this->view->rssUrl = $this->_helper->rssurlbuilder->userActivity($this->_user->user_login);
 
-        $this->view->contentitems = $this->_helper->contentitemdao->getActivity(array(), 1, $this->_user->user_login);
-
+        
         $form = new User_Form_MessageForm();
         $this->view->form = $form;
         if ($this->getRequest()->isPost()) {
@@ -162,33 +124,12 @@ class User_ViewController extends Zend_Controller_Action {
             }
         }
     }
-
-    public function followingAction() {
-
-        $page = (int) $this->_getParam('page', 1);
-        $this->view->page = $page;
-
-        $users = $this->_userModel->getUserFollow($this->_user->user_id, false, 'following', $page);
-        $this->view->users = $users;
-
-        $noticeboardMapper = new Noticeboard_Model_NoticeboardMapper();
-        $noticeboards = $noticeboardMapper->getUserFollowingNoticeboards($this->_user->user_id);
-        $this->view->noticeboards = $noticeboards;
-    }
-
-    public function followersAction() {
-
-        $page = (int) $this->_getParam('page', 1);
-        $this->view->page = $page;
-
-        $users = $this->_userModel->getUserFollow($this->_user->user_id, false, 'followers', $page);
-        $this->view->users = $users;
-    }
-
-    public function noticeboardsAction() {
-        
-    }
-
+    
+    /**
+     * User notification page
+     * 
+     * @return type 
+     */
     public function notificationsAction() {
 
         if ($this->_user->user_id == Zend_Auth::getInstance()->getIdentity()->user_id) {
@@ -223,22 +164,6 @@ class User_ViewController extends Zend_Controller_Action {
         $this->view->notifications = $notifications;
 
         $this->_userModel->setUnreadNotifications($this->_user->user_id);
-    }
-
-    /**
-     * Activity
-     * 
-     * @return type 
-     */
-    public function getactivityAction() {
-
-        $page = (int) $this->_getParam('page', 1);
-
-        $this->_helper->layout->disableLayout();
-        if (!$page >= 2) {
-            return;
-        }
-        $this->view->contentitems = $this->_helper->contentitemdao->getActivity(array(), $page, $this->_user->user_login);
     }
 
     /**
@@ -416,14 +341,6 @@ class User_ViewController extends Zend_Controller_Action {
         $this->view->messages = $message_model->getThread($message_id, $this->_user->user_id);
         $this->view->information = $message_model->messageParticipants($message_id);
         $message_model->updateStatus($message_id, $this->_user->user_id);
-    }
-
-    /**
-     * 
-     * Data for hover card
-     */
-    public function hoverAction() {
-        $this->_helper->layout->disableLayout();
     }
 
 }

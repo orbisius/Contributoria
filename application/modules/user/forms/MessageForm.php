@@ -6,18 +6,16 @@ class User_Form_MessageForm extends Zend_Form {
 
         parent::__construct($option);
 
-        $this->setName('message_form')->setAttrib('accept-charset', 'utf-8')->addDecorator("HtmlTag", array('tag' => "fieldset"));
-
-        $this->addElementPrefixPath('My_Decorator', 'My/Decorator/', 'decorator');
+        $this->setName('message_form');
 
         $uids = new Zend_Form_Element_Text('uids');
-        $uids->setLabel('To:')->setDecorators(array('textinput'))->setAttrib('class', 'message_form')->setRequired();
+        $uids->setLabel('To:')->setAttrib('class', 'message_form')->setRequired();
 
         $message_content = new Zend_Form_Element_Textarea('body');
-        $message_content->setLabel('Message:')->setDecorators(array('textinput'))->setAttrib('class', 'message_form span6')->setRequired();
+        $message_content->setLabel('Message:')->setAttrib('class', 'message_form span6')->setRequired();
 
         $send = new Zend_Form_Element_Submit('send');
-        $send->setLabel('Send')->setDecorators(array('ViewHelper'))->addDecorator('htmlTag', array('tag' => 'div', 'class' => 'modal-footer'))->setAttrib('class', 'btn btn-primary btn-large');
+        $send->setLabel('Send')->setAttrib('class', 'btn btn-primary btn-large');
 
         $elements = array();
 

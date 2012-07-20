@@ -1,0 +1,12 @@
+<?php
+$output = array();
+$output[] = "<ul>";
+if(Zend_Auth::getInstance()->getIdentity()) {
+    $output[] = "<li><a href=\"{$this->url(array('id' => Zend_Auth::getInstance()->getIdentity()->user_login), 'user_view')}\">".Zend_Auth::getInstance()->getIdentity()->display_name."</a></li>";
+    $output[] = "<li><a href=\"{$this->url(array(), 'auth_logout')}\"><i class=\"icon-signout\"></i> Logout</a></li>";
+} else {
+    $output[] = "<li><a href=\"{$this->url(array(), 'auth_login')}\">Login</a></li>";
+    $output[] = "<li><a href=\"{$this->url(array(), 'auth_signup')}\">Signup</a></li>";
+}
+$output[] = "</ul>";
+echo implode("\n", $output);
