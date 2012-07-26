@@ -42,10 +42,13 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap {
 
         Zend_Registry::set('s3bucket', $config->s3);
         Zend_Registry::set('static_path', $config->static->base->url);
+        Zend_Registry::set('temp_uploads', $config->static->tmpuploads->url);
         Zend_Registry::set('email_activation', $config->email->require_activation);
         
         Zend_Registry::set('general_information', $config->general);
-
+        
+        Zend_Registry::set('regex_user_login', $config->regex->userlogin);
+        
         $this->_cachingType = $config->caching->type;
         $this->_db = $config->database;
     }
@@ -247,6 +250,7 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap {
         // JS
         $view->headScript()->appendFile('https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js');
         $view->headScript()->appendFile('/media/js/bootstrap.min.js');
+        $view->headScript()->appendFile('/media/js/application.js');
     }
 
     /**
@@ -266,9 +270,9 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap {
         $router->addRoute('auth_logout', $this->urlRouter('logout', 'default', 'auth', 'logout'));
         $router->addRoute('auth_signup', $this->urlRouter('signup', 'default', 'auth', 'signup'));
         $router->addRoute('auth_lost', $this->urlRouter('lost-password', 'default', 'auth', 'lost'));
-        $router->addRoute('auth_reset', $this->urlRouter('reset-password/:email/:code', 'default', 'auth', 'reset', array('code' => '', 'email' => ''), 'reset-password/%s/%s'));
-        $router->addRoute('auth_confirmemail', $this->urlRouter('confirm-email/:email/:code', 'default', 'auth', 'confirmemail', array('code' => '', 'email' => ''), 'confirm-email/%s/%s'));
-        $router->addRoute('auth_resendemail', $this->urlRouter('resend-email/:email', 'default', 'auth', 'noaccess', array('email' => ''), 'resend-email/%s'));
+        $router->addRoute('auth_reset', $this->urlRouter('reset-password/(\w+)/(\w+)', 'default', 'auth', 'reset', array('code', 'email'), 'reset-password/%s/%s'));
+        $router->addRoute('auth_confirmemail', $this->urlRouter('confirm-email/(\w+)/(\w+)', 'default', 'auth', 'confirmemail', array('code', 'email'), 'confirm-email/%s/%s'));
+        $router->addRoute('auth_resendemail', $this->urlRouter('resend-email/(\w+)', 'default', 'auth', 'noaccess', array('email'), 'resend-email/%s'));
         $router->addRoute('auth_forgetdata', $this->urlRouter('forget-data', 'default', 'auth', 'forgetdata'));
         
         
@@ -276,23 +280,24 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap {
         $router->addRoute('user_home', $this->urlRouter('users', 'user', 'index', 'index'));
         $router->addRoute('user_search', $this->urlRouter('users/search', 'user', 'index', 'search'));
         $router->addRoute('user_activity', $this->urlRouter('users/activity', 'user', 'index', 'activity'));
-
-        $router->addRoute('user_view', $this->urlRouter('user/([a-zA-Z0-9_]+)', 'user', 'view', 'index', array('id'), 'user/%s'));
-        $router->addRoute('user_notifications', $this->urlRouter('user/:id/notifications', 'user', 'view', 'notifications', array('id' => ''), 'user/%s/notifications'));
-        $router->addRoute('user_inbox', $this->urlRouter('user/:id/inbox/:page', 'user', 'view', 'inbox', array('id' => '', 'page' => 1)), 'user/%s/inbox/%s');
-        $router->addRoute('user_read', $this->urlRouter('user/:id/inbox/read/:message_id', 'user', 'view', 'read', array('id' => '', 'message_id' => ''), 'user/:%s/inbox/read/%s'));
+        
+        $user_regex = Zend_Registry::get('regex_user_login');
+        $router->addRoute('user_view', $this->urlRouter('user/'.$user_regex, 'user', 'view', 'index', array('id'), 'user/%s'));
+        $router->addRoute('user_notifications', $this->urlRouter('user/'.$user_regex.'/notifications', 'user', 'view', 'notifications', array('id'), 'user/%s/notifications'));
+        $router->addRoute('user_inbox', $this->urlRouter('user/'.$user_regex.'/inbox/(\w+)', 'user', 'view', 'inbox', array('id', 'page'), 'user/%s/inbox/%s'));
+        $router->addRoute('user_read', $this->urlRouter('user/'.$user_regex.'/inbox/read/(\w+)', 'user', 'view', 'read', array('id', 'message_id'), 'user/:%s/inbox/read/%s'));
         $router->addRoute('user_personautocomplete', $this->urlRouter('user-personautocomplete', 'user', 'index', 'personautocomplete'));
-        $router->addRoute('user_edit', $this->urlRouter('user/:id/edit/:edit/:socialaction', 'user', 'edit', 'index', array('id' => '', 'edit' => '', 'socialaction' => ''), 'user/%s/edit/%s/%s'));
-        $router->addRoute('user_edit_deactivate', $this->urlRouter('user/:id/edit/deactivate', 'user', 'edit', 'deactivate', array('id' => ''), 'user/%s/edit/deactivate'));
-        $router->addRoute('user_edit_notifications', $this->urlRouter('user/:id/edit/notifications', 'user', 'edit', 'notifications', array('id' => ''), 'user/%s/edit/notifications'));
-        $router->addRoute('user_edit_picture', $this->urlRouter('user/:id/edit/picture', 'user', 'edit', 'picture', array('id' => ''), 'user/%s/edit/picture'));
-        $router->addRoute('user_edit_social', $this->urlRouter('user/:id/edit/social', 'user', 'edit', 'social', array('id' => ''), 'user/%s/edit/social'));
-        $router->addRoute('user_edit_add_social', $this->urlRouter('user/:id/add-social/:service', 'user', 'social', 'add', array('id' => '', 'service' => ''), 'user/%s/add-social/%s'));
-        $router->addRoute('user_edit_add_social_picture', $this->urlRouter('user/:id/add-social/picture/:service', 'user', 'social', 'addpicture', array('id' => '', 'service' => ''), 'user/%s/add-social/picture/%s'));
-        $router->addRoute('user_edit_add_social_app', $this->urlRouter('user/:id/add-social/post-to/:service', 'user', 'social', 'posttofacebook', array('id' => '', 'service' => ''), 'user/%s/add-social/post-to/%s'));
-
-        $router->addRoute('user_edit_remove_social', $this->urlRouter('user/:id/remove-social/:service', 'user', 'social', 'remove', array('id' => '', 'service' => ''), 'user/%s/remove-social/%s'));
-        $router->addRoute('user_edit_invite', $this->urlRouter('user/:id/invite-friends/:service', 'user', 'edit', 'invite', array('id' => '', 'service' => ''), 'user/%s/invite-friends/%s'));
+        $router->addRoute('user_edit', $this->urlRouter('user/'.$user_regex.'/edit/(\w+)', 'user', 'edit', 'index', array('id', 'edit'), 'user/%s/edit/%s'));
+        $router->addRoute('user_edit_deactivate', $this->urlRouter('user/'.$user_regex.'/edit/deactivate', 'user', 'edit', 'deactivate', array('id'), 'user/%s/edit/deactivate'));
+        $router->addRoute('user_edit_notifications', $this->urlRouter('user/'.$user_regex.'/edit/notifications', 'user', 'edit', 'notifications', array('id'), 'user/%s/edit/notifications'));
+        $router->addRoute('user_edit_picture', $this->urlRouter('user/'.$user_regex.'/edit/picture', 'user', 'edit', 'picture', array('id'), 'user/%s/edit/picture'));
+        $router->addRoute('user_edit_social', $this->urlRouter('user/'.$user_regex.'/edit/social', 'user', 'edit', 'social', array('id'), 'user/%s/edit/social'));
+        $router->addRoute('user_edit_add_social', $this->urlRouter('user/'.$user_regex.'/add-social/(\w+)', 'user', 'social', 'add', array('id', 'service'), 'user/%s/add-social/%s'));
+        $router->addRoute('user_edit_add_social_picture', $this->urlRouter('user/'.$user_regex.'/add-social/picture/(\w+)', 'user', 'social', 'addpicture', array('id', 'service'), 'user/%s/add-social/picture/%s'));
+        $router->addRoute('user_edit_add_social_app', $this->urlRouter('user/'.$user_regex.'/add-social/post-to/(\w+)', 'user', 'social', 'posttofacebook', array('id', 'service'), 'user/%s/add-social/post-to/%s'));
+        
+        $router->addRoute('user_edit_remove_social', $this->urlRouter('user/'.$user_regex.'/remove-social/(\w+)', 'user', 'social', 'remove', array('id', 'service'), 'user/%s/remove-social/%s'));
+        $router->addRoute('user_edit_invite', $this->urlRouter('user/'.$user_regex.'/invite-friends/(\w+)', 'user', 'edit', 'invite', array('id', 'service'), 'user/%s/invite-friends/%s'));
         
         $router->addRoute('admin_home', $this->urlRouter('admin', 'admin', 'index', 'index'));
 
@@ -306,11 +311,10 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap {
             'controller' => $controller,
             'action' => $action
         );
-        
+                
         if(!$reversed) {
             $reversed = $path;
         }
-        
         
         if($params) {
             $new_params = array();

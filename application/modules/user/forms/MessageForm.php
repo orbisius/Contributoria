@@ -1,6 +1,6 @@
 <?php
 
-class User_Form_MessageForm extends Zend_Form {
+class User_Form_MessageForm extends Twitter_Form {
 
     public function __construct($option = null, $to = 1) {
 

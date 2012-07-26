@@ -196,7 +196,7 @@ class User_EditController extends Zend_Controller_Action {
 
                         if (!$old_imagename = $cache->load($cacheId)) {
                             $db = Zend_Registry::get("db");
-                            $select = $db->select()->from(array('users'), array())->join('users_meta', 'users.user_id = users_meta.user_id', array('meta_value'))->where(' meta_key = ? ', 'profile_picture')->where(' user_login = ? ', $user->user_login);
+                            $select = $db->select()->from(array('users'), array())->join('users_meta', 'users.user_id = users_meta.user_id', array('meta_value'))->where('meta_key = ?', 'profile_picture')->where('user_login = ?', $user->user_login);
                             $old_imagename = $db->fetchOne($select);
                             $cache->save($old_imagename, $cacheId);
                         }
@@ -205,8 +205,11 @@ class User_EditController extends Zend_Controller_Action {
                             $this->_helper->docroothelper->removeFile('images/profile/medium/' . $old_imagename . '.jpg');
                             $this->_helper->docroothelper->removeFile('images/profile/large/' . $old_imagename . '.jpg');
                         }
-
+                        
+                        $cache->remove($cacheId);
+                        
                         $user_model->saveMeta($user->user_id, 'profile_picture', $imagename);
+                        
                         $cache->remove($cacheId);
 
                         $form->reset(); //only do this if it saved ok and you want to re-display the fresh empty form
@@ -550,7 +553,7 @@ class User_EditController extends Zend_Controller_Action {
         // Check username doesnt already exist
         if ($data['user_login']) {
             $data['user_login'] = strip_tags(trim($data['user_login']));
-            if (!preg_match('/^[a-zA-Z0-9_]{1,20}$/', $data['user_login'])) {
+            if (!preg_match('/^'.Zend_Registry::get('regex_user_login').'{1,20}$/', $data['user_login'])) {
                 $this->_helper->FlashMessenger(array('error' => 'Only alphanumerics or an underscore for usernames please.'));
                 $errors = true;
             } else {

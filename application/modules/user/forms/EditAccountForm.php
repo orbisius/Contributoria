@@ -1,6 +1,6 @@
 <?php
 
-class User_Form_EditAccountForm extends Zend_Form {
+class User_Form_EditAccountForm extends Twitter_Form {
 
     public function __construct($action, $option = null) {
         parent::__construct($option);

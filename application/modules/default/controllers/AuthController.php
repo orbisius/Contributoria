@@ -45,7 +45,7 @@ class AuthController extends Zend_Controller_Action {
             if ($name == 'user_login') {
                 $output = array('code' => 2, 'msg' => 'Username available.');
                 $value = strip_tags(trim($value));
-                if (!preg_match('/^[a-zA-Z0-9_]{1,20}$/', $value)) {
+                if (!preg_match('/^'.Zend_Registry::get('regex_user_login').'{1,20}$/', $value)) {
                     $output = array('code' => 1, 'msg' => 'Only alphanumerics for username please.');
                 }
                 $validator = new Zend_Validate_Db_RecordExists(array('table' => 'users', 'field' => 'user_login'));
@@ -830,7 +830,7 @@ class AuthController extends Zend_Controller_Action {
         // Check username doesnt already exist
         $data['user_login'] = strip_tags(trim($data['user_login']));
         
-        if (!preg_match('/^[a-zA-Z0-9_]{1,20}$/', $data['user_login'])) {
+        if (!preg_match('/^'.Zend_Registry::get('regex_user_login').'{1,20}$/', $data['user_login'])) {
             $this->_helper->FlashMessenger(array('error' => 'Only alphanumerics for username please.'));
             $valid = 0;
         }

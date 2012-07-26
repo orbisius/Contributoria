@@ -35,11 +35,11 @@ class Model_StaticAcl extends Zend_Acl {
         
         $this->allow(array('guestgroup'), 'default:auth', array('login', 'signup', 'lost', 'reset', 'confirmemail', 'resendemail', 'ajaxformvalidation'));
         
-        
-        $this->allow(array('member'), 'user:index', array('index'));
-        $this->allow(array('member'), 'user:view', array('index'));
-        $this->allow(array('member'), 'user:edit', array('index'));
-        $this->allow(array('member'), 'user:social', array('index'));
+        $this->allow(array('member'), 'default:auth', array('logout'));
+        $this->allow(array('member'), 'user:index', array('index', 'personautocomplete'));
+        $this->allow(array('member'), 'user:view', array('index', 'notifications', 'inbox', 'read'));
+        $this->allow(array('member'), 'user:edit', array('index', 'picture', 'social', 'invite', 'notifications', 'deactivate'));
+        $this->allow(array('member'), 'user:social', array('add', 'remove', 'addpicture', 'posttofacebook', 'invitefriends'));
         
         $this->allow(array('admin'), 'admin:index', array('index'));
     }

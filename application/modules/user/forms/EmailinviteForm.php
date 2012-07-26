@@ -1,6 +1,6 @@
 <?php
 
-class User_Form_EmailinviteForm extends Zend_Form {
+class User_Form_EmailinviteForm extends Twitter_Form {
 
     public function __construct($option = null, $user = null) {
 

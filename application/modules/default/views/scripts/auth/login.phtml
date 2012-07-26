@@ -11,7 +11,7 @@
 
             <?= $this->login_form ?>
 
-            <br>
+            <hr class="space">
 
             <p><a href="<?= $this->url(array(), 'auth_lost'); ?>">Forgotten your username or password?</a></p>
         </div>
@@ -25,7 +25,9 @@
             <div class="ic"></div>
             <span>Login with Facebook</span>
         </a>
-
+        
+        <hr class="space">
+        
         <a href="<?= $this->url(array(), 'auth_twitter') ?>" class="tw s_auth span3">
             <div class="ic"></div>
             <span>Login with Twitter</span>

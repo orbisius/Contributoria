@@ -12,7 +12,13 @@ class User_ViewController extends Zend_Controller_Action {
         $this->_user = $this->_userModel->findUserOn(array('user_login = ?' => $this->_getParam('id')));
 
         $this->view->user = $this->_user;
-
+        
+        if(Zend_Auth::getInstance()->getIdentity()) {
+            if(Zend_Auth::getInstance()->getIdentity()->user_id == $this->_user->user_id || Zend_Auth::getInstance()->getIdentity()->role == 'admin') {
+                $this->view->edit_page = true;
+            }
+        }
+        
         $this->_userMetaData = $this->_userModel->getMeta($this->_user->user_id);
 
         if (isset($this->_userMetaData['small_bio'])) {

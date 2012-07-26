@@ -9,7 +9,7 @@
  */
 class Helper_View_Common_Profilepicture extends Zend_View_Helper_Abstract {
 
-    public function profilepicture($user_login, $size = 0, $link = 1, $class = "", $avairy = "") {
+    public function profilepicture($user_login, $size = 0, $link = 1, $class = "") {
 
         $imageFilename = $this->getImageFilename($user_login);
 
@@ -33,7 +33,7 @@ class Helper_View_Common_Profilepicture extends Zend_View_Helper_Abstract {
         $image = "<img src=\"{$path}\"{$class} alt=\"Avatar for {$user_login}\" title=\"{$user_login}\">";
 
         if ($link) {
-            $image = "<a href=\"{$this->view->url(array('id' => $user_login), 'user_view')}\" title=\"{$user_login}\">{$image_url}</a>";
+            $image = "<a href=\"{$this->view->url(array('id' => $user_login), 'user_view')}\" title=\"{$user_login}\">{$image}</a>";
         }
 
         return $image;
@@ -42,7 +42,7 @@ class Helper_View_Common_Profilepicture extends Zend_View_Helper_Abstract {
     private function getImageFilename($user_login) {
 
         $cache = Zend_Registry::get('5minCache');
-
+        
         $cacheId = 'profilepicture' . str_replace(' ', '_', preg_replace("/[^a-zA-Z0-9\s]/", "", $user_login));
 
         if (!$image = $cache->load($cacheId)) {
