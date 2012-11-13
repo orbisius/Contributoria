@@ -238,20 +238,20 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap {
         $view->sitename = $this->_sitename;
         
         // Generic JS files needed for mobile or non-mobile
-        $view->headScript()->appendFile('https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js');
+        $view->headScript()->appendFile('https://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js');
 
         $view->addHelperPath(APPLICATION_PATH . '/helpers/view/common', 'Helper_View_Common_');
         $view->addHelperPath(APPLICATION_PATH . '/helpers/view/', 'Helper_View_');
 
         // CSS
-        $view->headLink()->appendStylesheet('/media/css/bootstrap.min.css');
+        $view->headLink()->appendStylesheet('//netdna.bootstrapcdn.com/twitter-bootstrap/2.1.1/css/bootstrap.no-icons.min.css');
+        $view->headLink()->appendStylesheet('//netdna.bootstrapcdn.com/font-awesome/2.0/css/font-awesome.css');
         $view->headLink()->appendStylesheet('http://fonts.googleapis.com/css?family=Pacifico');
         $view->headLink()->appendStylesheet('/media/css/master.css?time='.time());
 
         // JS
-        $view->headScript()->appendFile('https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js');
-        $view->headScript()->appendFile('/media/js/bootstrap.min.js');
-        $view->headScript()->appendFile('/media/js/application.js');
+        $view->headScript()->appendFile('//netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/js/bootstrap.min.js');
+        $view->headScript()->appendFile('/media/js/application.js?time='.time());
     }
 
     /**
