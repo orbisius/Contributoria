@@ -18,7 +18,7 @@
  * @subpackage App
  * @copyright  Copyright (c) 2005-2012 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id: Util.php 24648 2012-02-25 22:06:01Z adamlundrigan $
+ * @version    $Id: Util.php 24643 2012-02-25 21:35:32Z adamlundrigan $
  */
 
 /**
@@ -53,7 +53,7 @@ class Zend_Gdata_App_Util
         } else {
             $ts = strtotime($timestamp);
             if ($ts === false) {
-                require_once 'Zend/Gdata/App/InvalidArgumentException.php';
+                // require_once 'Zend/Gdata/App/InvalidArgumentException.php';
                 throw new Zend_Gdata_App_InvalidArgumentException("Invalid timestamp: $timestamp.");
             }
             return date('Y-m-d\TH:i:s', $ts);
@@ -77,7 +77,7 @@ class Zend_Gdata_App_Util
 
         // Sanity check: Make sure that the collection isn't empty
         if (sizeof($collection) == 0) {
-            require_once 'Zend/Gdata/App/Exception.php';
+            // require_once 'Zend/Gdata/App/Exception.php';
             throw new Zend_Gdata_App_Exception("Empty namespace collection encountered.");
         }
 
@@ -102,7 +102,7 @@ class Zend_Gdata_App_Util
         // Guard: A namespace wasn't found. Either none were registered, or
         // the current protcol version is lower than the maximum namespace.
         if (!$found) {
-            require_once 'Zend/Gdata/App/Exception.php';
+            // require_once 'Zend/Gdata/App/Exception.php';
             throw new Zend_Gdata_App_Exception("Namespace compatible with current protocol not found.");
         }
 

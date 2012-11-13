@@ -19,7 +19,7 @@
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
 
-require_once "Zend/Config/Writer.php";
+// require_once "Zend/Config/Writer.php";
 
 /**
  * Abstract File Writer
@@ -28,7 +28,7 @@ require_once "Zend/Config/Writer.php";
  * @package    Zend_package
  * @copyright  Copyright (c) 2005-2012 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id: FileAbstract.php 24594 2012-01-05 21:27:01Z matthew $
+ * @version    $Id: FileAbstract.php 24593 2012-01-05 20:35:02Z matthew $
  */
 class Zend_Config_Writer_FileAbstract extends Zend_Config_Writer
 {
@@ -95,12 +95,12 @@ class Zend_Config_Writer_FileAbstract extends Zend_Config_Writer
         }
 
         if ($this->_filename === null) {
-            require_once 'Zend/Config/Exception.php';
+            // require_once 'Zend/Config/Exception.php';
             throw new Zend_Config_Exception('No filename was set');
         }
 
         if ($this->_config === null) {
-            require_once 'Zend/Config/Exception.php';
+            // require_once 'Zend/Config/Exception.php';
             throw new Zend_Config_Exception('No config was set');
         }
 
@@ -115,7 +115,7 @@ class Zend_Config_Writer_FileAbstract extends Zend_Config_Writer
         $result = @file_put_contents($this->_filename, $configString, $flags);
 
         if ($result === false) {
-            require_once 'Zend/Config/Exception.php';
+            // require_once 'Zend/Config/Exception.php';
             throw new Zend_Config_Exception('Could not write to file "' . $this->_filename . '"');
         }
     }

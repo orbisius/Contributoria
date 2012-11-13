@@ -16,23 +16,23 @@
  * @package    Zend_Feed_Reader
  * @copyright  Copyright (c) 2005-2012 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id: Entry.php 24594 2012-01-05 21:27:01Z matthew $
+ * @version    $Id: Entry.php 25024 2012-07-30 15:08:15Z rob $
  */
 
 /**
  * @see Zend_Feed_Reader
  */
-require_once 'Zend/Feed/Reader.php';
+// require_once 'Zend/Feed/Reader.php';
 
 /**
  * @see Zend_Feed_Reader_Extension_EntryAbstract
  */
-require_once 'Zend/Feed/Reader/Extension/EntryAbstract.php';
+// require_once 'Zend/Feed/Reader/Extension/EntryAbstract.php';
 
 /**
  * @see Zend_Date
  */
-require_once 'Zend/Date.php';
+// require_once 'Zend/Date.php';
 
 /**
  * @category   Zend

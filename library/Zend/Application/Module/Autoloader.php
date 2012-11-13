@@ -16,12 +16,12 @@
  * @package    Zend_Application
  * @subpackage Module
  * @copyright  Copyright (c) 2005-2012 Zend Technologies USA Inc. (http://www.zend.com)
- * @version    $Id: Autoloader.php 24594 2012-01-05 21:27:01Z matthew $
+ * @version    $Id: Autoloader.php 24593 2012-01-05 20:35:02Z matthew $
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
 
 /** @see Zend_Loader_Autoloader_Resource */
-require_once 'Zend/Loader/Autoloader/Resource.php';
+// require_once 'Zend/Loader/Autoloader/Resource.php';
 
 /**
  * Resource loader for application module classes

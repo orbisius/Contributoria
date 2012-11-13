@@ -17,18 +17,18 @@
  * @subpackage Index
  * @copyright  Copyright (c) 2005-2012 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id: SegmentWriter.php 24594 2012-01-05 21:27:01Z matthew $
+ * @version    $Id: SegmentWriter.php 24593 2012-01-05 20:35:02Z matthew $
  */
 
 
 /** Zend_Search_Lucene_Index_FieldInfo */
-require_once 'Zend/Search/Lucene/Index/FieldInfo.php';
+// require_once 'Zend/Search/Lucene/Index/FieldInfo.php';
 
 /** Zend_Search_Lucene_Index_Term */
-require_once 'Zend/Search/Lucene/Index/Term.php';
+// require_once 'Zend/Search/Lucene/Index/Term.php';
 
 /** Zend_Search_Lucene_Index_TermInfo */
-require_once 'Zend/Search/Lucene/Index/TermInfo.php';
+// require_once 'Zend/Search/Lucene/Index/TermInfo.php';
 
 /**
  * @category   Zend

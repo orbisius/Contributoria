@@ -17,7 +17,7 @@
  * @subpackage Message
  * @copyright  Copyright (c) 2005-2012 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id: Iterator.php 24594 2012-01-05 21:27:01Z matthew $
+ * @version    $Id: Iterator.php 24593 2012-01-05 20:35:02Z matthew $
  */
 
 /**
@@ -93,14 +93,14 @@ class Zend_Queue_Message_Iterator implements Iterator, Countable
         }
 
         if (!is_array($options['data'])) {
-            require_once 'Zend/Queue/Exception.php';
+            // require_once 'Zend/Queue/Exception.php';
             throw new Zend_Queue_Exception('array optionsuration must have $options[\'data\'] = array');
         }
 
         // load the message class
         $classname = $this->_messageClass;
         if (!class_exists($classname)) {
-            require_once 'Zend/Loader.php';
+            // require_once 'Zend/Loader.php';
             Zend_Loader::loadClass($classname);
         }
 

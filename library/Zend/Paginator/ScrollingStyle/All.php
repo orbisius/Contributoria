@@ -16,13 +16,13 @@
  * @package    Zend_Paginator
  * @copyright  Copyright (c) 2005-2012 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id: All.php 24594 2012-01-05 21:27:01Z matthew $
+ * @version    $Id: All.php 24593 2012-01-05 20:35:02Z matthew $
  */
 
 /**
  * @see Zend_Paginator_ScrollingStyle_Interface
  */
-require_once 'Zend/Paginator/ScrollingStyle/Interface.php';
+// require_once 'Zend/Paginator/ScrollingStyle/Interface.php';
 
 /**
  * A scrolling style that returns every page in the collection.

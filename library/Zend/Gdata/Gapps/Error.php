@@ -18,14 +18,14 @@
  * @subpackage Gapps
  * @copyright  Copyright (c) 2005-2012 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id: Error.php 24594 2012-01-05 21:27:01Z matthew $
+ * @version    $Id: Error.php 24593 2012-01-05 20:35:02Z matthew $
  */
 
 
 /**
  * Zend_Gdata_App_Base
  */
-require_once 'Zend/Gdata/App/Base.php';
+// require_once 'Zend/Gdata/App/Base.php';
 
 /**
  * Gdata Gapps Error class. This class is used to represent errors returned

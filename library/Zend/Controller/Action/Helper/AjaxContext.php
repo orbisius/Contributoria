@@ -17,13 +17,13 @@
  * @subpackage Zend_Controller_Action_Helper
  * @copyright  Copyright (c) 2005-2012 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id: AjaxContext.php 24594 2012-01-05 21:27:01Z matthew $
+ * @version    $Id: AjaxContext.php 24593 2012-01-05 20:35:02Z matthew $
  */
 
 /**
  * @see Zend_Controller_Action_Helper_ContextSwitch
  */
-require_once 'Zend/Controller/Action/Helper/ContextSwitch.php';
+// require_once 'Zend/Controller/Action/Helper/ContextSwitch.php';
 
 /**
  * Simplify AJAX context switching based on requested format

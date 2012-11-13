@@ -17,14 +17,14 @@
  * @subpackage Element
  * @copyright  Copyright (c) 2005-2012 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id: Captcha.php 24774 2012-05-07 22:13:37Z adamlundrigan $
+ * @version    $Id: Captcha.php 24848 2012-05-31 19:28:48Z rob $
  */
 
 /** @see Zend_Form_Element_Xhtml */
-require_once 'Zend/Form/Element/Xhtml.php';
+// require_once 'Zend/Form/Element/Xhtml.php';
 
 /** @see Zend_Captcha_Adapter */
-require_once 'Zend/Captcha/Adapter.php';
+// require_once 'Zend/Captcha/Adapter.php';
 
 /**
  * Generic captcha element
@@ -127,24 +127,6 @@ class Zend_Form_Element_Captcha extends Zend_Form_Element_Xhtml
     }
 
     /**
-     * Return all attributes
-     *
-     * @return array
-     */
-    public function getAttribs()
-    {
-        $attribs = get_object_vars($this);
-        unset($attribs['helper']);
-        foreach ($attribs as $key => $value) {
-            if ('_' == substr($key, 0, 1)) {
-                unset($attribs[$key]);
-            }
-        }
-
-        return $attribs;
-    }
-
-    /**
      * Set options
      *
      * Overrides to allow passing captcha options
@@ -222,7 +204,7 @@ class Zend_Form_Element_Captcha extends Zend_Form_Element_Xhtml
         $type = strtoupper($type);
         if ($type == self::CAPTCHA) {
             if (!isset($this->_loaders[$type])) {
-                require_once 'Zend/Loader/PluginLoader.php';
+                // require_once 'Zend/Loader/PluginLoader.php';
                 $this->_loaders[$type] = new Zend_Loader_PluginLoader(
                     array('Zend_Captcha' => 'Zend/Captcha/')
                 );
@@ -250,7 +232,8 @@ class Zend_Form_Element_Captcha extends Zend_Form_Element_Xhtml
         switch ($type) {
             case null:
                 $loader = $this->getPluginLoader(self::CAPTCHA);
-                $cPrefix = rtrim($prefix, '_') . '_Captcha';
+                $nsSeparator = (false !== strpos($prefix, '\\'))?'\\':'_';
+                $cPrefix = rtrim($prefix, $nsSeparator) . $nsSeparator . 'Captcha';
                 $cPath   = rtrim($path, '/\\') . '/Captcha';
                 $loader->addPrefixPath($cPrefix, $cPath);
                 return parent::addPrefixPath($prefix, $path);

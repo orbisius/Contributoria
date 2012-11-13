@@ -18,23 +18,23 @@
  * @subpackage Geo
  * @copyright  Copyright (c) 2005-2012 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id: GeoRssWhere.php 24594 2012-01-05 21:27:01Z matthew $
+ * @version    $Id: GeoRssWhere.php 24593 2012-01-05 20:35:02Z matthew $
  */
 
 /**
  * @see Zend_Gdata_Extension
  */
-require_once 'Zend/Gdata/Extension.php';
+// require_once 'Zend/Gdata/Extension.php';
 
 /**
  * @see Zend_Gdata_Geo
  */
-require_once 'Zend/Gdata/Geo.php';
+// require_once 'Zend/Gdata/Geo.php';
 
 /**
  * @see Zend_Gdata_Geo_Extension_GmlPoint
  */
-require_once 'Zend/Gdata/Geo/Extension/GmlPoint.php';
+// require_once 'Zend/Gdata/Geo/Extension/GmlPoint.php';
 
 
 /**

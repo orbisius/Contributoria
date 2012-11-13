@@ -17,12 +17,12 @@
  * @subpackage Search
  * @copyright  Copyright (c) 2005-2012 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id: MultiTerm.php 24594 2012-01-05 21:27:01Z matthew $
+ * @version    $Id: MultiTerm.php 24593 2012-01-05 20:35:02Z matthew $
  */
 
 
 /** Zend_Search_Lucene_Search_Weight */
-require_once 'Zend/Search/Lucene/Search/Weight.php';
+// require_once 'Zend/Search/Lucene/Search/Weight.php';
 
 
 /**
@@ -76,7 +76,7 @@ class Zend_Search_Lucene_Search_Weight_MultiTerm extends Zend_Search_Lucene_Sear
 
         foreach ($query->getTerms() as $id => $term) {
             if ($signs === null || $signs[$id] === null || $signs[$id]) {
-                require_once 'Zend/Search/Lucene/Search/Weight/Term.php';
+                // require_once 'Zend/Search/Lucene/Search/Weight/Term.php';
                 $this->_weights[$id] = new Zend_Search_Lucene_Search_Weight_Term($term, $query, $reader);
                 $query->setWeight($id, $this->_weights[$id]);
             }

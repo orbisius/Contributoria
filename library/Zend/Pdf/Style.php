@@ -16,7 +16,7 @@
  * @package    Zend_Pdf
  * @copyright  Copyright (c) 2005-2012 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id: Style.php 24594 2012-01-05 21:27:01Z matthew $
+ * @version    $Id: Style.php 24593 2012-01-05 20:35:02Z matthew $
  */
 
 
@@ -134,7 +134,7 @@ class Zend_Pdf_Style
      */
     public function setLineWidth($width)
     {
-        require_once 'Zend/Pdf/Element/Numeric.php';
+        // require_once 'Zend/Pdf/Element/Numeric.php';
         $this->_lineWidth = new Zend_Pdf_Element_Numeric($width);
     }
 
@@ -147,13 +147,13 @@ class Zend_Pdf_Style
      */
     public function setLineDashingPattern($pattern, $phase = 0)
     {
-        require_once 'Zend/Pdf/Page.php';
+        // require_once 'Zend/Pdf/Page.php';
         if ($pattern === Zend_Pdf_Page::LINE_DASHING_SOLID) {
             $pattern = array();
             $phase   = 0;
         }
 
-        require_once 'Zend/Pdf/Element/Numeric.php';
+        // require_once 'Zend/Pdf/Element/Numeric.php';
         $this->_lineDashingPattern = $pattern;
         $this->_lineDashingPhase   = new Zend_Pdf_Element_Numeric($phase);
     }
@@ -275,10 +275,10 @@ class Zend_Pdf_Style
         }
 
         if ($this->_lineDashingPattern !== null) {
-            require_once 'Zend/Pdf/Element/Array.php';
+            // require_once 'Zend/Pdf/Element/Array.php';
             $dashPattern = new Zend_Pdf_Element_Array();
 
-            require_once 'Zend/Pdf/Element/Numeric.php';
+            // require_once 'Zend/Pdf/Element/Numeric.php';
             foreach ($this->_lineDashingPattern as $dashItem) {
                 $dashElement = new Zend_Pdf_Element_Numeric($dashItem);
                 $dashPattern->items[] = $dashElement;

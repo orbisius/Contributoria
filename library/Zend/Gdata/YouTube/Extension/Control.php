@@ -17,18 +17,18 @@
  * @subpackage YouTube
  * @copyright  Copyright (c) 2005-2012 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id: Control.php 24594 2012-01-05 21:27:01Z matthew $
+ * @version    $Id: Control.php 24593 2012-01-05 20:35:02Z matthew $
  */
 
 /**
  * @see Zend_Gdata_App_Extension_Control
  */
-require_once 'Zend/Gdata/App/Extension/Control.php';
+// require_once 'Zend/Gdata/App/Extension/Control.php';
 
 /**
  * @see Zend_Gdata_YouTube_Extension_State
  */
-require_once 'Zend/Gdata/YouTube/Extension/State.php';
+// require_once 'Zend/Gdata/YouTube/Extension/State.php';
 
 
 /**

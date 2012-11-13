@@ -17,13 +17,13 @@
  * @subpackage DeveloperGarden
  * @copyright  Copyright (c) 2005-2012 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id: SendSmsAbstract.php 24594 2012-01-05 21:27:01Z matthew $
+ * @version    $Id: SendSmsAbstract.php 24593 2012-01-05 20:35:02Z matthew $
  */
 
 /**
  * @see Zend_Service_DeveloperGarden_Response_ResponseAbstract
  */
-require_once 'Zend/Service/DeveloperGarden/Response/ResponseAbstract.php';
+// require_once 'Zend/Service/DeveloperGarden/Response/ResponseAbstract.php';
 
 /**
  * @category   Zend
@@ -52,7 +52,7 @@ abstract class Zend_Service_DeveloperGarden_Response_SendSms_SendSmsAbstract
     public function parse()
     {
         if ($this->hasError()) {
-            require_once 'Zend/Service/DeveloperGarden/Response/Exception.php';
+            // require_once 'Zend/Service/DeveloperGarden/Response/Exception.php';
             throw new Zend_Service_DeveloperGarden_Response_Exception(
                 $this->getErrorMessage(),
                 $this->getErrorCode()

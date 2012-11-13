@@ -20,7 +20,7 @@
  */
 
 /** Zend_Form_Element_Xhtml */
-require_once 'Zend/Form/Element/Xhtml.php';
+// require_once 'Zend/Form/Element/Xhtml.php';
 
 /**
  * CSRF form protection
@@ -30,7 +30,7 @@ require_once 'Zend/Form/Element/Xhtml.php';
  * @subpackage Element
  * @copyright  Copyright (c) 2005-2012 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id: Hash.php 24594 2012-01-05 21:27:01Z matthew $
+ * @version    $Id: Hash.php 24593 2012-01-05 20:35:02Z matthew $
  */
 class Zend_Form_Element_Hash extends Zend_Form_Element_Xhtml
 {
@@ -105,7 +105,7 @@ class Zend_Form_Element_Hash extends Zend_Form_Element_Xhtml
     public function getSession()
     {
         if (null === $this->_session) {
-            require_once 'Zend/Session/Namespace.php';
+            // require_once 'Zend/Session/Namespace.php';
             $this->_session = new Zend_Session_Namespace($this->getSessionName());
         }
         return $this->_session;

@@ -16,12 +16,12 @@
  * @package    Zend_Pdf
  * @copyright  Copyright (c) 2005-2012 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id: Name.php 24594 2012-01-05 21:27:01Z matthew $
+ * @version    $Id: Name.php 24593 2012-01-05 20:35:02Z matthew $
  */
 
 
 /** Zend_Pdf_Element */
-require_once 'Zend/Pdf/Element.php';
+// require_once 'Zend/Pdf/Element.php';
 
 
 /**
@@ -52,7 +52,7 @@ class Zend_Pdf_Element_Name extends Zend_Pdf_Element
     {
         settype($val, 'string');
         if (strpos($val,"\x00") !== false) {
-            require_once 'Zend/Pdf/Exception.php';
+            // require_once 'Zend/Pdf/Exception.php';
             throw new Zend_Pdf_Exception('Null character is not allowed in PDF Names');
         }
         $this->value   = (string)$val;

@@ -17,18 +17,18 @@
  * @subpackage Nirvanix
  * @copyright  Copyright (c) 2005-2012 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id: Base.php 24594 2012-01-05 21:27:01Z matthew $
+ * @version    $Id: Base.php 24593 2012-01-05 20:35:02Z matthew $
  */
 
 /**
  * @see Zend_Http_Client
  */
-require_once 'Zend/Http/Client.php';
+// require_once 'Zend/Http/Client.php';
 
 /**
  * @see Zend_Service_Nirvanix_Response
  */
-require_once 'Zend/Service/Nirvanix/Response.php';
+// require_once 'Zend/Service/Nirvanix/Response.php';
 
 /**
  * The Nirvanix web services are split into namespaces.  This is a proxy class

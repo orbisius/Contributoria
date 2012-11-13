@@ -17,11 +17,11 @@
  * @subpackage Fonts
  * @copyright  Copyright (c) 2005-2012 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id: Font.php 24594 2012-01-05 21:27:01Z matthew $
+ * @version    $Id: Font.php 24593 2012-01-05 20:35:02Z matthew $
  */
 
 /** Zend_Pdf_Resource */
-require_once 'Zend/Pdf/Resource.php';
+// require_once 'Zend/Pdf/Resource.php';
 
 /**
  * Zend_Pdf_Font
@@ -29,7 +29,7 @@ require_once 'Zend/Pdf/Resource.php';
  * Zend_Pdf_Font class constants are used within Zend_Pdf_Resource_Font
  * and its subclusses.
  */
-require_once 'Zend/Pdf/Font.php';
+// require_once 'Zend/Pdf/Font.php';
 
 /**
  * Abstract class which manages PDF fonts.

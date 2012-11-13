@@ -16,7 +16,7 @@
  * @package    Zend_Json
  * @copyright  Copyright (c) 2005-2012 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id: Error.php 24594 2012-01-05 21:27:01Z matthew $
+ * @version    $Id: Error.php 24593 2012-01-05 20:35:02Z matthew $
  */
 
 /**
@@ -181,7 +181,7 @@ class Zend_Json_Server_Error
      */
     public function toJson()
     {
-        require_once 'Zend/Json.php';
+        // require_once 'Zend/Json.php';
         return Zend_Json::encode($this->toArray());
     }
 

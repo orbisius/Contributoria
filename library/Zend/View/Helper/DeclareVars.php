@@ -16,12 +16,12 @@
  * @package    Zend_View
  * @subpackage Helper
  * @copyright  Copyright (c) 2005-2012 Zend Technologies USA Inc. (http://www.zend.com)
- * @version    $Id: DeclareVars.php 24594 2012-01-05 21:27:01Z matthew $
+ * @version    $Id: DeclareVars.php 24593 2012-01-05 20:35:02Z matthew $
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
 
 /** Zend_View_Helper_Abstract.php */
-require_once 'Zend/View/Helper/Abstract.php';
+// require_once 'Zend/View/Helper/Abstract.php';
 
 /**
  * Helper for declaring default values of template variables

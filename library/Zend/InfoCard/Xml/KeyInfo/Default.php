@@ -17,18 +17,18 @@
  * @subpackage Zend_InfoCard_Xml
  * @copyright  Copyright (c) 2005-2012 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id: Default.php 24594 2012-01-05 21:27:01Z matthew $
+ * @version    $Id: Default.php 24593 2012-01-05 20:35:02Z matthew $
  */
 
 /**
  * Zend_InfoCard_Xml_KeyInfo_Abstract
  */
-require_once 'Zend/InfoCard/Xml/KeyInfo/Abstract.php';
+// require_once 'Zend/InfoCard/Xml/KeyInfo/Abstract.php';
 
 /**
  * Zend_InfoCard_Xml_SecurityTokenReference
  */
-require_once 'Zend/InfoCard/Xml/SecurityTokenReference.php';
+// require_once 'Zend/InfoCard/Xml/SecurityTokenReference.php';
 
 /**
  * An object representation of a XML <KeyInfo> block which doesn't provide a namespace

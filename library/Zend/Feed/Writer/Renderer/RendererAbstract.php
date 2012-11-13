@@ -16,14 +16,14 @@
  * @package    Zend_Feed_Writer
  * @copyright  Copyright (c) 2005-2012 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id: RendererAbstract.php 24594 2012-01-05 21:27:01Z matthew $
+ * @version    $Id: RendererAbstract.php 24593 2012-01-05 20:35:02Z matthew $
  */
 
 /** @see Zend_Feed_Writer */
-require_once 'Zend/Feed/Writer.php';
+// require_once 'Zend/Feed/Writer.php';
 
 /** @see Zend_Version */
-require_once 'Zend/Version.php';
+// require_once 'Zend/Version.php';
 
 /**
  * @category   Zend
@@ -163,7 +163,7 @@ class Zend_Feed_Writer_Renderer_RendererAbstract
     public function ignoreExceptions($bool = true)
     {
         if (!is_bool($bool)) {
-            require_once 'Zend/Feed/Exception.php';
+            // require_once 'Zend/Feed/Exception.php';
             throw new Zend_Feed_Exception('Invalid parameter: $bool. Should be TRUE or FALSE (defaults to TRUE if null)');
         }
         $this->_ignoreExceptions = $bool;

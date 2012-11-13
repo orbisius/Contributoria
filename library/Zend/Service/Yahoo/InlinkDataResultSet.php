@@ -17,20 +17,20 @@
  * @subpackage Yahoo
  * @copyright  Copyright (c) 2005-2012 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id: InlinkDataResultSet.php 24594 2012-01-05 21:27:01Z matthew $
+ * @version    $Id: InlinkDataResultSet.php 24593 2012-01-05 20:35:02Z matthew $
  */
 
 
 /**
  * @see Zend_Service_Yahoo_ResultSet
  */
-require_once 'Zend/Service/Yahoo/ResultSet.php';
+// require_once 'Zend/Service/Yahoo/ResultSet.php';
 
 
 /**
  * @see Zend_Service_Yahoo_WebResult
  */
-require_once 'Zend/Service/Yahoo/InlinkDataResult.php';
+// require_once 'Zend/Service/Yahoo/InlinkDataResult.php';
 
 
 /**

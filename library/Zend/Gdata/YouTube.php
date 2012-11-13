@@ -18,58 +18,58 @@
  * @subpackage YouTube
  * @copyright  Copyright (c) 2005-2012 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id: YouTube.php 24594 2012-01-05 21:27:01Z matthew $
+ * @version    $Id: YouTube.php 24796 2012-05-12 03:34:26Z adamlundrigan $
  */
 
 /**
  * @see Zend_Gdata_Media
  */
-require_once 'Zend/Gdata/Media.php';
+// require_once 'Zend/Gdata/Media.php';
 
 /**
  * @see Zend_Gdata_YouTube_VideoEntry
  */
-require_once 'Zend/Gdata/YouTube/VideoEntry.php';
+// require_once 'Zend/Gdata/YouTube/VideoEntry.php';
 
 /**
  * @see Zend_Gdata_YouTube_VideoFeed
  */
-require_once 'Zend/Gdata/YouTube/VideoFeed.php';
+// require_once 'Zend/Gdata/YouTube/VideoFeed.php';
 
 /**
  * @see Zend_Gdata_YouTube_CommentFeed
  */
-require_once 'Zend/Gdata/YouTube/CommentFeed.php';
+// require_once 'Zend/Gdata/YouTube/CommentFeed.php';
 
 /**
  * @see Zend_Gdata_YouTube_PlaylistListFeed
  */
-require_once 'Zend/Gdata/YouTube/PlaylistListFeed.php';
+// require_once 'Zend/Gdata/YouTube/PlaylistListFeed.php';
 
 /**
  * @see Zend_Gdata_YouTube_SubscriptionFeed
  */
-require_once 'Zend/Gdata/YouTube/SubscriptionFeed.php';
+// require_once 'Zend/Gdata/YouTube/SubscriptionFeed.php';
 
 /**
  * @see Zend_Gdata_YouTube_ContactFeed
  */
-require_once 'Zend/Gdata/YouTube/ContactFeed.php';
+// require_once 'Zend/Gdata/YouTube/ContactFeed.php';
 
 /**
  * @see Zend_Gdata_YouTube_PlaylistVideoFeed
  */
-require_once 'Zend/Gdata/YouTube/PlaylistVideoFeed.php';
+// require_once 'Zend/Gdata/YouTube/PlaylistVideoFeed.php';
 
 /**
  * @see Zend_Gdata_YouTube_ActivityFeed
  */
-require_once 'Zend/Gdata/YouTube/ActivityFeed.php';
+// require_once 'Zend/Gdata/YouTube/ActivityFeed.php';
 
 /**
  * @see Zend_Gdata_YouTube_InboxFeed
  */
-require_once 'Zend/Gdata/YouTube/InboxFeed.php';
+// require_once 'Zend/Gdata/YouTube/InboxFeed.php';
 
 
 /**
@@ -227,7 +227,7 @@ class Zend_Gdata_YouTube extends Zend_Gdata_Media
             $client = new Zend_Http_Client();
         }
         if (!$client instanceof Zend_Http_Client) {
-            require_once 'Zend/Gdata/App/HttpException.php';
+            // require_once 'Zend/Gdata/App/HttpException.php';
             throw new Zend_Gdata_App_HttpException(
                 'Argument is not an instance of Zend_Http_Client.');
         }
@@ -256,7 +256,7 @@ class Zend_Gdata_YouTube extends Zend_Gdata_Media
         if ($location == null) {
             $uri = self::VIDEO_URI;
         } else if ($location instanceof Zend_Gdata_Query) {
-            $uri = $location->getQueryUrl();
+            $uri = $location->getQueryUrl($this->getMajorProtocolVersion());
         } else {
             $uri = $location;
         }
@@ -286,7 +286,7 @@ class Zend_Gdata_YouTube extends Zend_Gdata_Media
                 $uri = self::VIDEO_URI . "/" . $videoId;
             }
         } else if ($location instanceof Zend_Gdata_Query) {
-            $uri = $location->getQueryUrl();
+            $uri = $location->getQueryUrl($this->getMajorProtocolVersion());
         } else {
             $uri = $location;
         }
@@ -324,7 +324,7 @@ class Zend_Gdata_YouTube extends Zend_Gdata_Media
             $uri = self::VIDEO_URI . "/" . $videoId . "/" .
                 self::RELATED_URI_SUFFIX;
         } else if ($location instanceof Zend_Gdata_Query) {
-            $uri = $location->getQueryUrl();
+            $uri = $location->getQueryUrl($this->getMajorProtocolVersion());
         } else {
             $uri = $location;
         }
@@ -346,7 +346,7 @@ class Zend_Gdata_YouTube extends Zend_Gdata_Media
             $uri = self::VIDEO_URI . "/" . $videoId . "/" .
                 self::RESPONSES_URI_SUFFIX;
         } else if ($location instanceof Zend_Gdata_Query) {
-            $uri = $location->getQueryUrl();
+            $uri = $location->getQueryUrl($this->getMajorProtocolVersion());
         } else {
             $uri = $location;
         }
@@ -367,7 +367,7 @@ class Zend_Gdata_YouTube extends Zend_Gdata_Media
         if ($videoId !== null) {
             $uri = self::VIDEO_URI . "/" . $videoId . "/comments";
         } else if ($location instanceof Zend_Gdata_Query) {
-            $uri = $location->getQueryUrl();
+            $uri = $location->getQueryUrl($this->getMajorProtocolVersion());
         } else {
             $uri = $location;
         }
@@ -398,7 +398,7 @@ class Zend_Gdata_YouTube extends Zend_Gdata_Media
                     $location->setFeedType('top rated');
                 }
             }
-            $uri = $location->getQueryUrl();
+            $uri = $location->getQueryUrl($this->getMajorProtocolVersion());
         } else {
             $uri = $location;
         }
@@ -430,7 +430,7 @@ class Zend_Gdata_YouTube extends Zend_Gdata_Media
                     $location->setFeedType('most viewed');
                 }
             }
-            $uri = $location->getQueryUrl();
+            $uri = $location->getQueryUrl($this->getMajorProtocolVersion());
         } else {
             $uri = $location;
         }
@@ -461,7 +461,7 @@ class Zend_Gdata_YouTube extends Zend_Gdata_Media
                     $location->setFeedType('recently featured');
                 }
             }
-            $uri = $location->getQueryUrl();
+            $uri = $location->getQueryUrl($this->getMajorProtocolVersion());
         } else {
             $uri = $location;
         }
@@ -493,7 +493,7 @@ class Zend_Gdata_YouTube extends Zend_Gdata_Media
                     $location->setFeedType('watch on mobile');
                 }
             }
-            $uri = $location->getQueryUrl();
+            $uri = $location->getQueryUrl($this->getMajorProtocolVersion());
         } else {
             $uri = $location;
         }
@@ -513,7 +513,7 @@ class Zend_Gdata_YouTube extends Zend_Gdata_Media
         if ($user !== null) {
             $uri = self::USER_URI . '/' . $user . '/playlists';
         } else if ($location instanceof Zend_Gdata_Query) {
-            $uri = $location->getQueryUrl();
+            $uri = $location->getQueryUrl($this->getMajorProtocolVersion());
         } else {
             $uri = $location;
         }
@@ -531,7 +531,7 @@ class Zend_Gdata_YouTube extends Zend_Gdata_Media
     public function getPlaylistVideoFeed($location)
     {
         if ($location instanceof Zend_Gdata_Query) {
-            $uri = $location->getQueryUrl();
+            $uri = $location->getQueryUrl($this->getMajorProtocolVersion());
         } else {
             $uri = $location;
         }
@@ -551,7 +551,7 @@ class Zend_Gdata_YouTube extends Zend_Gdata_Media
         if ($user !== null) {
             $uri = self::USER_URI . '/' . $user . '/subscriptions';
         } else if ($location instanceof Zend_Gdata_Query) {
-            $uri = $location->getQueryUrl();
+            $uri = $location->getQueryUrl($this->getMajorProtocolVersion());
         } else {
             $uri = $location;
         }
@@ -571,7 +571,7 @@ class Zend_Gdata_YouTube extends Zend_Gdata_Media
         if ($user !== null) {
             $uri = self::USER_URI . '/' . $user . '/contacts';
         } else if ($location instanceof Zend_Gdata_Query) {
-            $uri = $location->getQueryUrl();
+            $uri = $location->getQueryUrl($this->getMajorProtocolVersion());
         } else {
             $uri = $location;
         }
@@ -592,7 +592,7 @@ class Zend_Gdata_YouTube extends Zend_Gdata_Media
             $uri = self::USER_URI . '/' . $user . '/' .
                    self::UPLOADS_URI_SUFFIX;
         } else if ($location instanceof Zend_Gdata_Query) {
-            $uri = $location->getQueryUrl();
+            $uri = $location->getQueryUrl($this->getMajorProtocolVersion());
         } else {
             $uri = $location;
         }
@@ -613,7 +613,7 @@ class Zend_Gdata_YouTube extends Zend_Gdata_Media
             $uri = self::USER_URI . '/' . $user . '/' .
                    self::FAVORITES_URI_SUFFIX;
         } else if ($location instanceof Zend_Gdata_Query) {
-            $uri = $location->getQueryUrl();
+            $uri = $location->getQueryUrl($this->getMajorProtocolVersion());
         } else {
             $uri = $location;
         }
@@ -633,7 +633,7 @@ class Zend_Gdata_YouTube extends Zend_Gdata_Media
         if ($user !== null) {
             $uri = self::USER_URI . '/' . $user;
         } else if ($location instanceof Zend_Gdata_Query) {
-            $uri = $location->getQueryUrl();
+            $uri = $location->getQueryUrl($this->getMajorProtocolVersion());
         } else {
             $uri = $location;
         }
@@ -656,7 +656,7 @@ class Zend_Gdata_YouTube extends Zend_Gdata_Media
         @ini_restore('track_errors');
 
         if (!$success) {
-            require_once 'Zend/Gdata/App/Exception.php';
+            // require_once 'Zend/Gdata/App/Exception.php';
             throw new Zend_Gdata_App_Exception(
                 "Zend_Gdata_YouTube::parseFormUploadTokenResponse - " .
                 "DOMDocument cannot parse XML: $php_errormsg");
@@ -682,7 +682,7 @@ class Zend_Gdata_YouTube extends Zend_Gdata_Media
         if ($tokenText != null && $urlText != null) {
             return array('token' => $tokenText, 'url' => $urlText);
         } else {
-            require_once 'Zend/Gdata/App/Exception.php';
+            // require_once 'Zend/Gdata/App/Exception.php';
             throw new Zend_Gdata_App_Exception(
                 'Form upload token not found in response');
         }
@@ -704,7 +704,7 @@ class Zend_Gdata_YouTube extends Zend_Gdata_Media
             $response = $this->post($videoEntry, $url);
             return self::parseFormUploadTokenResponse($response->getBody());
         } else {
-            require_once 'Zend/Gdata/App/Exception.php';
+            // require_once 'Zend/Gdata/App/Exception.php';
             throw new Zend_Gdata_App_Exception(
                 'Url must be provided as a string URL');
         }
@@ -722,18 +722,18 @@ class Zend_Gdata_YouTube extends Zend_Gdata_Media
     public function getActivityForUser($username)
     {
         if ($this->getMajorProtocolVersion() == 1) {
-            require_once 'Zend/Gdata/App/VersionException.php';
+            // require_once 'Zend/Gdata/App/VersionException.php';
             throw new Zend_Gdata_App_VersionException('User activity feeds ' .
                 'are not available in API version 1.');
         }
 
         $uri = null;
         if ($username instanceof Zend_Gdata_Query) {
-            $uri = $username->getQueryUrl();
+            $uri = $username->getQueryUrl($this->getMajorProtocolVersion());
         } else {
             if (count(explode(',', $username)) >
                 self::ACTIVITY_FEED_MAX_USERS) {
-                require_once 'Zend/Gdata/App/InvalidArgumentException.php';
+                // require_once 'Zend/Gdata/App/InvalidArgumentException.php';
                 throw new Zend_Gdata_App_InvalidArgumentException(
                     'Activity feed can only retrieve for activity for up to ' .
                     self::ACTIVITY_FEED_MAX_USERS .  ' users per request');
@@ -753,7 +753,7 @@ class Zend_Gdata_YouTube extends Zend_Gdata_Media
     public function getFriendActivityForCurrentUser()
     {
         if (!$this->isAuthenticated()) {
-            require_once 'Zend/Gdata/App/Exception.php';
+            // require_once 'Zend/Gdata/App/Exception.php';
             throw new Zend_Gdata_App_Exception('You must be authenticated to ' .
                 'use the getFriendActivityForCurrentUser function in Zend_' .
                 'Gdata_YouTube.');
@@ -771,7 +771,7 @@ class Zend_Gdata_YouTube extends Zend_Gdata_Media
     public function getInboxFeedForCurrentUser()
     {
         if (!$this->isAuthenticated()) {
-            require_once 'Zend/Gdata/App/Exception.php';
+            // require_once 'Zend/Gdata/App/Exception.php';
             throw new Zend_Gdata_App_Exception('You must be authenticated to ' .
                 'use the getInboxFeedForCurrentUser function in Zend_' .
                 'Gdata_YouTube.');
@@ -801,7 +801,7 @@ class Zend_Gdata_YouTube extends Zend_Gdata_Media
         $videoId = null, $recipientUserName)
     {
         if (!$videoId && !$videoEntry) {
-            require_once 'Zend/Gdata/App/InvalidArgumentException.php';
+            // require_once 'Zend/Gdata/App/InvalidArgumentException.php';
             throw new Zend_Gdata_App_InvalidArgumentException(
                 'Expecting either a valid videoID or a videoEntry object in ' .
                 'Zend_Gdata_YouTube->sendVideoMessage().');

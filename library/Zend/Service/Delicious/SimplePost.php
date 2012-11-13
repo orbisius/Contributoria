@@ -18,7 +18,7 @@
  * @subpackage Delicious
  * @copyright  Copyright (c) 2005-2012 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id: SimplePost.php 24594 2012-01-05 21:27:01Z matthew $
+ * @version    $Id: SimplePost.php 24593 2012-01-05 20:35:02Z matthew $
  */
 
 
@@ -66,7 +66,7 @@ class Zend_Service_Delicious_SimplePost
             /**
              * @see Zend_Service_Delicious_Exception
              */
-            require_once 'Zend/Service/Delicious/Exception.php';
+            // require_once 'Zend/Service/Delicious/Exception.php';
             throw new Zend_Service_Delicious_Exception('Title and URL not set.');
         }
 

@@ -18,13 +18,13 @@
  * @subpackage Gapps
  * @copyright  Copyright (c) 2005-2012 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id: EmailListRecipientQuery.php 24594 2012-01-05 21:27:01Z matthew $
+ * @version    $Id: EmailListRecipientQuery.php 24593 2012-01-05 20:35:02Z matthew $
  */
 
 /**
  * @see Zend_Gdata_Gapps_Query
  */
-require_once('Zend/Gdata/Gapps/Query.php');
+// require_once('Zend/Gdata/Gapps/Query.php');
 
 /**
  * Assists in constructing queries for Google Apps email list recipient
@@ -141,7 +141,7 @@ class Zend_Gdata_Gapps_EmailListRecipientQuery extends Zend_Gdata_Gapps_Query
         if ($this->_emailListName !== null) {
             $uri .= '/' . $this->_emailListName;
         } else {
-            require_once 'Zend/Gdata/App/InvalidArgumentException.php';
+            // require_once 'Zend/Gdata/App/InvalidArgumentException.php';
             throw new Zend_Gdata_App_InvalidArgumentException(
                     'EmailListName must not be null');
         }

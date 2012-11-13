@@ -16,7 +16,7 @@
  * @package   Zend_Date
  * @copyright  Copyright (c) 2005-2012 Zend Technologies USA Inc. (http://www.zend.com)
  * @license   http://framework.zend.com/license/new-bsd     New BSD License
- * @version   $Id: Cities.php 24594 2012-01-05 21:27:01Z matthew $
+ * @version   $Id: Cities.php 24593 2012-01-05 20:35:02Z matthew $
  */
 
 /**
@@ -306,7 +306,7 @@ class Zend_Date_Cities
                 return $return;
             }
         }
-        require_once 'Zend/Date/Exception.php';
+        // require_once 'Zend/Date/Exception.php';
         throw new Zend_Date_Exception('unknown city');
     }
 

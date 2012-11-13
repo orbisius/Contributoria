@@ -16,13 +16,13 @@
  * @package    Zend_Filter
  * @copyright  Copyright (c) 2005-2012 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id: Null.php 24594 2012-01-05 21:27:01Z matthew $
+ * @version    $Id: Null.php 24593 2012-01-05 20:35:02Z matthew $
  */
 
 /**
  * @see Zend_Filter_Interface
  */
-require_once 'Zend/Filter/Interface.php';
+// require_once 'Zend/Filter/Interface.php';
 
 /**
  * @category   Zend
@@ -117,7 +117,7 @@ class Zend_Filter_Null implements Zend_Filter_Interface
         }
 
         if (!is_int($type) || ($type < 0) || ($type > self::ALL)) {
-            require_once 'Zend/Filter/Exception.php';
+            // require_once 'Zend/Filter/Exception.php';
             throw new Zend_Filter_Exception('Unknown type');
         }
 

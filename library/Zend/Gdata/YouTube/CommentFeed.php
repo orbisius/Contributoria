@@ -18,18 +18,18 @@
  * @subpackage YouTube
  * @copyright  Copyright (c) 2005-2012 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id: CommentFeed.php 24594 2012-01-05 21:27:01Z matthew $
+ * @version    $Id: CommentFeed.php 24593 2012-01-05 20:35:02Z matthew $
  */
 
 /**
  * @see Zend_Gdata_feed
  */
-require_once 'Zend/Gdata/Feed.php';
+// require_once 'Zend/Gdata/Feed.php';
 
 /**
  * @see Zend_Gdata_YouTube_CommentEntry
  */
-require_once 'Zend/Gdata/YouTube/CommentEntry.php';
+// require_once 'Zend/Gdata/YouTube/CommentEntry.php';
 
 /**
  * The YouTube comments flavor of an Atom Feed

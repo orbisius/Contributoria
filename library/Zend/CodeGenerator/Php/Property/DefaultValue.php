@@ -17,13 +17,13 @@
  * @subpackage PHP
  * @copyright  Copyright (c) 2005-2012 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id: DefaultValue.php 24594 2012-01-05 21:27:01Z matthew $
+ * @version    $Id: DefaultValue.php 24593 2012-01-05 20:35:02Z matthew $
  */
 
 /**
  * @see Zend_CodeGenerator_Php_Abstract
  */
-require_once 'Zend/CodeGenerator/Php/Abstract.php';
+// require_once 'Zend/CodeGenerator/Php/Abstract.php';
 
 /**
  * @category   Zend
@@ -312,7 +312,7 @@ class Zend_CodeGenerator_Php_Property_DefaultValue extends Zend_CodeGenerator_Ph
                 break;
             case self::TYPE_OTHER:
             default:
-                require_once "Zend/CodeGenerator/Php/Exception.php";
+                // require_once "Zend/CodeGenerator/Php/Exception.php";
                 throw new Zend_CodeGenerator_Php_Exception(
                     "Type '".get_class($value)."' is unknown or cannot be used as property default value."
                 );

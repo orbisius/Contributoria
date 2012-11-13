@@ -16,13 +16,13 @@
  * @package    Zend_Paginator
  * @copyright  Copyright (c) 2005-2012 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id: Elastic.php 24594 2012-01-05 21:27:01Z matthew $
+ * @version    $Id: Elastic.php 24593 2012-01-05 20:35:02Z matthew $
  */
 
 /**
  * @see Zend_Paginator_ScrollingStyle_Sliding
  */
-require_once 'Zend/Paginator/ScrollingStyle/Sliding.php';
+// require_once 'Zend/Paginator/ScrollingStyle/Sliding.php';
 
 /**
  * A Google-like scrolling style.  Incrementally expands the range to about

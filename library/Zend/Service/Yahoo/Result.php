@@ -18,7 +18,7 @@
  * @subpackage Yahoo
  * @copyright  Copyright (c) 2005-2012 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id: Result.php 24594 2012-01-05 21:27:01Z matthew $
+ * @version    $Id: Result.php 24593 2012-01-05 20:35:02Z matthew $
  */
 
 
@@ -117,7 +117,7 @@ class Zend_Service_Yahoo_Result
             /**
              * @see Zend_Service_Yahoo_Image
              */
-            require_once 'Zend/Service/Yahoo/Image.php';
+            // require_once 'Zend/Service/Yahoo/Image.php';
             $this->Thumbnail = new Zend_Service_Yahoo_Image($node->item(0), $this->_namespace);
         } else {
             $this->Thumbnail = null;

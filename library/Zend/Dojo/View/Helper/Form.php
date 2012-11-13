@@ -17,11 +17,11 @@
  * @subpackage View
  * @copyright  Copyright (c) 2005-2012 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id: Form.php 24594 2012-01-05 21:27:01Z matthew $
+ * @version    $Id: Form.php 24593 2012-01-05 20:35:02Z matthew $
  */
 
 /** Zend_Dojo_View_Helper_Dijit */
-require_once 'Zend/Dojo/View/Helper/Dijit.php';
+// require_once 'Zend/Dojo/View/Helper/Dijit.php';
 
 /**
  * Dojo Form dijit
@@ -83,7 +83,7 @@ class Zend_Dojo_View_Helper_Form extends Zend_Dojo_View_Helper_Dijit
     public function getFormHelper()
     {
         if (null === $this->_helper) {
-            require_once 'Zend/View/Helper/Form.php';
+            // require_once 'Zend/View/Helper/Form.php';
             $this->_helper = new Zend_View_Helper_Form;
             $this->_helper->setView($this->view);
         }

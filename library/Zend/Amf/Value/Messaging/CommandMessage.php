@@ -17,13 +17,13 @@
  * @subpackage Value
  * @copyright  Copyright (c) 2005-2012 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id: CommandMessage.php 24594 2012-01-05 21:27:01Z matthew $
+ * @version    $Id: CommandMessage.php 24593 2012-01-05 20:35:02Z matthew $
  */
 
 /**
  * @see Zend_Amf_Value_Messaging_AsyncMessage
  */
-require_once 'Zend/Amf/Value/Messaging/AsyncMessage.php';
+// require_once 'Zend/Amf/Value/Messaging/AsyncMessage.php';
 
 /**
  * A message that represents an infrastructure command passed between

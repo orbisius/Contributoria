@@ -17,16 +17,16 @@
  * @subpackage Fonts
  * @copyright  Copyright (c) 2005-2012 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id: Standard.php 24594 2012-01-05 21:27:01Z matthew $
+ * @version    $Id: Standard.php 24593 2012-01-05 20:35:02Z matthew $
  */
 
 
 /** Internally used classes */
-require_once 'Zend/Pdf/Element/Name.php';
+// require_once 'Zend/Pdf/Element/Name.php';
 
 
 /** Zend_Pdf_Resource_Font_Simple */
-require_once 'Zend/Pdf/Resource/Font/Simple.php';
+// require_once 'Zend/Pdf/Resource/Font/Simple.php';
 
 /**
  * Abstract class definition for the standard 14 Type 1 PDF fonts.

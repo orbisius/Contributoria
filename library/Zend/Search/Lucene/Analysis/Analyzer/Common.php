@@ -17,23 +17,25 @@
  * @subpackage Analysis
  * @copyright  Copyright (c) 2005-2012 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id: Common.php 24594 2012-01-05 21:27:01Z matthew $
+ * @version    $Id: Common.php 24847 2012-05-31 19:19:28Z rob $
  */
 
 
 /** Define constant used to provide correct file processing order    */
 /** @todo Section should be removed with ZF 2.0 release as obsolete  */
-define('ZEND_SEARCH_LUCENE_COMMON_ANALYZER_PROCESSED', true);
+if (!defined('ZEND_SEARCH_LUCENE_COMMON_ANALYZER_PROCESSED')) {
+    define('ZEND_SEARCH_LUCENE_COMMON_ANALYZER_PROCESSED', true);
+}
 
 
 /** Zend_Search_Lucene_Analysis_Analyzer */
-require_once 'Zend/Search/Lucene/Analysis/Analyzer.php';
+// require_once 'Zend/Search/Lucene/Analysis/Analyzer.php';
 
 /** Zend_Search_Lucene_Analysis_Token */
-require_once 'Zend/Search/Lucene/Analysis/Token.php';
+// require_once 'Zend/Search/Lucene/Analysis/Token.php';
 
 /** Zend_Search_Lucene_Analysis_TokenFilter */
-require_once 'Zend/Search/Lucene/Analysis/TokenFilter.php';
+// require_once 'Zend/Search/Lucene/Analysis/TokenFilter.php';
 
 
 /**

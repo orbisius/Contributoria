@@ -17,11 +17,11 @@
  * @subpackage Formatter
  * @copyright  Copyright (c) 2005-2012 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id: Simple.php 24594 2012-01-05 21:27:01Z matthew $
+ * @version    $Id: Simple.php 24593 2012-01-05 20:35:02Z matthew $
  */
 
 /** Zend_Log_Formatter_Abstract */
-require_once 'Zend/Log/Formatter/Abstract.php';
+// require_once 'Zend/Log/Formatter/Abstract.php';
 
 /**
  * @category   Zend
@@ -29,7 +29,7 @@ require_once 'Zend/Log/Formatter/Abstract.php';
  * @subpackage Formatter
  * @copyright  Copyright (c) 2005-2012 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id: Simple.php 24594 2012-01-05 21:27:01Z matthew $
+ * @version    $Id: Simple.php 24593 2012-01-05 20:35:02Z matthew $
  */
 class Zend_Log_Formatter_Simple extends Zend_Log_Formatter_Abstract
 {
@@ -54,7 +54,7 @@ class Zend_Log_Formatter_Simple extends Zend_Log_Formatter_Abstract
         }
 
         if (!is_string($format)) {
-            require_once 'Zend/Log/Exception.php';
+            // require_once 'Zend/Log/Exception.php';
             throw new Zend_Log_Exception('Format must be a string');
         }
 

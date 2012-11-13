@@ -17,18 +17,18 @@
  * @subpackage Object
  * @copyright  Copyright (c) 2005-2012 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id: Leitcode.php 24594 2012-01-05 21:27:01Z matthew $
+ * @version    $Id: Leitcode.php 24593 2012-01-05 20:35:02Z matthew $
  */
 
 /**
  * @see Zend_Barcode_Object_Identcode
  */
-require_once 'Zend/Barcode/Object/Identcode.php';
+// require_once 'Zend/Barcode/Object/Identcode.php';
 
 /**
  * @see Zend_Validate_Barcode
  */
-require_once 'Zend/Validate/Barcode.php';
+// require_once 'Zend/Validate/Barcode.php';
 
 /**
  * Class for generate Identcode barcode

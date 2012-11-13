@@ -16,14 +16,14 @@
  * @package    Zend_Oauth
  * @copyright  Copyright (c) 2005-2012 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id: Utility.php 24594 2012-01-05 21:27:01Z matthew $
+ * @version    $Id: Utility.php 24593 2012-01-05 20:35:02Z matthew $
  */
 
 /** Zend_Oauth */
-require_once 'Zend/Oauth.php';
+// require_once 'Zend/Oauth.php';
 
 /** Zend_Oauth_Http */
-require_once 'Zend/Oauth/Http.php';
+// require_once 'Zend/Oauth/Http.php';
 
 /**
  * @category   Zend
@@ -154,7 +154,7 @@ class Zend_Oauth_Http_Utility
             $className = 'Zend_Oauth_Signature_' . ucfirst(strtolower($signatureMethod));
         }
 
-        require_once str_replace('_', '/', $className) . '.php';
+        // require_once str_replace('_', '/', $className) . '.php';
         $signatureObject = new $className($consumerSecret, $tokenSecret, $hashAlgo);
         return $signatureObject->sign($params, $method, $url);
     }

@@ -16,17 +16,17 @@
  * @package    Zend_Filter
  * @copyright  Copyright (c) 2005-2012 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id: Alpha.php 24594 2012-01-05 21:27:01Z matthew $
+ * @version    $Id: Alpha.php 24593 2012-01-05 20:35:02Z matthew $
  */
 
 /**
  * @see Zend_Filter_Interface
  */
-require_once 'Zend/Filter/Interface.php';
+// require_once 'Zend/Filter/Interface.php';
 /**
  * @see Zend_Locale
  */
-require_once 'Zend/Locale.php';
+// require_once 'Zend/Locale.php';
 
 /**
  * @category   Zend

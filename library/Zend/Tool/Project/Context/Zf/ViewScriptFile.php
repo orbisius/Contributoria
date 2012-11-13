@@ -17,28 +17,28 @@
  * @subpackage Framework
  * @copyright  Copyright (c) 2005-2012 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id: ViewScriptFile.php 24594 2012-01-05 21:27:01Z matthew $
+ * @version    $Id: ViewScriptFile.php 24593 2012-01-05 20:35:02Z matthew $
  */
 
 /**
  * @see Zend_Tool_Project_Context_Filesystem_File
  */
-require_once 'Zend/Tool/Project/Context/Filesystem/File.php';
+// require_once 'Zend/Tool/Project/Context/Filesystem/File.php';
 
 /**
  * @see Zend_Filter
  */
-require_once 'Zend/Filter.php';
+// require_once 'Zend/Filter.php';
 
 /**
  * @see Zend_Filter_Word_CamelCaseToDash
  */
-require_once 'Zend/Filter/Word/CamelCaseToDash.php';
+// require_once 'Zend/Filter/Word/CamelCaseToDash.php';
 
 /**
  * @see Zend_Filter_StringToLower
  */
-require_once 'Zend/Filter/StringToLower.php';
+// require_once 'Zend/Filter/StringToLower.php';
 
 
 /**

@@ -17,13 +17,13 @@
  * @subpackage Ec2
  * @copyright  Copyright (c) 2005-2012 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id: Securitygroups.php 24594 2012-01-05 21:27:01Z matthew $
+ * @version    $Id: Securitygroups.php 24593 2012-01-05 20:35:02Z matthew $
  */
 
 /**
  * @see Zend_Service_Amazon_Ec2_Abstract
  */
-require_once 'Zend/Service/Amazon/Ec2/Abstract.php';
+// require_once 'Zend/Service/Amazon/Ec2/Abstract.php';
 
 /**
  * An Amazon EC2 interface to create, delete, describe, grand and revoke sercurity permissions.

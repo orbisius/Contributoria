@@ -17,11 +17,11 @@
  * @subpackage Search
  * @copyright  Copyright (c) 2005-2012 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id: Phrase.php 24594 2012-01-05 21:27:01Z matthew $
+ * @version    $Id: Phrase.php 24593 2012-01-05 20:35:02Z matthew $
  */
 
 /** Zend_Search_Lucene_Search_QueryEntry */
-require_once 'Zend/Search/Lucene/Search/QueryEntry.php';
+// require_once 'Zend/Search/Lucene/Search/QueryEntry.php';
 
 /**
  * @category   Zend
@@ -98,7 +98,7 @@ class Zend_Search_Lucene_Search_QueryEntry_Phrase extends Zend_Search_Lucene_Sea
     public function getQuery($encoding)
     {
         /** Zend_Search_Lucene_Search_Query_Preprocessing_Phrase */
-        require_once 'Zend/Search/Lucene/Search/Query/Preprocessing/Phrase.php';
+        // require_once 'Zend/Search/Lucene/Search/Query/Preprocessing/Phrase.php';
         $query = new Zend_Search_Lucene_Search_Query_Preprocessing_Phrase($this->_phrase,
                                                                           $encoding,
                                                                           ($this->_field !== null)?

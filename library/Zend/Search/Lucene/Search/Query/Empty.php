@@ -17,12 +17,12 @@
  * @subpackage Search
  * @copyright  Copyright (c) 2005-2012 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id: Empty.php 24594 2012-01-05 21:27:01Z matthew $
+ * @version    $Id: Empty.php 24593 2012-01-05 20:35:02Z matthew $
  */
 
 
 /** Zend_Search_Lucene_Search_Query */
-require_once 'Zend/Search/Lucene/Search/Query.php';
+// require_once 'Zend/Search/Lucene/Search/Query.php';
 
 
 /**
@@ -65,7 +65,7 @@ class Zend_Search_Lucene_Search_Query_Empty extends Zend_Search_Lucene_Search_Qu
      */
     public function createWeight(Zend_Search_Lucene_Interface $reader)
     {
-        require_once 'Zend/Search/Lucene/Search/Weight/Empty.php';
+        // require_once 'Zend/Search/Lucene/Search/Weight/Empty.php';
         return new Zend_Search_Lucene_Search_Weight_Empty();
     }
 

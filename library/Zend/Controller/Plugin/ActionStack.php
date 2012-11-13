@@ -20,10 +20,10 @@
  */
 
 /** Zend_Controller_Plugin_Abstract */
-require_once 'Zend/Controller/Plugin/Abstract.php';
+// require_once 'Zend/Controller/Plugin/Abstract.php';
 
 /** Zend_Registry */
-require_once 'Zend/Registry.php';
+// require_once 'Zend/Registry.php';
 
 /**
  * Manage a stack of actions
@@ -34,7 +34,7 @@ require_once 'Zend/Registry.php';
  * @subpackage Plugins
  * @copyright  Copyright (c) 2005-2012 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id: ActionStack.php 24594 2012-01-05 21:27:01Z matthew $
+ * @version    $Id: ActionStack.php 24593 2012-01-05 20:35:02Z matthew $
  */
 class Zend_Controller_Plugin_ActionStack extends Zend_Controller_Plugin_Abstract
 {
@@ -209,7 +209,7 @@ class Zend_Controller_Plugin_ActionStack extends Zend_Controller_Plugin_Abstract
         $this->_saveStack($stack);
 
         if (!$next instanceof Zend_Controller_Request_Abstract) {
-            require_once 'Zend/Controller/Exception.php';
+            // require_once 'Zend/Controller/Exception.php';
             throw new Zend_Controller_Exception('ArrayStack should only contain request objects');
         }
         $action = $next->getActionName();

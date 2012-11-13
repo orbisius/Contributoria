@@ -17,14 +17,14 @@
  * @subpackage Adapter
  * @copyright  Copyright (c) 2005-2012 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id: Sqlite.php 24594 2012-01-05 21:27:01Z matthew $
+ * @version    $Id: Sqlite.php 24593 2012-01-05 20:35:02Z matthew $
  */
 
 
 /**
  * @see Zend_Db_Adapter_Pdo_Abstract
  */
-require_once 'Zend/Db/Adapter/Pdo/Abstract.php';
+// require_once 'Zend/Db/Adapter/Pdo/Abstract.php';
 
 
 /**
@@ -106,7 +106,7 @@ class Zend_Db_Adapter_Pdo_Sqlite extends Zend_Db_Adapter_Pdo_Abstract
         // we need at least a dbname
         if (! array_key_exists('dbname', $config)) {
             /** @see Zend_Db_Adapter_Exception */
-            require_once 'Zend/Db/Adapter/Exception.php';
+            // require_once 'Zend/Db/Adapter/Exception.php';
             throw new Zend_Db_Adapter_Exception("Configuration array must have a key for 'dbname' that names the database instance");
         }
     }
@@ -140,7 +140,7 @@ class Zend_Db_Adapter_Pdo_Sqlite extends Zend_Db_Adapter_Pdo_Abstract
         if ($retval === false) {
             $error = $this->_connection->errorInfo();
             /** @see Zend_Db_Adapter_Exception */
-            require_once 'Zend/Db/Adapter/Exception.php';
+            // require_once 'Zend/Db/Adapter/Exception.php';
             throw new Zend_Db_Adapter_Exception($error[2]);
         }
 
@@ -148,7 +148,7 @@ class Zend_Db_Adapter_Pdo_Sqlite extends Zend_Db_Adapter_Pdo_Abstract
         if ($retval === false) {
             $error = $this->_connection->errorInfo();
             /** @see Zend_Db_Adapter_Exception */
-            require_once 'Zend/Db/Adapter/Exception.php';
+            // require_once 'Zend/Db/Adapter/Exception.php';
             throw new Zend_Db_Adapter_Exception($error[2]);
         }
     }
@@ -275,14 +275,14 @@ class Zend_Db_Adapter_Pdo_Sqlite extends Zend_Db_Adapter_Pdo_Abstract
         $count = intval($count);
         if ($count <= 0) {
             /** @see Zend_Db_Adapter_Exception */
-            require_once 'Zend/Db/Adapter/Exception.php';
+            // require_once 'Zend/Db/Adapter/Exception.php';
             throw new Zend_Db_Adapter_Exception("LIMIT argument count=$count is not valid");
         }
 
         $offset = intval($offset);
         if ($offset < 0) {
             /** @see Zend_Db_Adapter_Exception */
-            require_once 'Zend/Db/Adapter/Exception.php';
+            // require_once 'Zend/Db/Adapter/Exception.php';
             throw new Zend_Db_Adapter_Exception("LIMIT argument offset=$offset is not valid");
         }
 

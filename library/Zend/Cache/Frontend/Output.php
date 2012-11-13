@@ -17,14 +17,14 @@
  * @subpackage Zend_Cache_Frontend
  * @copyright  Copyright (c) 2005-2012 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id: Output.php 24801 2012-05-13 12:03:22Z mabe $
+ * @version    $Id: Output.php 24800 2012-05-13 11:59:32Z mabe $
  */
 
 
 /**
  * @see Zend_Cache_Core
  */
-require_once 'Zend/Cache/Core.php';
+// require_once 'Zend/Cache/Core.php';
 
 
 /**

@@ -17,11 +17,11 @@
  * @subpackage View
  * @copyright  Copyright (c) 2005-2012 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id: PasswordTextBox.php 24594 2012-01-05 21:27:01Z matthew $
+ * @version    $Id: PasswordTextBox.php 24593 2012-01-05 20:35:02Z matthew $
  */
 
 /** Zend_Dojo_View_Helper_ValidationTextBox */
-require_once 'Zend/Dojo/View/Helper/ValidationTextBox.php';
+// require_once 'Zend/Dojo/View/Helper/ValidationTextBox.php';
 
 /**
  * Dojo ValidationTextBox dijit tied to password input

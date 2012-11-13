@@ -17,12 +17,12 @@
  * @subpackage Document
  * @copyright  Copyright (c) 2005-2012 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id: Xlsx.php 24594 2012-01-05 21:27:01Z matthew $
+ * @version    $Id: Xlsx.php 24593 2012-01-05 20:35:02Z matthew $
  */
 
 
 /** Zend_Search_Lucene_Document_OpenXml */
-require_once 'Zend/Search/Lucene/Document/OpenXml.php';
+// require_once 'Zend/Search/Lucene/Document/OpenXml.php';
 
 /**
  * Xlsx document.
@@ -80,7 +80,7 @@ class Zend_Search_Lucene_Document_Xlsx extends Zend_Search_Lucene_Document_OpenX
     private function __construct($fileName, $storeContent)
     {
         if (!class_exists('ZipArchive', false)) {
-            require_once 'Zend/Search/Lucene/Exception.php';
+            // require_once 'Zend/Search/Lucene/Exception.php';
             throw new Zend_Search_Lucene_Exception('MS Office documents processing functionality requires Zip extension to be loaded');
         }
 
@@ -97,7 +97,7 @@ class Zend_Search_Lucene_Document_Xlsx extends Zend_Search_Lucene_Document_OpenX
         // Read relations and search for officeDocument
         $relationsXml = $package->getFromName('_rels/.rels');
         if ($relationsXml === false) {
-            require_once 'Zend/Search/Lucene/Exception.php';
+            // require_once 'Zend/Search/Lucene/Exception.php';
             throw new Zend_Search_Lucene_Exception('Invalid archive or corrupted .xlsx file.');
         }
         $relations = simplexml_load_string($relationsXml);

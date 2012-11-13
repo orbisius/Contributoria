@@ -16,12 +16,12 @@
  * @package    Zend_Pdf
  * @copyright  Copyright (c) 2005-2012 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id: Ascii85.php 24594 2012-01-05 21:27:01Z matthew $
+ * @version    $Id: Ascii85.php 24593 2012-01-05 20:35:02Z matthew $
  */
 
 
 /** Zend_Pdf_Filter_Interface */
-require_once 'Zend/Pdf/Filter/Interface.php';
+// require_once 'Zend/Pdf/Filter/Interface.php';
 
 /**
  * ASCII85 stream filter
@@ -120,7 +120,7 @@ class Zend_Pdf_Filter_Ascii85 implements Zend_Pdf_Filter_Interface
         $data = str_replace($whiteSpace, '', $data);
 
         if (substr($data, -2) != '~>') {
-            require_once 'Zend/Pdf/Exception.php';
+            // require_once 'Zend/Pdf/Exception.php';
             throw new Zend_Pdf_Exception('Invalid EOF marker');
             return '';
         }

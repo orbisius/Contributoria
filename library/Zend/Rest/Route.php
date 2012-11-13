@@ -16,28 +16,28 @@
  * @package    Zend_Rest
  * @copyright  Copyright (c) 2005-2012 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id: Route.php 24594 2012-01-05 21:27:01Z matthew $
+ * @version    $Id: Route.php 24593 2012-01-05 20:35:02Z matthew $
  */
 
 /**
  * @see Zend_Controller_Router_Route_Interface
  */
-require_once 'Zend/Controller/Router/Route/Interface.php';
+// require_once 'Zend/Controller/Router/Route/Interface.php';
 
 /**
  * @see Zend_Controller_Router_Route_Module
  */
-require_once 'Zend/Controller/Router/Route/Module.php';
+// require_once 'Zend/Controller/Router/Route/Module.php';
 
 /**
  * @see Zend_Controller_Dispatcher_Interface
  */
-require_once 'Zend/Controller/Dispatcher/Interface.php';
+// require_once 'Zend/Controller/Dispatcher/Interface.php';
 
 /**
  * @see Zend_Controller_Request_Abstract
  */
-require_once 'Zend/Controller/Request/Abstract.php';
+// require_once 'Zend/Controller/Request/Abstract.php';
 
 /**
  * Rest Route

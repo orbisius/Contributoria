@@ -16,18 +16,18 @@
  * @package    Zend_Validate
  * @copyright  Copyright (c) 2005-2012 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id: Int.php 24594 2012-01-05 21:27:01Z matthew $
+ * @version    $Id: Int.php 24593 2012-01-05 20:35:02Z matthew $
  */
 
 /**
  * @see Zend_Validate_Abstract
  */
-require_once 'Zend/Validate/Abstract.php';
+// require_once 'Zend/Validate/Abstract.php';
 
 /**
  * @see Zend_Locale_Format
  */
-require_once 'Zend/Locale/Format.php';
+// require_once 'Zend/Locale/Format.php';
 
 /**
  * @category   Zend
@@ -70,7 +70,7 @@ class Zend_Validate_Int extends Zend_Validate_Abstract
         }
 
         if (empty($locale)) {
-            require_once 'Zend/Registry.php';
+            // require_once 'Zend/Registry.php';
             if (Zend_Registry::isRegistered('Zend_Locale')) {
                 $locale = Zend_Registry::get('Zend_Locale');
             }
@@ -96,7 +96,7 @@ class Zend_Validate_Int extends Zend_Validate_Abstract
      */
     public function setLocale($locale = null)
     {
-        require_once 'Zend/Locale.php';
+        // require_once 'Zend/Locale.php';
         $this->_locale = Zend_Locale::findLocale($locale);
         return $this;
     }

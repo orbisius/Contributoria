@@ -17,23 +17,23 @@
  * @subpackage Framework
  * @copyright  Copyright (c) 2005-2012 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id: Signature.php 24594 2012-01-05 21:27:01Z matthew $
+ * @version    $Id: Signature.php 24593 2012-01-05 20:35:02Z matthew $
  */
 
 /**
  * @see Zend_Reflection_Class
  */
-require_once 'Zend/Reflection/Class.php';
+// require_once 'Zend/Reflection/Class.php';
 
 /**
  * @see Zend_Tool_Framework_Registry
  */
-require_once 'Zend/Tool/Framework/Registry/EnabledInterface.php';
+// require_once 'Zend/Tool/Framework/Registry/EnabledInterface.php';
 
 /**
  * @see Zend_Tool_Framework_Action_Base
  */
-require_once 'Zend/Tool/Framework/Action/Base.php';
+// require_once 'Zend/Tool/Framework/Action/Base.php';
 
 /**
  * The purpose of Zend_Tool_Framework_Provider_Signature is to derive
@@ -259,7 +259,7 @@ class Zend_Tool_Framework_Provider_Signature implements Zend_Tool_Framework_Regi
         if ($this->_providerReflection->hasMethod('getSpecialties')) {
             $specialties = $this->_provider->getSpecialties();
             if (!is_array($specialties)) {
-                require_once 'Zend/Tool/Framework/Provider/Exception.php';
+                // require_once 'Zend/Tool/Framework/Provider/Exception.php';
                 throw new Zend_Tool_Framework_Provider_Exception(
                     'Provider ' . get_class($this->_provider) . ' must return an array for method getSpecialties().'
                     );
@@ -268,7 +268,7 @@ class Zend_Tool_Framework_Provider_Signature implements Zend_Tool_Framework_Regi
             $defaultProperties = $this->_providerReflection->getDefaultProperties();
             $specialties = (isset($defaultProperties['_specialties'])) ? $defaultProperties['_specialties'] : array();
             if (!is_array($specialties)) {
-                require_once 'Zend/Tool/Framework/Provider/Exception.php';
+                // require_once 'Zend/Tool/Framework/Provider/Exception.php';
                 throw new Zend_Tool_Framework_Provider_Exception(
                     'Provider ' . get_class($this->_provider) . '\'s property $_specialties must be an array.'
                     );

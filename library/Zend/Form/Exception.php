@@ -15,12 +15,12 @@
  * @category   Zend
  * @package    Zend_Form
  * @copyright  Copyright (c) 2005-2012 Zend Technologies USA Inc. (http://www.zend.com)
- * @version    $Id: Exception.php 24594 2012-01-05 21:27:01Z matthew $
+ * @version    $Id: Exception.php 24593 2012-01-05 20:35:02Z matthew $
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
 
 /** Zend_Exception */
-require_once 'Zend/Exception.php';
+// require_once 'Zend/Exception.php';
 
 /**
  * Exception for Zend_Form component.

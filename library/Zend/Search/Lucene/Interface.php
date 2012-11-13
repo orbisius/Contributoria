@@ -16,24 +16,24 @@
  * @package    Zend_Search_Lucene
  * @copyright  Copyright (c) 2005-2012 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id: Interface.php 24594 2012-01-05 21:27:01Z matthew $
+ * @version    $Id: Interface.php 24593 2012-01-05 20:35:02Z matthew $
  */
 
 
 /** Zend_Search_Lucene_Index_TermsStream_Interface */
-require_once 'Zend/Search/Lucene/Index/TermsStream/Interface.php';
+// require_once 'Zend/Search/Lucene/Index/TermsStream/Interface.php';
 
 
 /** Classes used within Zend_Search_Lucene_Interface API */
 
 /** Zend_Search_Lucene_Document */
-require_once 'Zend/Search/Lucene/Document.php';
+// require_once 'Zend/Search/Lucene/Document.php';
 
 /** Zend_Search_Lucene_Index_Term */
-require_once 'Zend/Search/Lucene/Index/Term.php';
+// require_once 'Zend/Search/Lucene/Index/Term.php';
 
 /** Zend_Search_Lucene_Index_DocsFilter */
-require_once 'Zend/Search/Lucene/Index/DocsFilter.php';
+// require_once 'Zend/Search/Lucene/Index/DocsFilter.php';
 
 
 /**

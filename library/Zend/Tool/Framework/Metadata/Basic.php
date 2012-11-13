@@ -17,18 +17,18 @@
  * @subpackage Framework
  * @copyright  Copyright (c) 2005-2012 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id: Basic.php 24594 2012-01-05 21:27:01Z matthew $
+ * @version    $Id: Basic.php 24593 2012-01-05 20:35:02Z matthew $
  */
 
 /**
  * @see Zend_Tool_Framework_Metadata_Interface
  */
-require_once 'Zend/Tool/Framework/Metadata/Interface.php';
+// require_once 'Zend/Tool/Framework/Metadata/Interface.php';
 
 /**
  * @see Zend_Tool_Framework_Metadata_Attributable
  */
-require_once 'Zend/Tool/Framework/Metadata/Attributable.php';
+// require_once 'Zend/Tool/Framework/Metadata/Attributable.php';
 
 /**
  * @category   Zend

@@ -17,11 +17,11 @@
  * @subpackage Adapter
  * @copyright  Copyright (c) 2005-2012 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id: AdapterAbstract.php 24594 2012-01-05 21:27:01Z matthew $
+ * @version    $Id: AdapterAbstract.php 24593 2012-01-05 20:35:02Z matthew $
  */
 
 /** @see Zend_Serializer_Adapter_AdapterInterface */
-require_once 'Zend/Serializer/Adapter/AdapterInterface.php';
+// require_once 'Zend/Serializer/Adapter/AdapterInterface.php';
 
 /**
  * @category   Zend
@@ -103,7 +103,7 @@ abstract class Zend_Serializer_Adapter_AdapterAbstract implements Zend_Serialize
     {
         $name = (string) $name;
         if (!array_key_exists($name, $this->_options)) {
-            require_once 'Zend/Serializer/Exception.php';
+            // require_once 'Zend/Serializer/Exception.php';
             throw new Zend_Serializer_Exception('Unknown option name "'.$name.'"');
         }
 

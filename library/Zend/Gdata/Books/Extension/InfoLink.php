@@ -17,13 +17,13 @@
  * @package    Zend_Gdata
  * @subpackage Books
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id: InfoLink.php 24594 2012-01-05 21:27:01Z matthew $
+ * @version    $Id: InfoLink.php 24593 2012-01-05 20:35:02Z matthew $
  */
 
 /**
  * @see Zend_Gdata_Books_Extension_BooksLink
  */
-require_once 'Zend/Gdata/Books/Extension/BooksLink.php';
+// require_once 'Zend/Gdata/Books/Extension/BooksLink.php';
 
 /**
  * Describes an info link

@@ -17,11 +17,11 @@
  * @subpackage Index
  * @copyright  Copyright (c) 2005-2012 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id: TermStreamsPriorityQueue.php 24594 2012-01-05 21:27:01Z matthew $
+ * @version    $Id: TermStreamsPriorityQueue.php 24593 2012-01-05 20:35:02Z matthew $
  */
 
 /** Zend_Search_Lucene_Index_TermsStream_Interface */
-require_once 'Zend/Search/Lucene/Index/TermsStream/Interface.php';
+// require_once 'Zend/Search/Lucene/Index/TermsStream/Interface.php';
 
 
 /**
@@ -73,7 +73,7 @@ class Zend_Search_Lucene_TermStreamsPriorityQueue implements Zend_Search_Lucene_
     public function resetTermsStream()
     {
         /** Zend_Search_Lucene_Index_TermsPriorityQueue */
-        require_once 'Zend/Search/Lucene/Index/TermsPriorityQueue.php';
+        // require_once 'Zend/Search/Lucene/Index/TermsPriorityQueue.php';
 
         $this->_termsStreamQueue = new Zend_Search_Lucene_Index_TermsPriorityQueue();
 

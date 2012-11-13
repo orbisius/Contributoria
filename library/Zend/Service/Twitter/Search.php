@@ -17,23 +17,23 @@
  * @subpackage Twitter
  * @copyright  Copyright (c) 2005-2012 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id: Search.php 24594 2012-01-05 21:27:01Z matthew $
+ * @version    $Id: Search.php 24593 2012-01-05 20:35:02Z matthew $
  */
 
 /**
  * @see Zend_Http_Client
  */
-require_once 'Zend/Rest/Client.php';
+// require_once 'Zend/Rest/Client.php';
 
 /**
  * @see Zend_Json
  */
-require_once 'Zend/Json.php';
+// require_once 'Zend/Json.php';
 
 /**
  * @see Zend_Feed
  */
-require_once 'Zend/Feed.php';
+// require_once 'Zend/Feed.php';
 
 /**
  * @category   Zend
@@ -91,7 +91,7 @@ class Zend_Service_Twitter_Search extends Zend_Rest_Client
     public function setResponseType($responseType = 'json')
     {
         if(!in_array($responseType, $this->_responseTypes, TRUE)) {
-            require_once 'Zend/Service/Twitter/Exception.php';
+            // require_once 'Zend/Service/Twitter/Exception.php';
             throw new Zend_Service_Twitter_Exception('Invalid Response Type');
         }
         $this->_responseType = $responseType;

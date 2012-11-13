@@ -16,13 +16,13 @@
  * @package   Zend_Validate
  * @copyright  Copyright (c) 2005-2012 Zend Technologies USA Inc. (http://www.zend.com)
  * @license   http://framework.zend.com/license/new-bsd     New BSD License
- * @version   $Id: ExcludeMimeType.php 24594 2012-01-05 21:27:01Z matthew $
+ * @version   $Id: ExcludeMimeType.php 24593 2012-01-05 20:35:02Z matthew $
  */
 
 /**
  * @see Zend_Validate_File_MimeType
  */
-require_once 'Zend/Validate/File/MimeType.php';
+// require_once 'Zend/Validate/File/MimeType.php';
 
 /**
  * Validator for the mime type of a file
@@ -59,7 +59,7 @@ class Zend_Validate_File_ExcludeMimeType extends Zend_Validate_File_MimeType
         }
 
         // Is file readable ?
-        require_once 'Zend/Loader.php';
+        // require_once 'Zend/Loader.php';
         if (!Zend_Loader::isReadable($value)) {
             return $this->_throw($file, self::NOT_READABLE);
         }

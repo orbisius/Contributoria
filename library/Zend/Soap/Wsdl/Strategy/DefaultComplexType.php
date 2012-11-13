@@ -17,13 +17,13 @@
  * @subpackage Wsdl
  * @copyright  Copyright (c) 2005-2012 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id: DefaultComplexType.php 24594 2012-01-05 21:27:01Z matthew $
+ * @version    $Id: DefaultComplexType.php 24593 2012-01-05 20:35:02Z matthew $
  */
 
 /**
  * @see Zend_Soap_Wsdl_Strategy_Abstract
  */
-require_once "Zend/Soap/Wsdl/Strategy/Abstract.php";
+// require_once "Zend/Soap/Wsdl/Strategy/Abstract.php";
 
 /**
  * Zend_Soap_Wsdl_Strategy_DefaultComplexType
@@ -45,7 +45,7 @@ class Zend_Soap_Wsdl_Strategy_DefaultComplexType extends Zend_Soap_Wsdl_Strategy
     public function addComplexType($type)
     {
         if(!class_exists($type)) {
-            require_once "Zend/Soap/Wsdl/Exception.php";
+            // require_once "Zend/Soap/Wsdl/Exception.php";
             throw new Zend_Soap_Wsdl_Exception(sprintf(
                 "Cannot add a complex type %s that is not an object or where ".
                 "class could not be found in 'DefaultComplexType' strategy.", $type

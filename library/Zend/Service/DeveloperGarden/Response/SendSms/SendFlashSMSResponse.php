@@ -17,13 +17,13 @@
  * @subpackage DeveloperGarden
  * @copyright  Copyright (c) 2005-2012 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id: SendFlashSMSResponse.php 24594 2012-01-05 21:27:01Z matthew $
+ * @version    $Id: SendFlashSMSResponse.php 24593 2012-01-05 20:35:02Z matthew $
  */
 
 /**
  * @see Zend_Service_DeveloperGarden_Response_SendSms_SendSmsAbstract
  */
-require_once 'Zend/Service/DeveloperGarden/Response/SendSms/SendSmsAbstract.php';
+// require_once 'Zend/Service/DeveloperGarden/Response/SendSms/SendSmsAbstract.php';
 
 /**
  * @category   Zend

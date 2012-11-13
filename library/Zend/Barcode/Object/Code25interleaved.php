@@ -17,14 +17,14 @@
  * @subpackage Object
  * @copyright  Copyright (c) 2005-2012 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id: Code25interleaved.php 24594 2012-01-05 21:27:01Z matthew $
+ * @version    $Id: Code25interleaved.php 24593 2012-01-05 20:35:02Z matthew $
  */
 
 /** @see Zend_Barcode_Object_Code25 */
-require_once 'Zend/Barcode/Object/Code25.php';
+// require_once 'Zend/Barcode/Object/Code25.php';
 
 /** @see Zend_Validate_Barcode */
-require_once 'Zend/Validate/Barcode.php';
+// require_once 'Zend/Validate/Barcode.php';
 
 /**
  * Class for generate Interleaved 2 of 5 barcode

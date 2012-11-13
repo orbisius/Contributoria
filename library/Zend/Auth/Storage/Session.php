@@ -17,20 +17,20 @@
  * @subpackage Storage
  * @copyright  Copyright (c) 2005-2012 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id: Session.php 24594 2012-01-05 21:27:01Z matthew $
+ * @version    $Id: Session.php 24593 2012-01-05 20:35:02Z matthew $
  */
 
 
 /**
  * @see Zend_Auth_Storage_Interface
  */
-require_once 'Zend/Auth/Storage/Interface.php';
+// require_once 'Zend/Auth/Storage/Interface.php';
 
 
 /**
  * @see Zend_Session
  */
-require_once 'Zend/Session.php';
+// require_once 'Zend/Session.php';
 
 
 /**

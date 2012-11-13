@@ -16,19 +16,19 @@
  * @package    Zend_Mail
  * @copyright  Copyright (c) 2005-2012 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id: Message.php 24594 2012-01-05 21:27:01Z matthew $
+ * @version    $Id: Message.php 24593 2012-01-05 20:35:02Z matthew $
  */
 
 
 /**
  * Zend_Mail_Part
  */
-require_once 'Zend/Mail/Part.php';
+// require_once 'Zend/Mail/Part.php';
 
 /**
  * Zend_Mail_Message_Interface
  */
-require_once 'Zend/Mail/Message/Interface.php';
+// require_once 'Zend/Mail/Message/Interface.php';
 
 /**
  * @category   Zend
@@ -63,7 +63,7 @@ class Zend_Mail_Message extends Zend_Mail_Part implements Zend_Mail_Message_Inte
                     /**
                      * @see Zend_Mail_Exception
                      */
-                    require_once 'Zend/Mail/Exception.php';
+                    // require_once 'Zend/Mail/Exception.php';
                     throw new Zend_Mail_Exception('could not open file');
                 }
             } else {

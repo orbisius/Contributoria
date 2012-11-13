@@ -17,13 +17,13 @@
  * @subpackage Zend_Controller_Action_Helper
  * @copyright  Copyright (c) 2005-2012 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id: AutoCompleteScriptaculous.php 24594 2012-01-05 21:27:01Z matthew $
+ * @version    $Id: AutoCompleteScriptaculous.php 24593 2012-01-05 20:35:02Z matthew $
  */
 
 /**
  * @see Zend_Controller_Action_Helper_AutoComplete_Abstract
  */
-require_once 'Zend/Controller/Action/Helper/AutoComplete/Abstract.php';
+// require_once 'Zend/Controller/Action/Helper/AutoComplete/Abstract.php';
 
 /**
  * Create and send Scriptaculous-compatible autocompletion lists
@@ -66,7 +66,7 @@ class Zend_Controller_Action_Helper_AutoCompleteScriptaculous extends Zend_Contr
             /**
              * @see Zend_Controller_Action_Exception
              */
-            require_once 'Zend/Controller/Action/Exception.php';
+            // require_once 'Zend/Controller/Action/Exception.php';
             throw new Zend_Controller_Action_Exception('Invalid data passed for autocompletion');
         }
 

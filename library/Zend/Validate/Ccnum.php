@@ -16,13 +16,13 @@
  * @package    Zend_Validate
  * @copyright  Copyright (c) 2005-2012 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id: Ccnum.php 24594 2012-01-05 21:27:01Z matthew $
+ * @version    $Id: Ccnum.php 24593 2012-01-05 20:35:02Z matthew $
  */
 
 /**
  * @see Zend_Validate_Abstract
  */
-require_once 'Zend/Validate/Abstract.php';
+// require_once 'Zend/Validate/Abstract.php';
 
 /**
  * @category   Zend
@@ -80,7 +80,7 @@ class Zend_Validate_Ccnum extends Zend_Validate_Abstract
             /**
              * @see Zend_Filter_Digits
              */
-            require_once 'Zend/Filter/Digits.php';
+            // require_once 'Zend/Filter/Digits.php';
             self::$_filter = new Zend_Filter_Digits();
         }
 

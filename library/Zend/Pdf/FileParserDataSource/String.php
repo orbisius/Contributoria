@@ -17,11 +17,11 @@
  * @subpackage FileParser
  * @copyright  Copyright (c) 2005-2012 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id: String.php 24594 2012-01-05 21:27:01Z matthew $
+ * @version    $Id: String.php 24593 2012-01-05 20:35:02Z matthew $
  */
 
 /** Zend_Pdf_FileParserDataSource */
-require_once 'Zend/Pdf/FileParserDataSource.php';
+// require_once 'Zend/Pdf/FileParserDataSource.php';
 
 /**
  * Concrete subclass of {@link Zend_Pdf_FileParserDataSource} that provides an
@@ -60,7 +60,7 @@ class Zend_Pdf_FileParserDataSource_String extends Zend_Pdf_FileParserDataSource
     public function __construct($string)
     {
         if (empty($string)) {
-            require_once 'Zend/Pdf/Exception.php';
+            // require_once 'Zend/Pdf/Exception.php';
             throw new Zend_Pdf_Exception('String is empty',
                                          Zend_Pdf_Exception::PARAMETER_VALUE_OUT_OF_RANGE);
         }
@@ -92,7 +92,7 @@ class Zend_Pdf_FileParserDataSource_String extends Zend_Pdf_FileParserDataSource
     public function readBytes($byteCount)
     {
         if (($this->_offset + $byteCount) > $this->_size) {
-            require_once 'Zend/Pdf/Exception.php';
+            // require_once 'Zend/Pdf/Exception.php';
             throw new Zend_Pdf_Exception("Insufficient data to read $byteCount bytes",
                                          Zend_Pdf_Exception::INSUFFICIENT_DATA);
         }

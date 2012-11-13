@@ -17,11 +17,11 @@
  * @subpackage Adapter
  * @copyright  Copyright (c) 2005-2012 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id: PhpCode.php 24594 2012-01-05 21:27:01Z matthew $
+ * @version    $Id: PhpCode.php 24593 2012-01-05 20:35:02Z matthew $
  */
 
 /** @see Zend_Serializer_Adapter_AdapterAbstract */
-require_once 'Zend/Serializer/Adapter/AdapterAbstract.php';
+// require_once 'Zend/Serializer/Adapter/AdapterAbstract.php';
 
 /**
  * @category   Zend
@@ -59,7 +59,7 @@ class Zend_Serializer_Adapter_PhpCode extends Zend_Serializer_Adapter_AdapterAbs
         $eval = @eval('$ret=' . $code . ';');
         if ($eval === false) {
                 $lastErr = error_get_last();
-                require_once 'Zend/Serializer/Exception.php';
+                // require_once 'Zend/Serializer/Exception.php';
                 throw new Zend_Serializer_Exception('eval failed: ' . $lastErr['message']);
         }
         return $ret;

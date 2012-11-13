@@ -17,13 +17,13 @@
  * @subpackage Helper
  * @copyright  Copyright (c) 2005-2012 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id: FormElement.php 24594 2012-01-05 21:27:01Z matthew $
+ * @version    $Id: FormElement.php 24823 2012-05-29 19:52:12Z rob $
  */
 
 /**
  * @see Zend_View_Helper_HtmlElement
  */
-require_once 'Zend/View/Helper/HtmlElement.php';
+// require_once 'Zend/View/Helper/HtmlElement.php';
 
 /**
  * Base helper for form elements.  Extend this, don't use it on its own.
@@ -37,14 +37,14 @@ require_once 'Zend/View/Helper/HtmlElement.php';
 abstract class Zend_View_Helper_FormElement extends Zend_View_Helper_HtmlElement
 {
     /**
-     * @var Zend_Translate
+     * @var Zend_Translate_Adapter|null
      */
     protected $_translator;
 
     /**
      * Get translator
      *
-     * @return Zend_Translate
+     * @return Zend_Translate_Adapter|null
      */
     public function getTranslator()
     {
@@ -54,7 +54,7 @@ abstract class Zend_View_Helper_FormElement extends Zend_View_Helper_HtmlElement
     /**
      * Set translator
      *
-     * @param  Zend_Translate $translator
+     * @param  Zend_Translate|Zend_Translate_Adapter|null $translator
      * @return Zend_View_Helper_FormElement
      */
     public function setTranslator($translator = null)
@@ -66,7 +66,7 @@ abstract class Zend_View_Helper_FormElement extends Zend_View_Helper_HtmlElement
         } elseif ($translator instanceof Zend_Translate) {
             $this->_translator = $translator->getAdapter();
         } else {
-            require_once 'Zend/View/Exception.php';
+            // require_once 'Zend/View/Exception.php';
             $e = new Zend_View_Exception('Invalid translator specified');
             $e->setView($this->view);
             throw $e;

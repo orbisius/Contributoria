@@ -18,13 +18,13 @@
  * @subpackage Photos
  * @copyright  Copyright (c) 2005-2012 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id: PhotoQuery.php 24594 2012-01-05 21:27:01Z matthew $
+ * @version    $Id: PhotoQuery.php 24593 2012-01-05 20:35:02Z matthew $
  */
 
 /**
  * @see Zend_Gdata_Gapps_Picasa_AlbumQuery
  */
-require_once('Zend/Gdata/Photos/AlbumQuery.php');
+// require_once('Zend/Gdata/Photos/AlbumQuery.php');
 
 /**
  * Assists in constructing queries for comment/tag entries.
@@ -87,7 +87,7 @@ class Zend_Gdata_Photos_PhotoQuery extends Zend_Gdata_Photos_AlbumQuery
         if ($this->getPhotoId() !== null) {
             $uri .= '/photoid/' . $this->getPhotoId();
         } else {
-            require_once 'Zend/Gdata/App/InvalidArgumentException.php';
+            // require_once 'Zend/Gdata/App/InvalidArgumentException.php';
             throw new Zend_Gdata_App_InvalidArgumentException(
                     'PhotoId cannot be null');
         }

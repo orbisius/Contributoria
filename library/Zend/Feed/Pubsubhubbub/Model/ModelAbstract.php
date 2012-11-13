@@ -16,18 +16,18 @@
  * @package    Zend_Feed_Pubsubhubbub
  * @copyright  Copyright (c) 2005-2012 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id: ModelAbstract.php 24594 2012-01-05 21:27:01Z matthew $
+ * @version    $Id: ModelAbstract.php 24593 2012-01-05 20:35:02Z matthew $
  */
 
 
 /** @see Zend_Db_Table */
-require_once 'Zend/Db/Table.php';
+// require_once 'Zend/Db/Table.php';
 
 /**
  * @see Zend_Registry
  * Seems to fix the file not being included by Zend_Db_Table...
  */
-require_once 'Zend/Registry.php';
+// require_once 'Zend/Registry.php';
 
 /**
  * @category   Zend
