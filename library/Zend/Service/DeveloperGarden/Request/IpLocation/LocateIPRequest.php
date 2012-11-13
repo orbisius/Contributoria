@@ -17,18 +17,18 @@
  * @subpackage DeveloperGarden
  * @copyright  Copyright (c) 2005-2012 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id: LocateIPRequest.php 24594 2012-01-05 21:27:01Z matthew $
+ * @version    $Id: LocateIPRequest.php 24593 2012-01-05 20:35:02Z matthew $
  */
 
 /**
  * @see Zend_Service_DeveloperGarden_Request_RequestAbstract
  */
-require_once 'Zend/Service/DeveloperGarden/Request/RequestAbstract.php';
+// require_once 'Zend/Service/DeveloperGarden/Request/RequestAbstract.php';
 
 /**
  * @see Zend_Service_DeveloperGarden_IpLocation_IpAddress
  */
-require_once 'Zend/Service/DeveloperGarden/IpLocation/IpAddress.php';
+// require_once 'Zend/Service/DeveloperGarden/IpLocation/IpAddress.php';
 
 /**
  * @category   Zend
@@ -94,7 +94,7 @@ class Zend_Service_DeveloperGarden_Request_IpLocation_LocateIPRequest
                 if (!$ipObject instanceof Zend_Service_DeveloperGarden_IpLocation_IpAddress
                     && !is_string($ipObject)
                 ) {
-                    require_once 'Zend/Service/DeveloperGarden/Request/Exception.php';
+                    // require_once 'Zend/Service/DeveloperGarden/Request/Exception.php';
                     throw new Zend_Service_DeveloperGarden_Request_Exception(
                         'Not a valid Ip Address object found.'
                     );
@@ -105,7 +105,7 @@ class Zend_Service_DeveloperGarden_Request_IpLocation_LocateIPRequest
         }
 
         if (!is_string($ip)) {
-            require_once 'Zend/Service/DeveloperGarden/Request/Exception.php';
+            // require_once 'Zend/Service/DeveloperGarden/Request/Exception.php';
             throw new Zend_Service_DeveloperGarden_Request_Exception('Not a valid Ip Address object found.');
         }
 

@@ -17,14 +17,14 @@
  * @subpackage Helper
  * @copyright  Copyright (c) 2005-2012 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id: HtmlList.php 24594 2012-01-05 21:27:01Z matthew $
+ * @version    $Id: HtmlList.php 24593 2012-01-05 20:35:02Z matthew $
  */
 
 
 /**
  * Zend_View_Helper_FormELement
  */
-require_once 'Zend/View/Helper/FormElement.php';
+// require_once 'Zend/View/Helper/FormElement.php';
 
 /**
  * Helper for ordered and unordered lists
@@ -50,7 +50,7 @@ class Zend_View_Helper_HtmlList extends Zend_View_Helper_FormElement
     public function htmlList(array $items, $ordered = false, $attribs = false, $escape = true)
     {
         if (!is_array($items)) {
-            require_once 'Zend/View/Exception.php';
+            // require_once 'Zend/View/Exception.php';
             $e = new Zend_View_Exception('First param must be an array');
             $e->setView($this->view);
             throw $e;

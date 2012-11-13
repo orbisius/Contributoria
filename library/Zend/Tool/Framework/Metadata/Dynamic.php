@@ -17,18 +17,18 @@
  * @subpackage Framework
  * @copyright  Copyright (c) 2005-2012 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id: Dynamic.php 24594 2012-01-05 21:27:01Z matthew $
+ * @version    $Id: Dynamic.php 24593 2012-01-05 20:35:02Z matthew $
  */
 
 /**
  * @see Zend_Tool_Framework_Metadata_Interface
  */
-require_once 'Zend/Tool/Framework/Metadata/Interface.php';
+// require_once 'Zend/Tool/Framework/Metadata/Interface.php';
 
 /**
  * @see Zend_Tool_Framework_Metadata_Attributable
  */
-require_once 'Zend/Tool/Framework/Metadata/Attributable.php';
+// require_once 'Zend/Tool/Framework/Metadata/Attributable.php';
 
 /**
  * @category   Zend
@@ -190,7 +190,7 @@ class Zend_Tool_Framework_Metadata_Dynamic
         } elseif (array_key_exists($name, $this->_dynamicAttributes)) {
             return $this->_dynamicAttributes[$name];
         } else {
-            require_once 'Zend/Tool/Framework/Registry/Exception.php';
+            // require_once 'Zend/Tool/Framework/Registry/Exception.php';
             throw new Zend_Tool_Framework_Registry_Exception('Property ' . $name . ' was not located in this metadata.');
         }
     }
@@ -211,7 +211,7 @@ class Zend_Tool_Framework_Metadata_Dynamic
             return $this;
         }
 //        {
-//            require_once 'Zend/Tool/Framework/Registry/Exception.php';
+//            // require_once 'Zend/Tool/Framework/Registry/Exception.php';
 //            throw new Zend_Tool_Framework_Registry_Exception('Property ' . $name . ' was not located in this registry.');
 //        }
     }

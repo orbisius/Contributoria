@@ -16,7 +16,7 @@
  * @category   Zend
  * @package    Zend_Gdata
  * @subpackage App
- * @version    $Id: LoggingHttpClientAdapterSocket.php 24594 2012-01-05 21:27:01Z matthew $
+ * @version    $Id: LoggingHttpClientAdapterSocket.php 24593 2012-01-05 20:35:02Z matthew $
  * @copyright  Copyright (c) 2005-2012 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
@@ -24,7 +24,7 @@
 /**
  * @see Zend_Http_Client_Adapter_Socket
  */
-require_once 'Zend/Http/Client/Adapter/Socket.php';
+// require_once 'Zend/Http/Client/Adapter/Socket.php';
 
 /**
  * Overrides the traditional socket-based adapter class for Zend_Http_Client to

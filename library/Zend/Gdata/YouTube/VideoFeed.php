@@ -18,18 +18,18 @@
  * @subpackage YouTube
  * @copyright  Copyright (c) 2005-2012 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id: VideoFeed.php 24594 2012-01-05 21:27:01Z matthew $
+ * @version    $Id: VideoFeed.php 24593 2012-01-05 20:35:02Z matthew $
  */
 
 /**
  * @see Zend_Gdata_Media_Feed
  */
-require_once 'Zend/Gdata/Media/Feed.php';
+// require_once 'Zend/Gdata/Media/Feed.php';
 
 /**
  * @see Zend_Gdata_YouTube_VideoEntry
  */
-require_once 'Zend/Gdata/YouTube/VideoEntry.php';
+// require_once 'Zend/Gdata/YouTube/VideoEntry.php';
 
 /**
  * The YouTube video flavor of an Atom Feed with media support

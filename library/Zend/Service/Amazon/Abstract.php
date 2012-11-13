@@ -17,13 +17,13 @@
  * @subpackage Amazon
  * @copyright  Copyright (c) 2005-2012 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id: Abstract.php 24594 2012-01-05 21:27:01Z matthew $
+ * @version    $Id: Abstract.php 25024 2012-07-30 15:08:15Z rob $
  */
 
 /**
  * @see Zend_Service_Abstract
  */
-require_once 'Zend/Service/Abstract.php';
+// require_once 'Zend/Service/Abstract.php';
 
 /**
  * Abstract Amazon class that handles the credentials for any of the Web Services that
@@ -88,7 +88,7 @@ abstract class Zend_Service_Amazon_Abstract extends Zend_Service_Abstract
         }
 
         if(!$accessKey || !$secretKey) {
-            require_once 'Zend/Service/Amazon/Exception.php';
+            // require_once 'Zend/Service/Amazon/Exception.php';
             throw new Zend_Service_Amazon_Exception("AWS keys were not supplied");
         }
         $this->_accessKey = $accessKey;

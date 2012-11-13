@@ -17,7 +17,7 @@
  * @subpackage Technorati
  * @copyright  Copyright (c) 2005-2012 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id: Result.php 24594 2012-01-05 21:27:01Z matthew $
+ * @version    $Id: Result.php 24593 2012-01-05 20:35:02Z matthew $
  */
 
 
@@ -101,7 +101,7 @@ abstract class Zend_Service_Technorati_Result
             /**
              * @see Zend_Service_Technorati_Weblog
              */
-            require_once 'Zend/Service/Technorati/Weblog.php';
+            // require_once 'Zend/Service/Technorati/Weblog.php';
             $this->_weblog = new Zend_Service_Technorati_Weblog($result->item(0));
         } else {
             $this->_weblog = null;

@@ -16,26 +16,26 @@
  * @package    Zend_Acl
  * @copyright  Copyright (c) 2005-2012 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id: Interface.php 24594 2012-01-05 21:27:01Z matthew $
+ * @version    $Id: Interface.php 24593 2012-01-05 20:35:02Z matthew $
  */
 
 
 /**
  * @see Zend_Acl
  */
-require_once 'Zend/Acl.php';
+// require_once 'Zend/Acl.php';
 
 
 /**
  * @see Zend_Acl_Role_Interface
  */
-require_once 'Zend/Acl/Role/Interface.php';
+// require_once 'Zend/Acl/Role/Interface.php';
 
 
 /**
  * @see Zend_Acl_Resource_Interface
  */
-require_once 'Zend/Acl/Resource/Interface.php';
+// require_once 'Zend/Acl/Resource/Interface.php';
 
 
 /**

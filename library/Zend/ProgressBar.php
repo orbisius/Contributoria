@@ -14,7 +14,7 @@
  * @package    Zend_ProgressBar
  * @copyright  Copyright (c) 2005-2012 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id: ProgressBar.php 24594 2012-01-05 21:27:01Z matthew $
+ * @version    $Id: ProgressBar.php 25024 2012-07-30 15:08:15Z rob $
  */
 
 /**
@@ -89,7 +89,7 @@ class Zend_ProgressBar
     {
         // Check min/max values and set them
         if ($min > $max) {
-            require_once 'Zend/ProgressBar/Exception.php';
+            // require_once 'Zend/ProgressBar/Exception.php';
             throw new Zend_ProgressBar_Exception('$max must be greater than $min');
         }
 
@@ -99,7 +99,7 @@ class Zend_ProgressBar
 
         // See if we have to open a session namespace
         if ($persistenceNamespace !== null) {
-            require_once 'Zend/Session/Namespace.php';
+            // require_once 'Zend/Session/Namespace.php';
 
             $this->_persistenceNamespace = new Zend_Session_Namespace($persistenceNamespace);
         }

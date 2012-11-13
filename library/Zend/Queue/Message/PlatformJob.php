@@ -17,13 +17,13 @@
  * @subpackage Message
  * @copyright  Copyright (c) 2005-2012 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id: PlatformJob.php 24594 2012-01-05 21:27:01Z matthew $
+ * @version    $Id: PlatformJob.php 24593 2012-01-05 20:35:02Z matthew $
  */
 
 /**
  * @see Zend_Queue_Message
  */
-require_once 'Zend/Queue/Message.php';
+// require_once 'Zend/Queue/Message.php';
 
 /**
  * Class for managing Zend Platform JobQueue jobs via Zend_Queue
@@ -68,7 +68,7 @@ class Zend_Queue_Message_PlatformJob extends Zend_Queue_Message
     {
         if (isset($options['data'])) {
             if (!($options['data'] instanceof ZendApi_Job)) {
-                require_once 'Zend/Queue/Exception.php';
+                // require_once 'Zend/Queue/Exception.php';
                 throw new Zend_Queue_Exception('Data must be an instance of ZendApi_Job');
             }
             $this->_job = $options['data'];
@@ -77,7 +77,7 @@ class Zend_Queue_Message_PlatformJob extends Zend_Queue_Message
             parent::__construct($options);
 
             if (!isset($options['script'])) {
-                require_once 'Zend/Queue/Exception.php';
+                // require_once 'Zend/Queue/Exception.php';
                 throw new Zend_Queue_Exception('The script is mandatory data');
             }
 

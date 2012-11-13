@@ -17,12 +17,12 @@
  * @subpackage DeveloperGarden
  * @copyright  Copyright (c) 2005-2012 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id: ParticipantDetail.php 24594 2012-01-05 21:27:01Z matthew $
+ * @version    $Id: ParticipantDetail.php 24593 2012-01-05 20:35:02Z matthew $
  */
 /**
  * @see Zend_Validate_EmailAddress
  */
-require_once 'Zend/Validate/EmailAddress.php';
+// require_once 'Zend/Validate/EmailAddress.php';
 
 /**
  * @category   Zend
@@ -164,7 +164,7 @@ class Zend_Service_DeveloperGarden_ConferenceCall_ParticipantDetail
         $validator = new Zend_Validate_EmailAddress();
 
         if (!$validator->isValid($email)) {
-            require_once 'Zend/Service/DeveloperGarden/Exception.php';
+            // require_once 'Zend/Service/DeveloperGarden/Exception.php';
             throw new Zend_Service_DeveloperGarden_Exception('Not a valid e-mail address.');
         }
         $this->email = $email;

@@ -17,13 +17,13 @@
  * @subpackage Page
  * @copyright  Copyright (c) 2005-2012 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id: Uri.php 24594 2012-01-05 21:27:01Z matthew $
+ * @version    $Id: Uri.php 24593 2012-01-05 20:35:02Z matthew $
  */
 
 /**
  * @see Zend_Navigation_Page_Abstract
  */
-require_once 'Zend/Navigation/Page.php';
+// require_once 'Zend/Navigation/Page.php';
 
 /**
  * Represents a page that is defined by specifying a URI
@@ -53,7 +53,7 @@ class Zend_Navigation_Page_Uri extends Zend_Navigation_Page
     public function setUri($uri)
     {
         if (null !== $uri && !is_string($uri)) {
-            require_once 'Zend/Navigation/Exception.php';
+            // require_once 'Zend/Navigation/Exception.php';
             throw new Zend_Navigation_Exception(
                     'Invalid argument: $uri must be a string or null');
         }

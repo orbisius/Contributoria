@@ -17,13 +17,13 @@
  * @subpackage Amazon_S3
  * @copyright  Copyright (c) 2005-2012 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id: Stream.php 24594 2012-01-05 21:27:01Z matthew $
+ * @version    $Id: Stream.php 24593 2012-01-05 20:35:02Z matthew $
  */
 
 /**
  * @see Zend_Service_Amazon_S3
  */
-require_once 'Zend/Service/Amazon/S3.php';
+// require_once 'Zend/Service/Amazon/S3.php';
 
 /**
  * Amazon S3 PHP stream wrapper
@@ -86,7 +86,7 @@ class Zend_Service_Amazon_S3_Stream
                 /**
                  * @see Zend_Service_Amazon_S3_Exception
                  */
-                require_once 'Zend/Service/Amazon/S3/Exception.php';
+                // require_once 'Zend/Service/Amazon/S3/Exception.php';
                 throw new Zend_Service_Amazon_S3_Exception("Unable to parse URL $path");
             }
 
@@ -95,7 +95,7 @@ class Zend_Service_Amazon_S3_Stream
                 /**
                  * @see Zend_Service_Amazon_S3_Exception
                  */
-                require_once 'Zend/Service/Amazon/S3/Exception.php';
+                // require_once 'Zend/Service/Amazon/S3/Exception.php';
                 throw new Zend_Service_Amazon_S3_Exception("Unknown client for wrapper {$url[0]}");
             }
         }

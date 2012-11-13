@@ -16,14 +16,14 @@
  * @package   Zend_Measure
  * @copyright  Copyright (c) 2005-2012 Zend Technologies USA Inc. (http://www.zend.com)
  * @license   http://framework.zend.com/license/new-bsd     New BSD License
- * @version   $Id: Volume.php 24594 2012-01-05 21:27:01Z matthew $
+ * @version   $Id: Volume.php 24593 2012-01-05 20:35:02Z matthew $
  */
 
 /**
  * Implement needed classes
  */
-require_once 'Zend/Measure/Abstract.php';
-require_once 'Zend/Locale.php';
+// require_once 'Zend/Measure/Abstract.php';
+// require_once 'Zend/Locale.php';
 
 /**
  * Class for handling acceleration conversions

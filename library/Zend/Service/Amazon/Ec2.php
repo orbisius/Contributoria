@@ -17,7 +17,7 @@
  * @subpackage Amazon
  * @copyright  Copyright (c) 2005-2012 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id: Ec2.php 24594 2012-01-05 21:27:01Z matthew $
+ * @version    $Id: Ec2.php 25024 2012-07-30 15:08:15Z rob $
  */
 
 /**
@@ -78,7 +78,7 @@ class Zend_Service_Amazon_Ec2
         }
 
         if (!class_exists($class)) {
-            require_once 'Zend/Loader.php';
+            // require_once 'Zend/Loader.php';
             Zend_Loader::loadClass($class);
         }
         return new $class($key, $secret_key);

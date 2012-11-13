@@ -17,18 +17,18 @@
  * @subpackage Framework
  * @copyright  Copyright (c) 2005-2012 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id: Engine.php 24594 2012-01-05 21:27:01Z matthew $
+ * @version    $Id: Engine.php 24593 2012-01-05 20:35:02Z matthew $
  */
 
 /**
  * @see Zend_Tool_Project_Context_Content_Engine_CodeGenerator
  */
-require_once 'Zend/Tool/Project/Context/Content/Engine/CodeGenerator.php';
+// require_once 'Zend/Tool/Project/Context/Content/Engine/CodeGenerator.php';
 
 /**
  * @see Zend_Tool_Project_Context_Content_Engine_Phtml
  */
-require_once 'Zend/Tool/Project/Context/Content/Engine/Phtml.php';
+// require_once 'Zend/Tool/Project/Context/Content/Engine/Phtml.php';
 
 /**
  * This class is the front most class for utilizing Zend_Tool_Project

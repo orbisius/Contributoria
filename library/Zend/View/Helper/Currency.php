@@ -17,11 +17,11 @@
  * @subpackage Helper
  * @copyright  Copyright (c) 2005-2012 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id: Currency.php 24769 2012-05-06 03:10:25Z adamlundrigan $
+ * @version    $Id: Currency.php 24768 2012-05-06 03:08:09Z adamlundrigan $
  */
 
 /** Zend_View_Helper_Abstract.php */
-require_once 'Zend/View/Helper/Abstract.php';
+// require_once 'Zend/View/Helper/Abstract.php';
 
 /**
  * Currency view helper
@@ -49,7 +49,7 @@ class Zend_View_Helper_Currency extends Zend_View_Helper_Abstract
     public function __construct($currency = null)
     {
         if ($currency === null) {
-            require_once 'Zend/Registry.php';
+            // require_once 'Zend/Registry.php';
             if (Zend_Registry::isRegistered('Zend_Currency')) {
                 $currency = Zend_Registry::get('Zend_Currency');
             }
@@ -73,7 +73,7 @@ class Zend_View_Helper_Currency extends Zend_View_Helper_Abstract
         }
 
         if (is_string($currency) || ($currency instanceof Zend_Locale)) {
-            require_once 'Zend/Locale.php';
+            // require_once 'Zend/Locale.php';
             if (Zend_Locale::isLocale($currency)) {
                 $currency = array('locale' => $currency);
             }
@@ -100,7 +100,7 @@ class Zend_View_Helper_Currency extends Zend_View_Helper_Abstract
     public function setCurrency($currency = null)
     {
         if (!$currency instanceof Zend_Currency) {
-            require_once 'Zend/Currency.php';
+            // require_once 'Zend/Currency.php';
             $currency = new Zend_Currency($currency);
         }
         $this->_currency = $currency;

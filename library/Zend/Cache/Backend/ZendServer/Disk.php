@@ -17,15 +17,15 @@
  * @subpackage Zend_Cache_Backend
  * @copyright  Copyright (c) 2005-2012 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id: Disk.php 24594 2012-01-05 21:27:01Z matthew $
+ * @version    $Id: Disk.php 24593 2012-01-05 20:35:02Z matthew $
  */
 
 
 /** @see Zend_Cache_Backend_Interface */
-require_once 'Zend/Cache/Backend/Interface.php';
+// require_once 'Zend/Cache/Backend/Interface.php';
 
 /** @see Zend_Cache_Backend_ZendServer */
-require_once 'Zend/Cache/Backend/ZendServer.php';
+// require_once 'Zend/Cache/Backend/ZendServer.php';
 
 
 /**

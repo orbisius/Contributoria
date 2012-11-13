@@ -17,13 +17,13 @@
  * @subpackage PHP
  * @copyright  Copyright (c) 2005-2012 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id: Tag.php 24594 2012-01-05 21:27:01Z matthew $
+ * @version    $Id: Tag.php 24593 2012-01-05 20:35:02Z matthew $
  */
 
 /**
  * @see Zend_CodeGenerator_Php_Abstract
  */
-require_once 'Zend/CodeGenerator/Php/Abstract.php';
+// require_once 'Zend/CodeGenerator/Php/Abstract.php';
 
 /**
  * @category   Zend
@@ -94,7 +94,7 @@ class Zend_CodeGenerator_Php_Docblock_Tag extends Zend_CodeGenerator_Php_Abstrac
     public static function getPluginLoader()
     {
         if (self::$_pluginLoader == null) {
-            require_once 'Zend/Loader/PluginLoader.php';
+            // require_once 'Zend/Loader/PluginLoader.php';
             self::setPluginLoader(new Zend_Loader_PluginLoader(array(
                 'Zend_CodeGenerator_Php_Docblock_Tag' => dirname(__FILE__) . '/Tag/'))
                 );

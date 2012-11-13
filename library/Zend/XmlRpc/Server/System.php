@@ -17,7 +17,7 @@
  * @subpackage Server
  * @copyright  Copyright (c) 2005-2012 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id: System.php 24594 2012-01-05 21:27:01Z matthew $
+ * @version    $Id: System.php 24593 2012-01-05 20:35:02Z matthew $
  */
 
 /**
@@ -70,7 +70,7 @@ class Zend_XmlRpc_Server_System
     {
         $table = $this->_server->getDispatchTable();
         if (!$table->hasMethod($method)) {
-            require_once 'Zend/XmlRpc/Server/Exception.php';
+            // require_once 'Zend/XmlRpc/Server/Exception.php';
             throw new Zend_XmlRpc_Server_Exception('Method "' . $method . '" does not exist', 640);
         }
 
@@ -87,7 +87,7 @@ class Zend_XmlRpc_Server_System
     {
         $table = $this->_server->getDispatchTable();
         if (!$table->hasMethod($method)) {
-            require_once 'Zend/XmlRpc/Server/Exception.php';
+            // require_once 'Zend/XmlRpc/Server/Exception.php';
             throw new Zend_XmlRpc_Server_Exception('Method "' . $method . '" does not exist', 640);
         }
         $method = $table->getMethod($method)->toArray();

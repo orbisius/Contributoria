@@ -17,13 +17,13 @@
  * @subpackage Statement
  * @copyright  Copyright (c) 2005-2012 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id: Ibm.php 24594 2012-01-05 21:27:01Z matthew $
+ * @version    $Id: Ibm.php 24593 2012-01-05 20:35:02Z matthew $
  */
 
 /**
  * @see Zend_Db_Statement_Pdo
  */
-require_once 'Zend/Db/Statement/Pdo.php';
+// require_once 'Zend/Db/Statement/Pdo.php';
 
 /**
  * Proxy class to wrap a PDOStatement object for IBM Databases.
@@ -86,7 +86,7 @@ class Zend_Db_Statement_Pdo_Ibm extends Zend_Db_Statement_Pdo
                 return $this->_stmt->bindParam($parameter, $variable, $type, $length, $options);
             }
         } catch (PDOException $e) {
-            require_once 'Zend/Db/Statement/Exception.php';
+            // require_once 'Zend/Db/Statement/Exception.php';
             throw new Zend_Db_Statement_Exception($e->getMessage(), $e->getCode(), $e);
         }
     }

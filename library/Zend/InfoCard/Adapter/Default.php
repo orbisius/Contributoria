@@ -17,13 +17,13 @@
  * @subpackage Adapter
  * @copyright  Copyright (c) 2005-2012 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id: Default.php 24594 2012-01-05 21:27:01Z matthew $
+ * @version    $Id: Default.php 24593 2012-01-05 20:35:02Z matthew $
  */
 
 /**
  * Zend_InfoCard_Adapter_Interface
  */
-require_once 'Zend/InfoCard/Adapter/Interface.php';
+// require_once 'Zend/InfoCard/Adapter/Interface.php';
 
 /**
  * The default InfoCard component Adapter which serves as a pass-thru placeholder

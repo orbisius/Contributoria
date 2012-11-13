@@ -16,7 +16,7 @@
  * @package    Zend_Crypt
  * @copyright  Copyright (c) 2005-2012 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id: Crypt.php 24594 2012-01-05 21:27:01Z matthew $
+ * @version    $Id: Crypt.php 25024 2012-07-30 15:08:15Z rob $
  */
 
 /**
@@ -120,7 +120,7 @@ class Zend_Crypt
         /**
          * @see Zend_Crypt_Exception
          */
-        require_once 'Zend/Crypt/Exception.php';
+        // require_once 'Zend/Crypt/Exception.php';
         throw new Zend_Crypt_Exception('\'' . $algorithm . '\' is not supported by any available extension or native function');
     }
 

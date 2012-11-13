@@ -17,7 +17,7 @@
  * @subpackage FileParser
  * @copyright  Copyright (c) 2005-2012 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id: FileParserDataSource.php 24594 2012-01-05 21:27:01Z matthew $
+ * @version    $Id: FileParserDataSource.php 24806 2012-05-15 11:32:11Z adamlundrigan $
  */
 
 /**
@@ -61,21 +61,6 @@ abstract class Zend_Pdf_FileParserDataSource
 
 
   /* Abstract Methods */
-
-    /**
-     * Object constructor. Opens the data source for parsing.
-     *
-     * Must set $this->_size to the total size in bytes of the data source.
-     *
-     * Upon return the data source can be interrogated using the primitive
-     * methods described here.
-     *
-     * If the data source cannot be opened for any reason (such as insufficient
-     * permissions, missing file, etc.), will throw an appropriate exception.
-     *
-     * @throws Zend_Pdf_Exception
-     */
-    abstract public function __construct();
 
     /**
      * Object destructor. Closes the data source.
@@ -174,12 +159,12 @@ abstract class Zend_Pdf_FileParserDataSource
             return;    // Not moving; do nothing.
         }
         if ($offset < 0) {
-            require_once 'Zend/Pdf/Exception.php';
+            // require_once 'Zend/Pdf/Exception.php';
             throw new Zend_Pdf_Exception('Attempt to move before start of data source',
                                          Zend_Pdf_Exception::MOVE_BEFORE_START_OF_FILE);
         }
         if ($offset >= $this->_size) {    // Offsets are zero-based.
-            require_once 'Zend/Pdf/Exception.php';
+            // require_once 'Zend/Pdf/Exception.php';
             throw new Zend_Pdf_Exception('Attempt to move beyond end of data source',
                                          Zend_Pdf_Exception::MOVE_BEYOND_END_OF_FILE);
         }

@@ -16,13 +16,13 @@
  * @package    Zend_Feed_Writer
  * @copyright  Copyright (c) 2005-2012 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id: RendererAbstract.php 24594 2012-01-05 21:27:01Z matthew $
+ * @version    $Id: RendererAbstract.php 24593 2012-01-05 20:35:02Z matthew $
  */
 
 /**
  * @see Zend_Feed_Writer_Extension_RendererInterface
  */
-require_once 'Zend/Feed/Writer/Extension/RendererInterface.php';
+// require_once 'Zend/Feed/Writer/Extension/RendererInterface.php';
 
  /**
  * @category   Zend

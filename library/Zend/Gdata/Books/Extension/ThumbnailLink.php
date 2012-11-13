@@ -18,13 +18,13 @@
  * @subpackage Books
  * @copyright  Copyright (c) 2005-2012 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id: ThumbnailLink.php 24594 2012-01-05 21:27:01Z matthew $
+ * @version    $Id: ThumbnailLink.php 24593 2012-01-05 20:35:02Z matthew $
  */
 
 /**
  * @see Zend_Gdata_Books_Extension_BooksLink
  */
-require_once 'Zend/Gdata/Books/Extension/BooksLink.php';
+// require_once 'Zend/Gdata/Books/Extension/BooksLink.php';
 
 /**
  * Describes a thumbnail link

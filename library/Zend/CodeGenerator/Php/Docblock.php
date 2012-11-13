@@ -17,18 +17,18 @@
  * @subpackage PHP
  * @copyright  Copyright (c) 2005-2012 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id: Docblock.php 24594 2012-01-05 21:27:01Z matthew $
+ * @version    $Id: Docblock.php 24593 2012-01-05 20:35:02Z matthew $
  */
 
 /**
  * @see Zend_CodeGenerator_Php_Abstract
  */
-require_once 'Zend/CodeGenerator/Php/Abstract.php';
+// require_once 'Zend/CodeGenerator/Php/Abstract.php';
 
 /**
  * @see Zend_CodeGenerator_Php_Docblock_Tag
  */
-require_once 'Zend/CodeGenerator/Php/Docblock/Tag.php';
+// require_once 'Zend/CodeGenerator/Php/Docblock/Tag.php';
 
 /**
  * @category   Zend
@@ -151,7 +151,7 @@ class Zend_CodeGenerator_Php_Docblock extends Zend_CodeGenerator_Php_Abstract
         if (is_array($tag)) {
             $tag = new Zend_CodeGenerator_Php_Docblock_Tag($tag);
         } elseif (!$tag instanceof Zend_CodeGenerator_Php_Docblock_Tag) {
-            require_once 'Zend/CodeGenerator/Php/Exception.php';
+            // require_once 'Zend/CodeGenerator/Php/Exception.php';
             throw new Zend_CodeGenerator_Php_Exception(
                 'setTag() expects either an array of method options or an '
                 . 'instance of Zend_CodeGenerator_Php_Docblock_Tag'

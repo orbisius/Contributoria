@@ -17,7 +17,7 @@
  * @subpackage Technorati
  * @copyright  Copyright (c) 2005-2012 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id: GetInfoResult.php 24594 2012-01-05 21:27:01Z matthew $
+ * @version    $Id: GetInfoResult.php 24593 2012-01-05 20:35:02Z matthew $
  */
 
 
@@ -61,7 +61,7 @@ class Zend_Service_Technorati_GetInfoResult
         /**
          * @see Zend_Service_Technorati_Author
          */
-        require_once 'Zend/Service/Technorati/Author.php';
+        // require_once 'Zend/Service/Technorati/Author.php';
 
         $result = $xpath->query('//result');
         if ($result->length == 1) {
@@ -71,7 +71,7 @@ class Zend_Service_Technorati_GetInfoResult
         /**
          * @see Zend_Service_Technorati_Weblog
          */
-        require_once 'Zend/Service/Technorati/Weblog.php';
+        // require_once 'Zend/Service/Technorati/Weblog.php';
 
         $result = $xpath->query('//item/weblog');
         if ($result->length >= 1) {

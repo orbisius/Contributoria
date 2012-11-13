@@ -18,23 +18,23 @@
  * @subpackage App
  * @copyright  Copyright (c) 2005-2012 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id: MediaEntry.php 24594 2012-01-05 21:27:01Z matthew $
+ * @version    $Id: MediaEntry.php 24593 2012-01-05 20:35:02Z matthew $
  */
 
 /**
  * @see Zend_Gdata_App_Entry
  */
-require_once 'Zend/Gdata/App/Entry.php';
+// require_once 'Zend/Gdata/App/Entry.php';
 
 /**
  * @see Zend_Gdata_App_MediaSource
  */
-require_once 'Zend/Gdata/App/MediaSource.php';
+// require_once 'Zend/Gdata/App/MediaSource.php';
 
 /**
  * @see Zend_Gdata_MediaMimeStream
  */
-require_once 'Zend/Gdata/MediaMimeStream.php';
+// require_once 'Zend/Gdata/MediaMimeStream.php';
 
 /**
  * Concrete class for working with Atom entries containing multi-part data.
@@ -109,7 +109,7 @@ class Zend_Gdata_App_MediaEntry extends Zend_Gdata_App_Entry
         if ($value instanceof Zend_Gdata_App_MediaSource) {
             $this->_mediaSource = $value;
         } else {
-            require_once 'Zend/Gdata/App/InvalidArgumentException.php';
+            // require_once 'Zend/Gdata/App/InvalidArgumentException.php';
             throw new Zend_Gdata_App_InvalidArgumentException(
                     'You must specify the media data as a class that conforms to Zend_Gdata_App_MediaSource.');
         }

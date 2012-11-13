@@ -18,18 +18,18 @@
  * @subpackage Calendar
  * @copyright  Copyright (c) 2005-2012 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id: EventFeed.php 24594 2012-01-05 21:27:01Z matthew $
+ * @version    $Id: EventFeed.php 24593 2012-01-05 20:35:02Z matthew $
  */
 
 /**
  * @see Zend_Gdata_Feed
  */
-require_once 'Zend/Gdata/Feed.php';
+// require_once 'Zend/Gdata/Feed.php';
 
 /**
  * @see Zend_Gdata_Extension_Timezone
  */
-require_once 'Zend/Gdata/Calendar/Extension/Timezone.php';
+// require_once 'Zend/Gdata/Calendar/Extension/Timezone.php';
 
 /**
  * Data model for a Google Calendar feed of events

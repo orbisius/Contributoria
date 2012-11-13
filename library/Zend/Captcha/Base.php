@@ -20,10 +20,10 @@
  */
 
 /** @see Zend_Captcha_Adapter */
-require_once 'Zend/Captcha/Adapter.php';
+// require_once 'Zend/Captcha/Adapter.php';
 
 /** @see Zend_Validate_Abstract */
-require_once 'Zend/Validate/Abstract.php';
+// require_once 'Zend/Validate/Abstract.php';
 
 /**
  * Base class for Captcha adapters
@@ -35,7 +35,7 @@ require_once 'Zend/Validate/Abstract.php';
  * @subpackage Adapter
  * @copyright  Copyright (c) 2005-2012 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id: Base.php 24594 2012-01-05 21:27:01Z matthew $
+ * @version    $Id: Base.php 24593 2012-01-05 20:35:02Z matthew $
  */
 abstract class Zend_Captcha_Base extends Zend_Validate_Abstract implements Zend_Captcha_Adapter
 {

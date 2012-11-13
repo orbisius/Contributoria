@@ -17,7 +17,7 @@
  * @subpackage StrikeIron
  * @copyright  Copyright (c) 2005-2012 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id: StrikeIron.php 24594 2012-01-05 21:27:01Z matthew $
+ * @version    $Id: StrikeIron.php 24593 2012-01-05 20:35:02Z matthew $
  */
 
 
@@ -69,7 +69,7 @@ class Zend_Service_StrikeIron
 
         try {
             if (!class_exists($class)) {
-                require_once 'Zend/Loader.php';
+                // require_once 'Zend/Loader.php';
                 @Zend_Loader::loadClass($class);
             }
             if (!class_exists($class, false)) {
@@ -80,7 +80,7 @@ class Zend_Service_StrikeIron
             /**
              * @see Zend_Service_StrikeIron_Exception
              */
-            require_once 'Zend/Service/StrikeIron/Exception.php';
+            // require_once 'Zend/Service/StrikeIron/Exception.php';
             throw new Zend_Service_StrikeIron_Exception($msg, $e->getCode(), $e);
         }
 

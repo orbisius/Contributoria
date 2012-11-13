@@ -16,12 +16,12 @@
  * @package    Zend_View
  * @subpackage Helper
  * @copyright  Copyright (c) 2005-2012 Zend Technologies USA Inc. (http://www.zend.com)
- * @version    $Id: Action.php 24594 2012-01-05 21:27:01Z matthew $
+ * @version    $Id: Action.php 24593 2012-01-05 20:35:02Z matthew $
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
 
 /** Zend_View_Helper_Abstract.php */
-require_once 'Zend/View/Helper/Abstract.php';
+// require_once 'Zend/View/Helper/Abstract.php';
 
 /**
  * Helper for rendering output of a controller action
@@ -65,7 +65,7 @@ class Zend_View_Helper_Action extends Zend_View_Helper_Abstract
         $front   = Zend_Controller_Front::getInstance();
         $modules = $front->getControllerDirectory();
         if (empty($modules)) {
-            require_once 'Zend/View/Exception.php';
+            // require_once 'Zend/View/Exception.php';
             $e = new Zend_View_Exception('Action helper depends on valid front controller instance');
             $e->setView($this->view);
             throw $e;
@@ -75,7 +75,7 @@ class Zend_View_Helper_Action extends Zend_View_Helper_Abstract
         $response = $front->getResponse();
 
         if (empty($request) || empty($response)) {
-            require_once 'Zend/View/Exception.php';
+            // require_once 'Zend/View/Exception.php';
             $e = new Zend_View_Exception('Action view helper requires both a registered request and response object in the front controller instance');
             $e->setView($this->view);
             throw $e;

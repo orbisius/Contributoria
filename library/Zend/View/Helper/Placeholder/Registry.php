@@ -16,18 +16,18 @@
  * @package    Zend_View
  * @subpackage Helper
  * @copyright  Copyright (c) 2005-2012 Zend Technologies USA Inc. (http://www.zend.com)
- * @version    $Id: Registry.php 24594 2012-01-05 21:27:01Z matthew $
+ * @version    $Id: Registry.php 24593 2012-01-05 20:35:02Z matthew $
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
 
 /** Zend_Registry */
-require_once 'Zend/Registry.php';
+// require_once 'Zend/Registry.php';
 
 /** Zend_View_Helper_Placeholder_Container_Abstract */
-require_once 'Zend/View/Helper/Placeholder/Container/Abstract.php';
+// require_once 'Zend/View/Helper/Placeholder/Container/Abstract.php';
 
 /** Zend_View_Helper_Placeholder_Container */
-require_once 'Zend/View/Helper/Placeholder/Container.php';
+// require_once 'Zend/View/Helper/Placeholder/Container.php';
 
 /**
  * Registry for placeholder containers
@@ -160,13 +160,13 @@ class Zend_View_Helper_Placeholder_Registry
     public function setContainerClass($name)
     {
         if (!class_exists($name)) {
-            require_once 'Zend/Loader.php';
+            // require_once 'Zend/Loader.php';
             Zend_Loader::loadClass($name);
         }
 
         $reflection = new ReflectionClass($name);
         if (!$reflection->isSubclassOf(new ReflectionClass('Zend_View_Helper_Placeholder_Container_Abstract'))) {
-            require_once 'Zend/View/Helper/Placeholder/Registry/Exception.php';
+            // require_once 'Zend/View/Helper/Placeholder/Registry/Exception.php';
             $e = new Zend_View_Helper_Placeholder_Registry_Exception('Invalid Container class specified');
             $e->setView($this->view);
             throw $e;

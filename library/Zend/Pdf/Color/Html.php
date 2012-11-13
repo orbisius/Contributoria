@@ -16,11 +16,11 @@
  * @package    Zend_Pdf
  * @copyright  Copyright (c) 2005-2012 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id: Html.php 24594 2012-01-05 21:27:01Z matthew $
+ * @version    $Id: Html.php 24593 2012-01-05 20:35:02Z matthew $
  */
 
 /** Zend_Pdf_Color */
-require_once 'Zend/Pdf/Color.php';
+// require_once 'Zend/Pdf/Color.php';
 
 
 /**
@@ -94,10 +94,10 @@ class Zend_Pdf_Color_Html extends Zend_Pdf_Color
             $g = round((hexdec($matches[2]) / 255), 3);
             $b = round((hexdec($matches[3]) / 255), 3);
             if (($r == $g) && ($g == $b)) {
-                require_once 'Zend/Pdf/Color/GrayScale.php';
+                // require_once 'Zend/Pdf/Color/GrayScale.php';
                 return new Zend_Pdf_Color_GrayScale($r);
             } else {
-                require_once 'Zend/Pdf/Color/Rgb.php';
+                // require_once 'Zend/Pdf/Color/Rgb.php';
                 return new Zend_Pdf_Color_Rgb($r, $g, $b);
             }
         } else {
@@ -398,14 +398,14 @@ class Zend_Pdf_Color_Html extends Zend_Pdf_Color
                 $r = 0.604; $g = 0.804; $b = 0.196; break;
 
             default:
-                require_once 'Zend/Pdf/Exception.php';
+                // require_once 'Zend/Pdf/Exception.php';
                 throw new Zend_Pdf_Exception('Unknown color name: ' . $color);
         }
         if (($r == $g) && ($g == $b)) {
-            require_once 'Zend/Pdf/Color/GrayScale.php';
+            // require_once 'Zend/Pdf/Color/GrayScale.php';
             return new Zend_Pdf_Color_GrayScale($r);
         } else {
-            require_once 'Zend/Pdf/Color/Rgb.php';
+            // require_once 'Zend/Pdf/Color/Rgb.php';
             return new Zend_Pdf_Color_Rgb($r, $g, $b);
         }
     }
